@@ -34,7 +34,7 @@ public abstract class CharacterController : MonoBehaviour
     {
         
     }
-    protected void movement()
+    protected virtual void movement()
 
     {
         Vector3 dir = (transform.right * _xAxis + transform.forward * _zAxis).normalized;
