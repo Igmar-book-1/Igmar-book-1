@@ -1514,9 +1514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b850d8cb0fd97de49a89bfbc5dcaf8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 0}
-  instructionsPanel: {fileID: 0}
-  creditsPanel: {fileID: 0}
+  mainPanel: {fileID: 707266694}
+  instructionsPanel: {fileID: 574959226}
+  creditsPanel: {fileID: 1971664665}
 --- !u!1 &1605272608
 GameObject:
   m_ObjectHideFlags: 0
