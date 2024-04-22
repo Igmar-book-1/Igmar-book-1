@@ -37,6 +37,7 @@ public class FollowTargetController : MonoBehaviour
 
 
     public GameObject followTransform;
+    public PlayerOneRigidBody rigidBody;
     // Update is called once per frame
     void Update()
     {
@@ -49,16 +50,15 @@ public class FollowTargetController : MonoBehaviour
 
         transform.rotation *= Quaternion.AngleAxis(_yAxis * rotationPower, Vector3.right);
 
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
         #endregion
         var angles = transform.transform.localEulerAngles;
         angles.z = 0;
 
         var angle = transform.localEulerAngles.x;
 
-        if (angle > 180 && angle < 355)
+        if (angle > 180 && angle < 340)
         {
-            angles.x = 355;
+            angles.x = 340;
         }
         else if (angle < 180 && angle > 10)
         {
@@ -69,19 +69,28 @@ public class FollowTargetController : MonoBehaviour
 
         nextRotation = Quaternion.Lerp(transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
 
-        if( _move.x == 0 && _move.y == 0)
+        if( followTransform.GetComponent<PlayerOneRigidBody>().isMoving())
         {
-            nextPosition = transform.position;
-            /*if(aimValue == 1)
-            {
-                transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
 
-                followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-            }*/
 
+            float moveSpeed = speed / 100f;
+            Vector3 position = (transform.forward * _move.y * moveSpeed) + (transform.right * _move.x * moveSpeed);
+            nextPosition = followTransform.transform.position + position;
+
+            followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            transform.localEulerAngles = new Vector3(angles.x, 0, 0);
             return;
         }
-           
+
+
+        nextPosition = transform.position;
+        if(followTransform.GetComponent<PlayerOneRigidBody>().isAiming())
+        {
+         followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+         transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+        }
+
 
     }
 }
