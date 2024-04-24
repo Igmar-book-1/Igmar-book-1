@@ -21,7 +21,7 @@ public class PlayerAimingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isAiming() && !aimCamera.activeInHierarchy)
+        if (player.getIsAiming() && !aimCamera.activeInHierarchy)
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
@@ -29,7 +29,7 @@ public class PlayerAimingController : MonoBehaviour
             
            // StartCoroutine(ShowReticle());
         }
-        else if (!player.isAiming() && !mainCamera.activeInHierarchy)
+        else if (!player.getIsAiming() && !mainCamera.activeInHierarchy)
         {
              mainCamera.SetActive(true);
              aimCamera.SetActive(false);

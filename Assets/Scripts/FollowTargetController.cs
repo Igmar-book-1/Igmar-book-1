@@ -84,7 +84,7 @@ public class FollowTargetController : MonoBehaviour
 
 
         nextPosition = transform.position;
-        if(followTransform.GetComponent<PlayerOneRigidBody>().isAiming())
+        if(followTransform.GetComponent<PlayerOneRigidBody>().getIsAiming())
         {
          followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 

@@ -11,10 +11,12 @@ public class PlayerOneRigidBody  : CharacterController
     protected bool _isAiming = false;
     protected bool _isRunning = false;
     protected bool _isGrounded = false;
+    protected int _speedMovementAnimation = 1;
     [SerializeField] protected float jumpForce = 0;
     [SerializeField] protected bool _isMoving = false;
     [SerializeField] protected string onJump = "onJump";
     [SerializeField] protected string onAttack = "onAttack";
+    [SerializeField] protected string isAiming = "isAiming";
     [SerializeField] protected string isAttacking = "isAttacking";
     [SerializeField] protected string comboAttack= "comboAttack";
 
@@ -26,10 +28,12 @@ public class PlayerOneRigidBody  : CharacterController
         _isJumping = Input.GetButtonDown("Jump");
         _onAttack = Input.GetButtonDown("Fire1");
         _isAiming = Input.GetButton("Fire2");
+        _isRunning = Input.GetButton("Fire3");
+        base._anim.SetBool(isAiming,_isAiming);
+
         _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
-        base._anim.SetFloat(base._xAxisName, base._xAxis);
-        base._anim.SetFloat(base._zAxisName, base._zAxis);
+        
 
         if (_isJumping)
         {
@@ -56,7 +60,7 @@ public class PlayerOneRigidBody  : CharacterController
         if (base._xAxis != 0 || base._zAxis != 0 )
         {
             _isMoving = true;
-            base.movement();
+            movementAnimationControl(_speedMovementAnimation);
         }
         else
         {
@@ -70,17 +74,37 @@ public class PlayerOneRigidBody  : CharacterController
        
     }
 
-    protected override void movement()
+    protected void movementAnimationControl(int _speedMovementAnimation)
     {
+        if (_isAiming)
+        {
+            _speedMovementAnimation = 4;
+            setRigidBodySpeed(PlayerSpeedConstants.stealth);
 
-        base.movement();
+        }
+        else if (_isRunning)
+        {
+            _speedMovementAnimation = 1;
+            setRigidBodySpeed(PlayerSpeedConstants.run);
+        }
+        else
+        {
+            _speedMovementAnimation = 2;
+            setRigidBodySpeed(PlayerSpeedConstants.walk);
+        }
+        base._anim.SetFloat(base._xAxisName, base._xAxis /
+            _speedMovementAnimation,0.05f, Time.deltaTime);
+        base._anim.SetFloat(base._zAxisName, base._zAxis /
+            _speedMovementAnimation,0.05f, Time.deltaTime);
+
+        base.movement(_speedMovementAnimation);
     }
     public bool isMoving()
     {
         return _isMoving;
     }
 
-    public bool isAiming()
+    public bool getIsAiming()
     {
         return _isAiming;
     }
