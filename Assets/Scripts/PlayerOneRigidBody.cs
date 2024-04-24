@@ -35,10 +35,16 @@ public class PlayerOneRigidBody  : CharacterController
 
         
 
+       
+
+    }
+
+    private void FixedUpdate()
+    {
         if (_isJumping)
         {
             StartCoroutine(jump());
-           
+
         }
 
         if (_onAttack)
@@ -57,27 +63,24 @@ public class PlayerOneRigidBody  : CharacterController
 
         }
 
-        if (base._xAxis != 0 || base._zAxis != 0 )
+        if (base._xAxis != 0 || base._zAxis !=0)
         {
             _isMoving = true;
             movementAnimationControl(_speedMovementAnimation);
         }
         else
         {
+            base._anim.SetFloat(base._zAxisName, base._zAxis);
+            base._anim.SetFloat(base._xAxisName, base._xAxis);
             _isMoving = false;
         }
-
-    }
-
-    private void FixedUpdate()
-    {
-       
     }
 
     protected void movementAnimationControl(int _speedMovementAnimation)
     {
         if (_isAiming)
         {
+            
             _speedMovementAnimation = 4;
             setRigidBodySpeed(PlayerSpeedConstants.stealth);
 

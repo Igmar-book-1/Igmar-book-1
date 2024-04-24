@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSpeedConstants : MonoBehaviour
 {
-    public const float walk= 1.2f;
-    public const float stealth = 0.5f;
-    public const float run = 2f;
+    public const float walk= 2.2f;
+    public const float stealth = 1f;
+    public const float run = 4f;
 }
