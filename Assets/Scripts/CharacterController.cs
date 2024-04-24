@@ -34,10 +34,20 @@ public abstract class CharacterController : MonoBehaviour
     {
         
     }
-    protected virtual void movement()
+    protected virtual void movement(int speedAnimationController)
 
     {
         Vector3 dir = (transform.right * _xAxis + transform.forward * _zAxis).normalized;
         _rb.MovePosition(transform.position += dir * rigidBodySpeed * Time.fixedDeltaTime);
+    }
+
+    protected void setRigidBodySpeed(float speed)
+    {
+        rigidBodySpeed = speed;
+    }
+
+    protected float getRigidBodySpeed()
+    {
+        return rigidBodySpeed;
     }
 }
