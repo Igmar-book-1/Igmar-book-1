@@ -43,7 +43,7 @@ public class FollowTargetController : MonoBehaviour
     {
 
         _xAxis = Input.GetAxis("Mouse X");
-        _yAxis = Input.GetAxis("Mouse Y");
+        _yAxis = Input.GetAxis("Mouse Y")*-1;
 
         #region Follow transform rotation
         transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
