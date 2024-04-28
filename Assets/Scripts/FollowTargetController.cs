@@ -9,7 +9,6 @@ public class FollowTargetController : MonoBehaviour
 
     //private NaveMeshAgent _agent;
     public Vector2 _move;
-    public Vector2 _look;
     public float rotationPower = 3f;
     public float rotationLerp = 0.5f;
 
@@ -21,7 +20,6 @@ public class FollowTargetController : MonoBehaviour
     public Vector3 nextPosition;
     public Quaternion nextRotation;
     public float speed = 1f;
-    public Camera camera;
 
     private void Awake()
     {

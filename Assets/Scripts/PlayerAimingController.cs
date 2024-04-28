@@ -10,12 +10,13 @@ public class PlayerAimingController : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject aimCamera;
-    //public GameObject aimReticle;
+    public GameObject aimReticle;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<PlayerOneRigidBody>();
+        aimReticle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,20 +28,20 @@ public class PlayerAimingController : MonoBehaviour
             aimCamera.SetActive(true);
 
             
-           // StartCoroutine(ShowReticle());
+            StartCoroutine(ShowReticle());
         }
         else if (!player.getIsAiming() && !mainCamera.activeInHierarchy)
         {
              mainCamera.SetActive(true);
              aimCamera.SetActive(false);
-             //aimReticle.SetActive(false);
+             aimReticle.SetActive(false);
         }
         
     }
-    /*IEnumerator ShowReticle()
+    IEnumerator ShowReticle()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
         aimReticle.SetActive(enabled);
-    }*/
+    }
 
 }

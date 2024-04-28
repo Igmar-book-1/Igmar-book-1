@@ -19,6 +19,12 @@ public class PlayerOneRigidBody  : CharacterController
     [SerializeField] protected string isAiming = "isAiming";
     [SerializeField] protected string isAttacking = "isAttacking";
     [SerializeField] protected string comboAttack= "comboAttack";
+    PlayerOneMovement playerOneMovementScript;
+
+    private void Awake()
+    {
+        playerOneMovementScript = new PlayerOneMovement(_anim,_rb,jumpForce);
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +49,7 @@ public class PlayerOneRigidBody  : CharacterController
     {
         if (_isJumping)
         {
-            StartCoroutine(jump());
+            StartCoroutine(playerOneMovementScript.jump(_isGrounded));
 
         }
 
@@ -102,6 +108,8 @@ public class PlayerOneRigidBody  : CharacterController
 
         base.movement(_speedMovementAnimation);
     }
+
+
     public bool isMoving()
     {
         return _isMoving;
@@ -112,33 +120,16 @@ public class PlayerOneRigidBody  : CharacterController
         return _isAiming;
     }
 
-    public IEnumerator jump()
-    {
-        if (!_isGrounded)
-        {
-            yield break;
-        }
-        _anim.SetTrigger("onJump");
-        yield return new WaitForSeconds(0.6f);
-        _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerConstants.floor)
-        {
-            _isGrounded = true;
-            _anim.SetBool("isGrounded", true);
-        }
-    }
+        _isGrounded = playerOneMovementScript.isGroundedEnter(collision)
+;    }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == LayerConstants.floor)
-        {
-            _isGrounded = false;
-            _anim.SetBool("isGrounded",false);
-        }
+        _isGrounded = playerOneMovementScript.isGroundedExit(collision);
     }
 
 }

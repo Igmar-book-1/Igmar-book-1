@@ -3,34 +3,50 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class PlayerOneMovement : MonoBehaviour
+public class PlayerOneMovement 
 {
-    [SerializeField] int playerLife = 3;
-    [SerializeField] int playerHealth = 100;
-    [SerializeField] float playerMovementSpeed = 5f;
-    [SerializeField] float playerJumpForce = 10f;
-    private float _zAxis;
-    private float _xAxis;
-    private Vector3 _dir = new Vector3();
+    protected bool _isGrounded = true;
+    protected Animator _anim;
+    protected Rigidbody _rb;
+    protected float jumpForce;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public PlayerOneMovement( Animator _anim, Rigidbody _rb, float jumpForce)
     {
-        
+        this._anim = _anim;
+        this._rb = _rb;
+        this.jumpForce = jumpForce;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public IEnumerator jump(bool _isGrounded)
     {
-        
+        if (!_isGrounded)
+        {
+            yield break;
+        }
+        _anim.SetTrigger("onJump");
+        yield return new WaitForSeconds(0.6f);
+        _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
-    private void FixedUpdate()
+    public bool isGroundedEnter(Collision collision)
     {
-      
-
+        if (collision.gameObject.layer == LayerConstants.floor)
+        {
+            _isGrounded = true;
+            _anim.SetBool("isGrounded", true);
+        }
+        return _isGrounded;
     }
 
+    public bool isGroundedExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerConstants.floor)
+        {
+            _isGrounded = false;
+            _anim.SetBool("isGrounded", false);
+        }
+        return _isGrounded;
+    }
 
 }
