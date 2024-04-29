@@ -9,7 +9,6 @@ public class FollowTargetController : MonoBehaviour
 
     //private NaveMeshAgent _agent;
     public Vector2 _move;
-    public Vector2 _look;
     public float rotationPower = 3f;
     public float rotationLerp = 0.5f;
 
@@ -21,7 +20,6 @@ public class FollowTargetController : MonoBehaviour
     public Vector3 nextPosition;
     public Quaternion nextRotation;
     public float speed = 1f;
-    public Camera camera;
 
     private void Awake()
     {
@@ -43,7 +41,7 @@ public class FollowTargetController : MonoBehaviour
     {
 
         _xAxis = Input.GetAxis("Mouse X");
-        _yAxis = Input.GetAxis("Mouse Y");
+        _yAxis = Input.GetAxis("Mouse Y")*-1;
 
         #region Follow transform rotation
         transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
