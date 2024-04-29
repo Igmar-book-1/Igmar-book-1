@@ -734,13 +734,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _move: {x: 0, y: 0}
-  _look: {x: 0, y: 0}
   rotationPower: 1.5
   rotationLerp: 2
   nextPosition: {x: 0, y: 0, z: 0}
   nextRotation: {x: 0, y: 0, z: 0, w: 0}
   speed: 3.5
-  camera: {fileID: 388743124}
   followTransform: {fileID: 366200511}
   rigidBody: {fileID: 366200515}
 --- !u!1 &244775177

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOneRigidBody  : CharacterController
+public class PlayerOneRigidBody : CharacterController
 {
     protected bool _isJumping = false;
     protected bool _onAttack = false;
-    protected int _comboAttack= 0;
+    protected int _comboAttack = 0;
     protected bool _isAttacking = false;
     protected bool _isAiming = false;
     protected bool _isRunning = false;
@@ -18,14 +18,13 @@ public class PlayerOneRigidBody  : CharacterController
     [SerializeField] protected string onAttack = "onAttack";
     [SerializeField] protected string isAiming = "isAiming";
     [SerializeField] protected string isAttacking = "isAttacking";
-    [SerializeField] protected string comboAttack= "comboAttack";
-    PlayerOneMovement playerOneMovementScript;
+    [SerializeField] protected string comboAttack = "comboAttack";
+    PlayerOneMovement playerOneMovement;
 
-    private void Awake()
+    private void Start()
     {
-        playerOneMovementScript = new PlayerOneMovement(_anim,_rb,jumpForce);
+        playerOneMovement = new PlayerOneMovement(this._anim, this._rb, this.jumpForce);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -35,13 +34,13 @@ public class PlayerOneRigidBody  : CharacterController
         _onAttack = Input.GetButtonDown("Fire1");
         _isAiming = Input.GetButton("Fire2");
         _isRunning = Input.GetButton("Fire3");
-        base._anim.SetBool(isAiming,_isAiming);
+        base._anim.SetBool(isAiming, _isAiming);
 
         _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
-        
 
-       
+
+
 
     }
 
@@ -49,7 +48,7 @@ public class PlayerOneRigidBody  : CharacterController
     {
         if (_isJumping)
         {
-            StartCoroutine(playerOneMovementScript.jump(_isGrounded));
+            StartCoroutine(playerOneMovement.Jump(_isGrounded));
 
         }
 
@@ -69,7 +68,7 @@ public class PlayerOneRigidBody  : CharacterController
 
         }
 
-        if (base._xAxis != 0 || base._zAxis !=0)
+        if (base._xAxis != 0 || base._zAxis != 0)
         {
             _isMoving = true;
             movementAnimationControl(_speedMovementAnimation);
@@ -86,7 +85,7 @@ public class PlayerOneRigidBody  : CharacterController
     {
         if (_isAiming)
         {
-            
+
             _speedMovementAnimation = 4;
             setRigidBodySpeed(PlayerSpeedConstants.stealth);
 
@@ -102,14 +101,12 @@ public class PlayerOneRigidBody  : CharacterController
             setRigidBodySpeed(PlayerSpeedConstants.walk);
         }
         base._anim.SetFloat(base._xAxisName, base._xAxis /
-            _speedMovementAnimation,0.05f, Time.deltaTime);
+            _speedMovementAnimation, 0.05f, Time.deltaTime);
         base._anim.SetFloat(base._zAxisName, base._zAxis /
-            _speedMovementAnimation,0.05f, Time.deltaTime);
+            _speedMovementAnimation, 0.05f, Time.deltaTime);
 
         base.movement(_speedMovementAnimation);
     }
-
-
     public bool isMoving()
     {
         return _isMoving;
@@ -120,16 +117,33 @@ public class PlayerOneRigidBody  : CharacterController
         return _isAiming;
     }
 
-    
+    public IEnumerator jump()
+    {
+        if (!_isGrounded)
+        {
+            yield break;
+        }
+        _anim.SetTrigger("onJump");
+        yield return new WaitForSeconds(0.6f);
+        _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        _isGrounded = playerOneMovementScript.isGroundedEnter(collision)
-;    }
+        if (collision.gameObject.layer == LayerConstants.floor)
+        {
+            _isGrounded = true;
+            _anim.SetBool("isGrounded", true);
+        }
+    }
 
     private void OnCollisionExit(Collision collision)
     {
-        _isGrounded = playerOneMovementScript.isGroundedExit(collision);
+        if (collision.gameObject.layer == LayerConstants.floor)
+        {
+            _isGrounded = false;
+            _anim.SetBool("isGrounded", false);
+        }
     }
 
 }

@@ -18,14 +18,14 @@ public class PlayerOneMovement
     }
 
 
-    public IEnumerator jump(bool _isGrounded)
+    public IEnumerator Jump(bool _isGrounded)
     {
         if (!_isGrounded)
         {
             yield break;
         }
         _anim.SetTrigger("onJump");
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.2f);
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
