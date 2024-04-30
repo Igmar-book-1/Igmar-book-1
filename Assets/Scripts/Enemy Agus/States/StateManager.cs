@@ -45,12 +45,21 @@ namespace States
             _currentState = state;
             _currentState.Execute();
         }
-    
-        private bool IsInTheSameState(State state) => _currentState == state;
 
-        private bool IsTargetClose() => Vector3.Distance(transform.position, target.position) < _currentState.GetLineOfSight().range / 2;
+        private bool IsInTheSameState(State state)
+        {
+            return _currentState == state;
+        } 
 
-        private bool IsTargetVisible() => _currentState.GetLineOfSight().IsInSight(target);
+        private bool IsTargetClose() 
+        {
+            return Vector3.Distance(transform.position, target.position) < _currentState.GetLineOfSight().range / 2;
+        } 
+
+        private bool IsTargetVisible() 
+        {
+            return _currentState.GetLineOfSight().IsInSight(target);
+        } 
 
         private void HandleCheatClicked()
         {

@@ -25,7 +25,7 @@ namespace LineOfSight
             if (distance > range) return false;
 
             //Angulo entre mi forward y la direccion al target
-            var angleToTarget = Vector3.Angle(transform.forward, positionDiference);//No hace falta normalizar, por qué?
+            var angleToTarget = Vector3.Angle(transform.forward, positionDiference);
 
             // - Si el angulo es mayor a la mitad de mi angulo maximo => no lo veo
             if (angleToTarget > angle / 2) return false;

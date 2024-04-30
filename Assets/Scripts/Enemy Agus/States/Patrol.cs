@@ -39,9 +39,15 @@ namespace States
             }
         }
 
-        private bool IndexIsOutOfBounds() => _index > waypoints.Count -1;
+        private bool IndexIsOutOfBounds() 
+        {
+            return _index > waypoints.Count - 1;
+        } 
 
-        private bool IsCloseToWaypoint() =>
-            Vector3.Distance(transform.position, waypoints[_index].position) <= stoppingDistance;
+        private bool IsCloseToWaypoint()
+        {
+            return Vector3.Distance(transform.position, waypoints[_index].position) <= stoppingDistance;
+        }
+        
     }
 }

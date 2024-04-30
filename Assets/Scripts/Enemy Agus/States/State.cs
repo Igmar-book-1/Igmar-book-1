@@ -34,6 +34,9 @@ namespace States
            _lineOfSight.range = lineOfSightRange;
            _lineOfSight.angle = lineOfSightAngle;
         }
-        public LineOfSightBehaviour GetLineOfSight() => _lineOfSight;
-    }
+        public LineOfSightBehaviour GetLineOfSight() 
+        { 
+            return _lineOfSight;
+        }
+    } 
 }
