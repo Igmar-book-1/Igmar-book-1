@@ -59,9 +59,15 @@ public class PlayerOneRigidBody : CharacterController
             if (_comboAttack < 2)
             {
                 _comboAttack++;
+                if (_comboAttack == 1)
+                {
+                    StartCoroutine(playerOneMovement.Attack2());
+
+                }
             }
             else
             {
+                StartCoroutine(playerOneMovement.Attack3());
                 _comboAttack = 0;
 
             }
@@ -130,16 +136,39 @@ public class PlayerOneRigidBody : CharacterController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerConstants.floor)
+        if (CollisionFlags.Below != 0)
         {
-            _isGrounded = true;
-            _anim.SetBool("isGrounded", true);
+            if (collision.contacts.Length > 0)
+            {
+                ContactPoint contact = collision.contacts[0];
+                if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+                {
+                    _isGrounded = true;
+                    _anim.SetBool("isGrounded", true);
+                }
+            }
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (CollisionFlags.Below != 0)
+        {
+            if (collision.contacts.Length > 0)
+            {
+                ContactPoint contact = collision.contacts[0];
+                if(Vector3.Dot(contact.normal, Vector3.up)> 0.5)
+                {
+                    _isGrounded = true;
+                    _anim.SetBool("isGrounded", true);
+                }
+            }
+
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == LayerConstants.floor)
+        if (CollisionFlags.Below != 0)
         {
             _isGrounded = false;
             _anim.SetBool("isGrounded", false);

@@ -25,7 +25,7 @@ public class PlayerOneMovement
             yield break;
         }
         _anim.SetTrigger("onJump");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
@@ -47,6 +47,18 @@ public class PlayerOneMovement
             _anim.SetBool("isGrounded", false);
         }
         return _isGrounded;
+    }
+
+    public IEnumerator Attack2()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _rb.AddForce(_rb.gameObject.transform.forward * 2, ForceMode.Impulse);
+    }
+
+    public IEnumerator Attack3()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _rb.AddForce(_rb.gameObject.transform.forward * 4, ForceMode.Impulse);
     }
 
 }

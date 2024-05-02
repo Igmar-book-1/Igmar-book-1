@@ -104,7 +104,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c8f51913bb2666844bfa21127e6856b2, type: 2}
+  m_Motion: {fileID: 7400000, guid: b6a306c933476544d919ca6359caabb9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -299,9 +299,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.121691346
-  m_TransitionOffset: 0.015762124
-  m_ExitTime: 0.9377211
+  m_TransitionDuration: 0.14759491
+  m_TransitionOffset: 0
+  m_ExitTime: 0.6632381
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -340,7 +340,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Air
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -56000513002187395}
@@ -401,9 +401,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.12285808
-  m_TransitionOffset: 0.010658888
-  m_ExitTime: 0.001435523
+  m_TransitionDuration: 0.03876384
+  m_TransitionOffset: 0.0106588835
+  m_ExitTime: 0.0014355229
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -468,7 +468,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump
-  m_Speed: 2
+  m_Speed: 2.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6100729961822132072}
@@ -820,18 +820,9 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -4469183485442372851, guid: 070af625bdb04b144afa54c097cc4243,
-      type: 3}
-    m_Threshold: -1
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 0.1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: xAxis
-    m_Mirror: 0
-  - serializedVersion: 2
     m_Motion: {fileID: 9111558908952476143, guid: 070af625bdb04b144afa54c097cc4243,
       type: 3}
-    m_Threshold: 1
+    m_Threshold: -1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.1
     m_CycleOffset: 0
@@ -840,7 +831,7 @@ BlendTree:
   m_BlendParameter: verticalSpeed
   m_BlendParameterY: xAxis
   m_MinThreshold: -1
-  m_MaxThreshold: 1
+  m_MaxThreshold: -1
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -1098,7 +1089,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 683c2178117904f45a26f2e8b08ec765, type: 2}
+  m_Motion: {fileID: -203655887218126122, guid: 382b581d802590540a5aa0a08927a591,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1528,7 +1520,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Landing
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -9011124801262059659}
@@ -1631,7 +1623,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8399004321002339097}
-    m_Position: {x: 320, y: 30, z: 0}
+    m_Position: {x: 260, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9183355962716644039}
     m_Position: {x: 0, y: 220, z: 0}
@@ -1652,7 +1644,7 @@ AnimatorStateMachine:
     m_Position: {x: 570, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1073208416937879471}
-    m_Position: {x: 370, y: -180, z: 0}
+    m_Position: {x: 290, y: -300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1769,7 +1761,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 84eaff1c57ed9084284242ff91391599, type: 2}
+  m_Motion: {fileID: -203655887218126122, guid: b19b036f81500404284cf95cdcbb888e,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
