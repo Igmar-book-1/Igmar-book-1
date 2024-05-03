@@ -11,11 +11,13 @@ namespace States
         public float lineOfSightRange;
         public float lineOfSightAngle;
         public float speed;
+        protected Animator _anim;
 
         private void Awake()
         {
             Agent = GetComponent<NavMeshAgent>();
             _lineOfSight = GetComponent<LineOfSightBehaviour>();
+            _anim = GetComponent<Animator>();
         }
 
         public virtual void Execute()

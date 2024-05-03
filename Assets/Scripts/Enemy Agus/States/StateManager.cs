@@ -9,6 +9,7 @@ namespace States
         public State patrolState;
         private State _currentState;
         public Transform target;
+        public Animator anim;
         void Start()
         {
             SetInitialState(patrolState);

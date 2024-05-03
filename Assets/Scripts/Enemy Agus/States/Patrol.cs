@@ -14,6 +14,7 @@ namespace States
             Debug.Log("Patrol");
             ResetIndex();
             PatrolWaypoints();
+            _anim.SetTrigger("Patrol");
         }
     
         private void ResetIndex()
