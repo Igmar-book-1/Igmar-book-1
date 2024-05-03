@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 3202152047490043305}
   m_Layer: 0
   m_Name: WolfMesh
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBodySpeed: 1
+  life: 100
   _xAxisName: xAxis
   _zAxisName: zAxis
   _basePosition: {fileID: 7833358871643913886}

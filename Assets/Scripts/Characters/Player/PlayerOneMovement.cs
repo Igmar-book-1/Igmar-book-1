@@ -52,13 +52,13 @@ public class PlayerOneMovement
     public IEnumerator Attack2()
     {
         yield return new WaitForSeconds(0.1f);
-        _rb.AddForce(_rb.gameObject.transform.forward * 2, ForceMode.Impulse);
+        //_rb.AddForce(_rb.gameObject.transform.forward * 2, ForceMode.Impulse);
     }
 
     public IEnumerator Attack3()
     {
         yield return new WaitForSeconds(0.1f);
-        _rb.AddForce(_rb.gameObject.transform.forward * 4, ForceMode.Impulse);
+        //_rb.AddForce(_rb.gameObject.transform.forward * 4, ForceMode.Impulse);
     }
 
 }

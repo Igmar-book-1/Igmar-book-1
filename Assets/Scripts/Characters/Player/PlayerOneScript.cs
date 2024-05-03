@@ -22,12 +22,14 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string comboAttack = "comboAttack";
     PlayerOneMovement playerOneMovement;
     private MouseSpawnWallController mouseSpawn;
+    private StaffDamageScript staff;
 
     private void Start()
     {
         playerOneMovement = new PlayerOneMovement(this._anim, this._rb, this.jumpForce);
         mouseSpawn = new MouseSpawnWallController();
         mouseSpawn.Start();
+        staff = GameObject.FindWithTag("Staff").GetComponent<StaffDamageScript>();
     }
     // Update is called once per frame
     void Update()
@@ -103,6 +105,7 @@ public class PlayerOneScript : AllCharacterController
         {
             mouseSpawn.CreateWall();
         }
+        base.Die();
 
     }
 
@@ -252,5 +255,15 @@ public class PlayerOneScript : AllCharacterController
         {
             mana += 20;
         }
+    }
+
+    public Rigidbody GetRigidBody()
+    {
+        return _rb;
+    }
+
+    public bool IsAttacking()
+    {
+        return _isAttacking;
     }
 }

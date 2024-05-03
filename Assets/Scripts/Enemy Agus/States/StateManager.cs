@@ -59,6 +59,7 @@ namespace States
 
         private bool IsTargetVisible() 
         {
+            if(target == null) return false;
             return _currentState.GetLineOfSight().IsInSight(target);
         } 
 
