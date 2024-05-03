@@ -26,7 +26,7 @@ public class LifeScript : MonoBehaviour
     void Update()
     {
         manaSlider.value = _player.getMana();
-        healthSlider.value = _player.getLife();
+        healthSlider.value = _player.GetLife();
     }
     private void OnTriggerEnter(Collider other)
     {

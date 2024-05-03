@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace States
 {
-    public class StateManager : MonoBehaviour
+    public class StateManager : EnemyController
     {
         public State attackState; 
         public State chaseState; 
@@ -23,6 +23,7 @@ namespace States
 
         void Update()
         {
+            Die();
             if (IsTargetVisible())
             {
                 if (IsTargetClose())
@@ -59,6 +60,7 @@ namespace States
 
         private bool IsTargetVisible() 
         {
+            if(target == null) return false;
             return _currentState.GetLineOfSight().IsInSight(target);
         } 
 
@@ -77,6 +79,16 @@ namespace States
             if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 attackState.Execute();
+            }
+        }
+
+        public override void Die()
+        {
+            if (life <= 0)
+            {
+                Debug.Log("destruyo: " + this.name);
+                Destroy(this.gameObject);
+
             }
         }
     }

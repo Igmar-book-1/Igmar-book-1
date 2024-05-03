@@ -7,6 +7,9 @@ TagManager:
   - AimPoint
   - Mana Bar
   - Health Bar
+  - Staff
+  - Enemy
+  - PlayerWithCameras
   layers:
   - Default
   - TransparentFX

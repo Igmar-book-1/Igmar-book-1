@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOneScript : CharacterController
+public class PlayerOneScript : AllCharacterController
 {
     protected bool _isJumping = false;
     protected bool _onAttack = false;
@@ -21,10 +21,15 @@ public class PlayerOneScript : CharacterController
     [SerializeField] protected string isAttacking = "isAttacking";
     [SerializeField] protected string comboAttack = "comboAttack";
     PlayerOneMovement playerOneMovement;
+    private MouseSpawnWallController mouseSpawn;
+    private StaffDamageScript staff;
 
     private void Start()
     {
         playerOneMovement = new PlayerOneMovement(this._anim, this._rb, this.jumpForce);
+        mouseSpawn = new MouseSpawnWallController();
+        mouseSpawn.Start();
+        staff = GameObject.FindWithTag("Staff").GetComponent<StaffDamageScript>();
     }
     // Update is called once per frame
     void Update()
@@ -96,6 +101,13 @@ public class PlayerOneScript : CharacterController
             receiveMana();
         }
 
+        if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
+        {
+            mouseSpawn.CreateWall();
+            loseMana();
+        }
+        base.Die();
+
     }
 
     private void FixedUpdate()
@@ -113,25 +125,25 @@ public class PlayerOneScript : CharacterController
         {
 
             _speedMovementAnimation = 4;
-            setRigidBodySpeed(PlayerSpeedConstants.stealth);
+            SetRigidBodySpeed(PlayerSpeedConstants.stealth);
 
         }
         else if (_isRunning && _isGrounded)
         {
             _speedMovementAnimation = 1;
-            setRigidBodySpeed(PlayerSpeedConstants.run);
+            SetRigidBodySpeed(PlayerSpeedConstants.run);
         }
         else
         {
             _speedMovementAnimation = 2;
-            setRigidBodySpeed(PlayerSpeedConstants.walk);
+            SetRigidBodySpeed(PlayerSpeedConstants.walk);
         }
         base._anim.SetFloat(base._xAxisName, base._xAxis /
             _speedMovementAnimation, 0.05f, Time.deltaTime);
         base._anim.SetFloat(base._zAxisName, base._zAxis /
             _speedMovementAnimation, 0.05f, Time.deltaTime);
 
-        base.movement(_speedMovementAnimation);
+        base.Movement(_speedMovementAnimation);
     }
     public bool isMoving()
     {
@@ -222,7 +234,7 @@ public class PlayerOneScript : CharacterController
         }
     }
 
-    public void loseMana ()
+    public void loseMana()
     {
         if (mana >= 20)
         {
@@ -244,5 +256,15 @@ public class PlayerOneScript : CharacterController
         {
             mana += 20;
         }
+    }
+
+    public Rigidbody GetRigidBody()
+    {
+        return _rb;
+    }
+
+    public bool IsAttacking()
+    {
+        return _isAttacking;
     }
 }

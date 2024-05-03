@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409ebd24e472aeb47884ecb989dd3a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelayTime: 2
-  maxDelayTime: 4
+  minDelayTime: 1
+  maxDelayTime: 3
 --- !u!1 &7688304727926447672
 GameObject:
   m_ObjectHideFlags: 0
