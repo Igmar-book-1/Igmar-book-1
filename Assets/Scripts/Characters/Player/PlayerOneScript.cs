@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOneRigidBody : CharacterController
+public class PlayerOneScript : CharacterController
 {
     protected bool _isJumping = false;
     protected bool _onAttack = false;
@@ -12,6 +12,7 @@ public class PlayerOneRigidBody : CharacterController
     protected bool _isRunning = false;
     protected bool _isGrounded = false;
     protected int _speedMovementAnimation = 1;
+    protected int mana = 100;
     [SerializeField] protected float jumpForce = 0;
     [SerializeField] protected bool _isMoving = false;
     [SerializeField] protected string onJump = "onJump";
@@ -38,21 +39,13 @@ public class PlayerOneRigidBody : CharacterController
 
         _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
-
-
-
-
-    }
-
-    private void FixedUpdate()
-    {
         if (_isJumping)
         {
             StartCoroutine(playerOneMovement.Jump(_isGrounded));
 
         }
 
-        if (_onAttack)
+        if (_onAttack && _isGrounded)
         {
             base._anim.SetTrigger(onAttack);
             base._anim.SetInteger(comboAttack, _comboAttack);
@@ -85,18 +78,45 @@ public class PlayerOneRigidBody : CharacterController
             base._anim.SetFloat(base._xAxisName, base._xAxis);
             _isMoving = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            receiveDamage();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            cure();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            loseMana();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            receiveMana();
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        
+
+       
+
+        
     }
 
     protected void movementAnimationControl(int _speedMovementAnimation)
     {
-        if (_isAiming)
+        if (_isAiming && _isGrounded)
         {
 
             _speedMovementAnimation = 4;
             setRigidBodySpeed(PlayerSpeedConstants.stealth);
 
         }
-        else if (_isRunning)
+        else if (_isRunning && _isGrounded)
         {
             _speedMovementAnimation = 1;
             setRigidBodySpeed(PlayerSpeedConstants.run);
@@ -175,4 +195,54 @@ public class PlayerOneRigidBody : CharacterController
         }
     }
 
+    public int getMana() { return this.mana; }
+
+
+    public void receiveDamage()
+    {
+        if (life >= 20)
+        {
+            life -= 20;
+        }
+        else
+        {
+            life = 0;
+        }
+    }
+
+    public void cure()
+    {
+        if (life >= 80)
+        {
+            life = 100;
+        }
+        else
+        {
+            life += 20;
+        }
+    }
+
+    public void loseMana ()
+    {
+        if (mana >= 20)
+        {
+            mana -= 20;
+        }
+        else
+        {
+            mana = 0;
+        }
+    }
+
+    public void receiveMana()
+    {
+        if (mana >= 80)
+        {
+            mana = 100;
+        }
+        else
+        {
+            mana += 20;
+        }
+    }
 }

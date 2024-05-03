@@ -11,6 +11,8 @@ public abstract class CharacterController : MonoBehaviour
     protected float _xAxis = 0;
     protected float _yAxis = 0;
     protected float _zAxis = 0;
+    [SerializeField] protected int life = 100;
+
     protected Animator _anim;
 
     [Header("Animation")]
@@ -51,4 +53,7 @@ public abstract class CharacterController : MonoBehaviour
     {
         return rigidBodySpeed;
     }
+
+    public int getLife() { return life; }
+
 }

@@ -6,7 +6,7 @@ using UnityEngine.ProBuilder.MeshOperations;
 public class PlayerAimingController : MonoBehaviour
 {
 
-    public PlayerOneRigidBody player;
+    public PlayerOneScript player;
 
     public GameObject mainCamera;
     public GameObject aimCamera;
@@ -15,7 +15,7 @@ public class PlayerAimingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerOneRigidBody>();
+        player = GetComponent<PlayerOneScript>();
         aimReticle.SetActive(false);
     }
 
