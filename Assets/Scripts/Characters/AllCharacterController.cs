@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterController : MonoBehaviour
+public abstract class AllCharacterController : MonoBehaviour
 {
 
     [Header("Parameters")]
@@ -37,23 +37,27 @@ public abstract class CharacterController : MonoBehaviour
     {
         
     }
-    protected virtual void movement(int speedAnimationController)
+    protected virtual void Movement(int speedAnimationController)
 
     {
         Vector3 dir = (transform.right * _xAxis + transform.forward * _zAxis).normalized;
         _rb.MovePosition(transform.position += dir * rigidBodySpeed * Time.fixedDeltaTime);
     }
 
-    protected void setRigidBodySpeed(float speed)
+    protected void SetRigidBodySpeed(float speed)
     {
         rigidBodySpeed = speed;
     }
 
-    protected float getRigidBodySpeed()
+    protected float GetRigidBodySpeed()
     {
         return rigidBodySpeed;
     }
 
-    public int getLife() { return life; }
+    public int GetLife() { return life; }
 
+    public void ReceiveDamage(int damage)
+    {
+        life -= damage;
+    }
 }

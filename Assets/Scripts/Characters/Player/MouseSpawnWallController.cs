@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseSpawnWallController : MonoBehaviour
+public class MouseSpawnWallController
 {
     private Camera cam;
     private GameObject obj;
@@ -11,7 +11,7 @@ public class MouseSpawnWallController : MonoBehaviour
     private PlayerOneScript player;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         obj = Resources.Load<GameObject>("Platform");
         obj2 = Resources.Load<GameObject>("Piedra");
@@ -21,11 +21,12 @@ public class MouseSpawnWallController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void CreateWall()
     {
-        
-        if (Input.GetKeyDown(KeyCode.E) && player.getIsAiming())
+        if(aimPoint == null)
         {
+            aimPoint = GameObject.FindWithTag("AimPoint");
+        }
             Ray ray = cam.ScreenPointToRay(aimPoint.transform.position);
             RaycastHit rayHit;
             if (Physics.Raycast(ray, out rayHit))
@@ -39,13 +40,13 @@ public class MouseSpawnWallController : MonoBehaviour
                     if (Vector3.Dot(rayHit.normal,Vector3.up)<0.6)
                     {
                         //hitPosition = hitPosition + Vector3.up * obj.transform.localScale.y / 2;
-                        Instantiate(obj, hitPosition, Quaternion.identity);
+                        MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.identity);
                     } else
                     {
-                        Instantiate(obj2, hitPosition, Quaternion.identity);
+                        MonoBehaviour.Instantiate(obj2, hitPosition, Quaternion.identity);
                     }
                 }
             }
-        }
+        
     }
 }
