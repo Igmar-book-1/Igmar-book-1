@@ -38,7 +38,11 @@ public class PlayerOneRigidBody : CharacterController
 
         _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
+        if (_isJumping)
+        {
+            StartCoroutine(playerOneMovement.Jump(_isGrounded));
 
+        }
 
 
 
@@ -46,11 +50,7 @@ public class PlayerOneRigidBody : CharacterController
 
     private void FixedUpdate()
     {
-        if (_isJumping)
-        {
-            StartCoroutine(playerOneMovement.Jump(_isGrounded));
-
-        }
+        
 
         if (_onAttack)
         {
