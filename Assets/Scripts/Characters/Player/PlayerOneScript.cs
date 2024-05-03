@@ -101,9 +101,10 @@ public class PlayerOneScript : AllCharacterController
             receiveMana();
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && _isAiming)
+        if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
         {
             mouseSpawn.CreateWall();
+            loseMana();
         }
         base.Die();
 
@@ -233,7 +234,7 @@ public class PlayerOneScript : AllCharacterController
         }
     }
 
-    public void loseMana ()
+    public void loseMana()
     {
         if (mana >= 20)
         {

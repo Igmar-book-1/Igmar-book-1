@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseSpawnWallController
@@ -36,15 +37,18 @@ public class MouseSpawnWallController
                 
                 if (targetHit != null)
                 {
-                    
-                    if (Vector3.Dot(rayHit.normal,Vector3.up)<0.6)
+
+                GameObject instance;
+                hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 100;
+                if (Vector3.Dot(rayHit.normal,Vector3.up)<0.6)
                     {
-                        //hitPosition = hitPosition + Vector3.up * obj.transform.localScale.y / 2;
-                        MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.identity);
+                    instance = MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.identity);
                     } else
                     {
-                        MonoBehaviour.Instantiate(obj2, hitPosition, Quaternion.identity);
+                    instance = MonoBehaviour.Instantiate(obj2, hitPosition, Quaternion.identity);
+                    
                     }
+                instance.GetComponent<RockBuildScripts>().normal = rayHit.normal;
                 }
             }
         

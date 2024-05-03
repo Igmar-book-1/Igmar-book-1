@@ -242,9 +242,8 @@ MonoBehaviour:
   _xAxisName: xAxis
   _zAxisName: zAxis
   _basePosition: {fileID: 7833358871643913886}
-  _targetPlayer: {fileID: 0}
   _distChase: 8
-  _minDist: 2
+  _minDist: 1.5
   _maxDist: 50
   _speed: 2
 --- !u!54 &4295688617478554896
