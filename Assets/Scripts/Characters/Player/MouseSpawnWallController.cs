@@ -8,6 +8,7 @@ public class MouseSpawnWallController : MonoBehaviour
     private GameObject obj;
     private GameObject obj2;
     private GameObject aimPoint;
+    private PlayerOneScript player;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,14 @@ public class MouseSpawnWallController : MonoBehaviour
         obj2 = Resources.Load<GameObject>("Piedra");
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         aimPoint = GameObject.FindWithTag("AimPoint");
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerOneScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        
+        if (Input.GetKeyDown(KeyCode.E) && player.getIsAiming())
         {
             Ray ray = cam.ScreenPointToRay(aimPoint.transform.position);
             RaycastHit rayHit;

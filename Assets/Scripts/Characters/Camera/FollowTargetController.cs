@@ -35,7 +35,7 @@ public class FollowTargetController : MonoBehaviour
 
 
     public GameObject followTransform;
-    public PlayerOneRigidBody rigidBody;
+    public PlayerOneScript rigidBody;
     // Update is called once per frame
     void Update()
     {
@@ -67,7 +67,7 @@ public class FollowTargetController : MonoBehaviour
 
         nextRotation = Quaternion.Lerp(transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
 
-        if( followTransform.GetComponent<PlayerOneRigidBody>().isMoving())
+        if( followTransform.GetComponent<PlayerOneScript>().isMoving())
         {
 
 
@@ -82,7 +82,7 @@ public class FollowTargetController : MonoBehaviour
 
 
         nextPosition = transform.position;
-        if(followTransform.GetComponent<PlayerOneRigidBody>().getIsAiming())
+        if(followTransform.GetComponent<PlayerOneScript>().getIsAiming())
         {
          followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
