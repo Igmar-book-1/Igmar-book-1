@@ -11,6 +11,7 @@ namespace States
             Debug.Log("Chase");
             transform.LookAt(target);
             Agent.SetDestination(target.position);
+            _anim.SetTrigger("Chase");
         }
     }
 }
