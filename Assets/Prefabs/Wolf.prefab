@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 4594242093088718828}
   - component: {fileID: 2335592826140138512}
   - component: {fileID: 4316789751758294130}
-  - component: {fileID: 2727958005064340222}
   - component: {fileID: 5072084464695355905}
+  - component: {fileID: 3202152047490043305}
   m_Layer: 0
   m_Name: WolfMesh
   m_TagString: Untagged
@@ -149,33 +149,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2727958005064340222
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7120998230231475168}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &5072084464695355905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -195,8 +168,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 24.228, y: 63.283897, z: 124.5301}
-  m_Center: {x: 0, y: 31.770466, z: -13.381649}
+  m_Size: {x: 18.853077, y: 28.154343, z: 70.48958}
+  m_Center: {x: 0.6011243, y: 37.14517, z: 4.6173377}
+--- !u!65 &3202152047490043305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120998230231475168}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 17.952808, y: 12.56327, z: 39.92545}
+  m_Center: {x: 0.33212554, y: 6.41015, z: 0.6051064}
 --- !u!1 &8901242723247758910
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2940915285064801549}
   - component: {fileID: 4261157569135578225}
+  - component: {fileID: 4295688617478554896}
   m_Layer: 0
   m_Name: WolfEnemy
   m_TagString: Untagged
@@ -247,7 +242,34 @@ MonoBehaviour:
   _zAxisName: zAxis
   _basePosition: {fileID: 7833358871643913886}
   _targetPlayer: {fileID: 0}
-  _distChase: 10
+  _distChase: 8
   _minDist: 2
   _maxDist: 50
   _speed: 2
+--- !u!54 &4295688617478554896
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901242723247758910}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
