@@ -5,7 +5,7 @@ namespace LineOfSight
     public class LineOfSightBehaviour : MonoBehaviour
     {
         //Que tan lejos puede ver
-        public float range = 10;
+        public float range = 12;
         //Que tan amplia es su vision
         public float angle = 90;
 
