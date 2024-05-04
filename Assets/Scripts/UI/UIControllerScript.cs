@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LifeScript : MonoBehaviour
@@ -27,6 +28,11 @@ public class LifeScript : MonoBehaviour
     {
         manaSlider.value = _player.getMana();
         healthSlider.value = _player.GetLife();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("PreEntrega");
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

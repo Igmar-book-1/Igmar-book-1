@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class MainMenuController : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     private void PlaySound(AudioClip audioClip)
