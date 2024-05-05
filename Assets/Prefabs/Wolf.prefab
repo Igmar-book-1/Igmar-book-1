@@ -3573,6 +3573,7 @@ GameObject:
   - component: {fileID: 3495266059464793533}
   - component: {fileID: 1844317222794987377}
   - component: {fileID: 1313825878422316779}
+  - component: {fileID: 1908218842160342488}
   m_Layer: 0
   m_Name: Wolf-Animated
   m_TagString: Enemy
@@ -3636,11 +3637,10 @@ MonoBehaviour:
   _zAxisName: zAxis
   _basePosition: {fileID: 604166812990289764}
   _distChase: 8
-  _minDistPlayer: 1.5
-  _minDistBase: 0.02
+  _minDistPlayer: 3
+  _minDistBase: 4
   _maxDist: 50
   _speed: 2
-  speedMovement: 1
 --- !u!54 &1844317222794987377
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3689,6 +3689,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4, y: 1.1, z: 1.5}
   m_Center: {x: 0, y: 0.55, z: 0.4}
+--- !u!195 &1908218842160342488
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840337869457938497}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4844508519258324339
 GameObject:
   m_ObjectHideFlags: 0
