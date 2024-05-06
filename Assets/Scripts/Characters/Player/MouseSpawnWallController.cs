@@ -28,29 +28,35 @@ public class MouseSpawnWallController
         {
             aimPoint = GameObject.FindWithTag("AimPoint");
         }
-            Ray ray = cam.ScreenPointToRay(aimPoint.transform.position);
-            RaycastHit rayHit;
-            if (Physics.Raycast(ray, out rayHit))
-            {
-                GameObject targetHit = rayHit.transform.gameObject;
-                Vector3 hitPosition = rayHit.point;
-                
-                if (targetHit != null)
-                {
+            
+        Ray ray = cam.ScreenPointToRay(aimPoint.transform.position);
+        RaycastHit rayHit;
+        if (Physics.Raycast(ray, out rayHit))
+        {
+            GameObject targetHit = rayHit.transform.gameObject;
+            Vector3 hitPosition = rayHit.point;
 
+            if (!player.getIsCreatingPlatform())
+            {
                 GameObject instance;
-                hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 100;
-                if (Vector3.Dot(rayHit.normal,Vector3.up)<0.6)
-                    {
+                if (Vector3.Dot(rayHit.normal, Vector3.up) < 0.6)
+                {
+                    player.setOnCreateWall();
+                    hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 100;
                     instance = MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.identity);
-                    } else
-                    {
-                    instance = MonoBehaviour.Instantiate(obj2, hitPosition, Quaternion.identity);
-                    
-                    }
-                instance.GetComponent<RockBuildScripts>().normal = rayHit.normal;
                 }
+                else
+                {
+                    player.setOnCreateGround();
+
+                    hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 70;
+                    instance = MonoBehaviour.Instantiate(obj2, hitPosition, Quaternion.identity);
+
+                }
+                instance.GetComponent<RockBuildScripts>().normal = rayHit.normal;
             }
+        }
+            
         
     }
 }

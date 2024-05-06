@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e7301285ac5e9f340a245b5247eb17db,
         type: 3}
       propertyPath: m_Name
-      value: Escudo de piedra
+      value: Escudo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -94,6 +94,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2968791001106328415}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7301285ac5e9f340a245b5247eb17db,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2503290773666322366}
   m_SourcePrefab: {fileID: 100100000, guid: e7301285ac5e9f340a245b5247eb17db, type: 3}
 --- !u!1 &8124541797413969096 stripped
 GameObject:
@@ -165,3 +169,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.016276713, y: 0.02032413, z: 0.0069972775}
   m_Center: {x: 0.0075603533, y: 0.01030716, z: 0.0022770583}
+--- !u!54 &2503290773666322366
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8124541797413969096}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -18,16 +18,15 @@ public class EnemyMele : EnemyController
     [SerializeField] float _maxDist;
     [SerializeField] float _speed;
 
-    private bool _isDead = false;
+
     private bool isAttackAllowed = true;
 
     //Parametros de animator
     private bool _isRunning = false;
     protected string onAttack = "onAttack";
     protected string isRunning = "isRunning";
-    protected string onDeath = "onDeath";
-    protected string onHurt = "onHurt";
     protected string onBase = "onBase";
+    protected string minDistance = "minDistance";
 
 
     void Start()
@@ -57,68 +56,80 @@ public class EnemyMele : EnemyController
             _speedMovementAnimation = 2;
             SetRigidBodySpeed(PlayerSpeedConstants.walk);
         }
-        base._anim.SetFloat(base._xAxisName, base._xAxis /
-            _speedMovementAnimation, 0.05f, Time.deltaTime);
-        base._anim.SetFloat(base._zAxisName, base._zAxis /
-            _speedMovementAnimation, 0.05f, Time.deltaTime);
-
-        base.Movement(_speedMovementAnimation);
     }
 
     void FixedUpdate()
     {
-        //Perseguir al jugador
-        if (_targetPlayer != null && _isDead == false && Vector3.Distance(transform.position, _targetPlayer.position) < _distChase)
+
+        if (!isHurt)
         {
-            _isRunning = true;
-            _anim.SetBool(isRunning, _isRunning);
 
-            agent.SetDestination(_targetPlayer.transform.position);
-            agent.speed = 3.5f;
-
-            transform.LookAt(_targetPlayer);
-            float distancia = Vector3.Distance(transform.position, _targetPlayer.position);
-
-            if (distancia <= _minDistPlayer)
+            //Perseguir al jugador
+            if (_targetPlayer != null 
+                && !_targetPlayer.GetComponent<PlayerOneScript>().IsDead
+                && !IsDead
+                && Vector3.Distance(transform.position, _targetPlayer.position) < _distChase)
             {
-                StartCoroutine(AttackFreeze());
-                if (isAttackAllowed)
+                _isRunning = true;
+                _anim.SetBool(isRunning, _isRunning);
+
+                agent.SetDestination(_targetPlayer.transform.position);
+
+                float distancia = Vector3.Distance(transform.position, _targetPlayer.position);
+
+                if (distancia>4)
                 {
-                    Attack();
+
+                agent.speed = 4.5f;
                 }
 
-            }
-        }
-        else
-        {
-            _anim.SetBool(isRunning, false);
+                transform.LookAt(_targetPlayer);
 
-            agent.SetDestination(_basePosition.transform.position);
+                _anim.SetFloat(minDistance, distancia);
+                if (distancia <= _minDistPlayer)
+                {
+                    agent.speed = 0.75f;
+                    if (isAttackAllowed)
+                    {
+                        Attack();
+                    }
 
-            transform.LookAt(_basePosition);
-
-            if (Vector3.Distance(transform.position, _basePosition.position) > _minDistBase)
-            {
-                _anim.SetBool(isRunning, _isRunning);
-                //Debug.Log("Vuelvo a la base");
+                }
             }
             else
             {
-                _anim.SetTrigger(onBase);
-                agent.speed = 0;
+                _anim.SetBool(isRunning, false);
+
+                agent.SetDestination(_basePosition.transform.position);
+
+                transform.LookAt(_basePosition);
+
+                if (Vector3.Distance(transform.position, _basePosition.position) > _minDistBase)
+                {
+                    _anim.SetBool(isRunning, _isRunning);
+                    //Debug.Log("Vuelvo a la base");
+                }
+                else
+                {
+                    _anim.SetTrigger(onBase);
+                    agent.speed = 0;
+                }
             }
         }
     }
 
     void Attack()
     {
+        isAttackAllowed = false;
         _anim.SetTrigger(onAttack);
         Debug.Log("Ataque");
-        isAttackAllowed = false;
+        StartCoroutine(AttackFreeze());
+
     }
 
     IEnumerator AttackFreeze()
     {
+        
         yield return new WaitForSeconds(3f);
         isAttackAllowed = true;
     }
@@ -126,7 +137,7 @@ public class EnemyMele : EnemyController
     {
         if (life <= 0)
         {
-            _isDead = true;
+            IsDead = true;
 
             _anim.SetTrigger(onDeath);
             agent.speed = 0;
