@@ -51,8 +51,9 @@ public class PlayerOneScript : AllCharacterController
 
         }
 
-        if (_onAttack && _isGrounded)
+        if (_onAttack && _isGrounded && !_isAttacking)
         {
+            _isAttacking = true;
             base._anim.SetTrigger(onAttack);
             base._anim.SetInteger(comboAttack, _comboAttack);
             if (_comboAttack < 2)
@@ -73,7 +74,7 @@ public class PlayerOneScript : AllCharacterController
 
         }
 
-        if (base._xAxis != 0 || base._zAxis != 0)
+        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking)
         {
             _isMoving = true;
             movementAnimationControl(_speedMovementAnimation);
@@ -267,5 +268,9 @@ public class PlayerOneScript : AllCharacterController
     public bool IsAttacking()
     {
         return _isAttacking;
+    }
+    public void setIsAttacking(bool isAttacking)
+    {
+        this._isAttacking = isAttacking;
     }
 }
