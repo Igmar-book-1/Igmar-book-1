@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299e06ed9d91460488903369d9500dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normal: {x: 0, y: 0, z: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  nextPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4632584053425601122
 PrefabInstance:
   m_ObjectHideFlags: 0

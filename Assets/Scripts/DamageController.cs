@@ -20,20 +20,21 @@ public class DamageController
     public void OnHitEnemy(Collision collision) 
     {
 
-            Hurt(collision.rigidbody.gameObject.GetComponent<AllCharacterController>());
+            Hurt(collision.rigidbody.gameObject.GetComponent<AllCharacterController>(),5);
     }
 
     public void OnHitEnemy(Collider collision)
     {
         if(collision.gameObject.GetComponentInParent<AllCharacterController>() != null)
         {
-            Hurt(collision.gameObject.GetComponentInParent<AllCharacterController>());
+            Hurt(collision.gameObject.GetComponentInParent<AllCharacterController>(),20);
 
         }
     }
 
-    void Hurt(AllCharacterController rigidbody)
+    void Hurt(AllCharacterController rigidbody, int damage)
     {
-        rigidbody.ReceiveDamage(20);
+
+        rigidbody.ReceiveDamage(damage);
     }
 }

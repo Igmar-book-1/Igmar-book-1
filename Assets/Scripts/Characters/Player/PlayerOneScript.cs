@@ -21,9 +21,14 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string isAiming = "isAiming";
     [SerializeField] protected string isAttacking = "isAttacking";
     [SerializeField] protected string comboAttack = "comboAttack";
+    [SerializeField] protected string onCreateGround = "onCreateGround";
+    [SerializeField] protected string onCreateWall = "onCreateWall";
+    [SerializeField] protected string onBlock = "onBlock";
+    private bool isCreatingPlatform = false;
     PlayerOneMovement playerOneMovement;
     private MouseSpawnWallController mouseSpawn;
     private StaffDamageScript staff;
+
 
     private void Start()
     {
@@ -35,6 +40,9 @@ public class PlayerOneScript : AllCharacterController
     // Update is called once per frame
     void Update()
     {
+        if(!IsDead)
+        {
+
         base._xAxis = Input.GetAxis("Horizontal");
         base._zAxis = Input.GetAxis("Vertical");
         _isJumping = Input.GetButtonDown("Jump");
@@ -61,30 +69,18 @@ public class PlayerOneScript : AllCharacterController
                 _comboAttack++;
                 if (_comboAttack == 1)
                 {
-                    StartCoroutine(playerOneMovement.Attack2());
 
                 }
             }
             else
             {
-                StartCoroutine(playerOneMovement.Attack3());
                 _comboAttack = 0;
 
             }
 
         }
 
-        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking)
-        {
-            _isMoving = true;
-            movementAnimationControl(_speedMovementAnimation);
-        }
-        else
-        {
-            base._anim.SetFloat(base._zAxisName, base._zAxis);
-            base._anim.SetFloat(base._xAxisName, base._xAxis);
-            _isMoving = false;
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -109,16 +105,27 @@ public class PlayerOneScript : AllCharacterController
             loseMana();
         }
         base.Die();
+        }
 
     }
 
     private void FixedUpdate()
     {
-        
 
-       
 
-        
+        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking)
+        {
+            _isMoving = true;
+            movementAnimationControl(_speedMovementAnimation);
+        }
+        else
+        {
+            base._anim.SetFloat(base._zAxisName, base._zAxis);
+            base._anim.SetFloat(base._xAxisName, base._xAxis);
+            _isMoving = false;
+        }
+
+
     }
 
     protected void movementAnimationControl(int _speedMovementAnimation)
@@ -273,4 +280,28 @@ public class PlayerOneScript : AllCharacterController
     {
         this._isAttacking = isAttacking;
     }
+
+    public void setOnCreateWall()
+    {
+        _anim.SetTrigger(onCreateWall);
+    }
+
+    public void setOnCreateGround()
+    {
+        _anim.SetTrigger(onCreateGround);
+    }
+    public void setOnBlock()
+    {
+        _anim.SetTrigger(onBlock);
+    }
+    public void setIsCreatingPlatform(bool valor)
+    {
+        isCreatingPlatform = valor;
+    }
+
+    public bool getIsCreatingPlatform()
+    {
+        return isCreatingPlatform;
+    }
+
 }

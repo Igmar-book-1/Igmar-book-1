@@ -58,9 +58,9 @@ public class FollowTargetController : MonoBehaviour
         {
             angles.x = 320;
         }
-        else if (angle < 180 && angle > 30)
+        else if (angle < 180 && angle > 35)
         {
-            angles.x = 30;
+            angles.x = 35;
         }
 
         transform.localEulerAngles = angles;

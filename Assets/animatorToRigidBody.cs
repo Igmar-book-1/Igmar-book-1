@@ -54,6 +54,13 @@ public class animatorToRigidBody : MonoBehaviour
 
     public void finishAttack()
     {
+        capsuleCollider.enabled = false;
+        sphereCollider.enabled = false;
         playerOneScript.setIsAttacking(false);
+    }
+
+    public void finishCreatingBlocks()
+    {
+        playerOneScript.setIsCreatingPlatform(false);
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public abstract class AllCharacterController : MonoBehaviour
 {
@@ -14,14 +16,21 @@ public abstract class AllCharacterController : MonoBehaviour
     protected float _xAxis = 0;
     protected float _yAxis = 0;
     protected float _zAxis = 0;
+    private bool _isDead = false;
     [SerializeField] protected int life = 100;
     DamageController damageController;
+    protected bool isHurt = false;
+    [SerializeField] float backOnHurt = 50;
 
     protected Animator _anim;
 
     [Header("Animation")]
     [SerializeField] protected string _xAxisName = "xAxis";
     [SerializeField] protected string _zAxisName = "zAxis";
+    protected string onDeath = "onDeath";
+    protected string onHurt = "onHurt";
+
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private void Awake()
     {
@@ -65,8 +74,16 @@ public abstract class AllCharacterController : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
+       
+
         Debug.Log(this.name + " Receives Damage");
         life -= damage;
+        _anim.SetTrigger(onHurt);
+        isHurt = true; 
+        if (!isHurt && this.tag == "Enemy")
+        {
+            _rb.AddForce(Vector3.back * backOnHurt, ForceMode.Impulse);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -90,9 +107,28 @@ public abstract class AllCharacterController : MonoBehaviour
     {
         if (life <= 0)
         {
+
+            IsDead = true;
+            _anim.SetTrigger(onDeath);
             Debug.Log("destruyo: " + this.name);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,10f);
+            if (this.tag == "Player")
+            {
+                StartCoroutine(reloadScene());
+            }
 
         }
     }
+
+    IEnumerator reloadScene()
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(1);
+    }
+
+    public void setIsHurtFalse()
+    {
+        isHurt = false;
+    }
+
 }
