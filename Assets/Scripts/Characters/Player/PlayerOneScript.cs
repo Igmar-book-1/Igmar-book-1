@@ -84,7 +84,7 @@ public class PlayerOneScript : AllCharacterController
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            receiveDamage();
+            receiveDamage(20);
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -219,7 +219,7 @@ public class PlayerOneScript : AllCharacterController
     public int getMana() { return this.mana; }
 
 
-    public void receiveDamage()
+    public void receiveDamage(int dmg)
     {
         if (life >= 20)
         {
