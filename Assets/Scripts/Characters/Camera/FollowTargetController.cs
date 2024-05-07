@@ -39,56 +39,58 @@ public class FollowTargetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        _xAxis = Input.GetAxis("Mouse X");
-        _yAxis = Input.GetAxis("Mouse Y")*-1;
-
-        #region Follow transform rotation
-        transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
-
-        transform.rotation *= Quaternion.AngleAxis(_yAxis * rotationPower, Vector3.right);
-
-        #endregion
-        var angles = transform.transform.localEulerAngles;
-        angles.z = 0;
-
-        var angle = transform.localEulerAngles.x;
-
-        if (angle > 180 && angle < 320)
+        if(!PauseMenuScript._isPause)
         {
-            angles.x = 320;
-        }
-        else if (angle < 180 && angle > 35)
-        {
-            angles.x = 35;
-        }
+            _xAxis = Input.GetAxis("Mouse X");
+            _yAxis = Input.GetAxis("Mouse Y")*-1;
 
-        transform.localEulerAngles = angles;
+            #region Follow transform rotation
+            transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
 
-        nextRotation = Quaternion.Lerp(transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
+            transform.rotation *= Quaternion.AngleAxis(_yAxis * rotationPower, Vector3.right);
 
-        if( followTransform.GetComponent<PlayerOneScript>().isMoving())
-        {
+            #endregion
+            var angles = transform.transform.localEulerAngles;
+            angles.z = 0;
+
+            var angle = transform.localEulerAngles.x;
+
+            if (angle > 180 && angle < 320)
+            {
+                angles.x = 320;
+            }
+            else if (angle < 180 && angle > 35)
+            {
+                angles.x = 35;
+            }
+
+            transform.localEulerAngles = angles;
+
+            nextRotation = Quaternion.Lerp(transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
+
+            if( followTransform.GetComponent<PlayerOneScript>().isMoving())
+            {
 
 
-            float moveSpeed = speed / 100f;
-            Vector3 position = (transform.forward * _move.y * moveSpeed) + (transform.right * _move.x * moveSpeed);
-            nextPosition = followTransform.transform.position + position;
+                float moveSpeed = speed / 100f;
+                Vector3 position = (transform.forward * _move.y * moveSpeed) + (transform.right * _move.x * moveSpeed);
+                nextPosition = followTransform.transform.position + position;
 
+                followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+                return;
+            }
+
+
+            nextPosition = transform.position;
+            if(followTransform.GetComponent<PlayerOneScript>().getIsAiming())
+            {
             followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
             transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-            return;
+            }
+
         }
-
-
-        nextPosition = transform.position;
-        if(followTransform.GetComponent<PlayerOneScript>().getIsAiming())
-        {
-         followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-
-         transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-        }
-
 
     }
 }

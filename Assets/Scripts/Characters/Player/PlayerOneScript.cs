@@ -40,73 +40,75 @@ public class PlayerOneScript : AllCharacterController
     // Update is called once per frame
     void Update()
     {
-        if(!IsDead)
+        if(!PauseMenuScript._isPause)
         {
-
-        base._xAxis = Input.GetAxis("Horizontal");
-        base._zAxis = Input.GetAxis("Vertical");
-        _isJumping = Input.GetButtonDown("Jump");
-        _onAttack = Input.GetButtonDown("Fire1");
-        _isAiming = Input.GetButton("Fire2");
-        _isRunning = Input.GetButton("Fire3");
-        base._anim.SetBool(isAiming, _isAiming);
-
-        _anim.SetFloat("verticalSpeed", _rb.velocity.y);
-
-        if (_isJumping)
-        {
-            StartCoroutine(playerOneMovement.Jump(_isGrounded));
-
-        }
-
-        if (_onAttack && _isGrounded && !_isAttacking)
-        {
-            _isAttacking = true;
-            base._anim.SetTrigger(onAttack);
-            base._anim.SetInteger(comboAttack, _comboAttack);
-            if (_comboAttack < 2)
+            if(!IsDead)
             {
-                _comboAttack++;
-                if (_comboAttack == 1)
+
+            base._xAxis = Input.GetAxis("Horizontal");
+            base._zAxis = Input.GetAxis("Vertical");
+            _isJumping = Input.GetButtonDown("Jump");
+            _onAttack = Input.GetButtonDown("Fire1");
+            _isAiming = Input.GetButton("Fire2");
+            _isRunning = Input.GetButton("Fire3");
+            base._anim.SetBool(isAiming, _isAiming);
+
+            _anim.SetFloat("verticalSpeed", _rb.velocity.y);
+
+            if (_isJumping)
+            {
+                StartCoroutine(playerOneMovement.Jump(_isGrounded));
+
+            }
+
+            if (_onAttack && _isGrounded && !_isAttacking)
+            {
+                _isAttacking = true;
+                base._anim.SetTrigger(onAttack);
+                base._anim.SetInteger(comboAttack, _comboAttack);
+                if (_comboAttack < 2)
                 {
+                    _comboAttack++;
+                    if (_comboAttack == 1)
+                    {
+
+                    }
+                }
+                else
+                {
+                    _comboAttack = 0;
 
                 }
+
             }
-            else
+
+            
+
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                _comboAttack = 0;
-
+                receiveDamage(20);
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                cure();
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                loseMana();
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                receiveMana();
             }
 
+            if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
+            {
+                mouseSpawn.CreateWall();
+                loseMana();
+            }
+            base.Die();
+            }
         }
-
-        
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            receiveDamage(20);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            cure();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            loseMana();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            receiveMana();
-        }
-
-        if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
-        {
-            mouseSpawn.CreateWall();
-            loseMana();
-        }
-        base.Die();
-        }
-
     }
 
     private void FixedUpdate()
