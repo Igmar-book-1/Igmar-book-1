@@ -4,35 +4,39 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Rigidbody rb;
+    public GameObject Explosion;
     [SerializeField] float lifetime;
     [SerializeField] float speed;
     [SerializeField] int damage;
 
-    public bool ownedByPlayer;
+    
     // Start is called before the first frame update
     void Start()
     {
+        rb.AddForce(transform.forward * speed);
         Destroy(gameObject, lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Move();
-    }
-
-    void Move()
-    {
-        transform.position += transform.forward * speed * Time.deltaTime;
-    }
-    
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == ("Player"))
-        {
-            other.GetComponent<PlayerOneScript>().receiveDamage(damage);
-        }
         
-        Destroy(gameObject);
+   
+    
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.transform.gameObject.layer != 7)
+        {
+            GameObject go = Instantiate(Explosion, transform.position, transform.rotation);
+            go.SetActive(true);
+            
+
+            if (col.tag == ("Player"))
+            {
+                col.GetComponent<PlayerOneScript>().receiveDamage(damage);
+            }
+
+            Destroy(go, 1);
+            Destroy(this.gameObject);
+        }
+                      
     }
 }
