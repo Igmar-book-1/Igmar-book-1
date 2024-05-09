@@ -10,14 +10,12 @@ public class Shooter : MonoBehaviour
 
     public GameObject bullet;
     public Transform shootPoint;
-    [SerializeField] float bulletSpeed;
-
-    public float shootSpeed;
-    public float timeToShoot;
+ 
+    public float fireRate;
     float originalTime;
     void Start()
     {
-        originalTime = timeToShoot;
+        originalTime = fireRate;
     }
 
     // Update is called once per frame
@@ -33,12 +31,12 @@ public class Shooter : MonoBehaviour
     {
         if (detected)
         {
-            timeToShoot -= Time.deltaTime;
+            fireRate -= Time.deltaTime;
 
-            if(timeToShoot < 0)
+            if(fireRate < 0)
             {
                 ShootPlayer();
-                timeToShoot = originalTime;
+                fireRate = originalTime;
             }
         }
     }
@@ -54,7 +52,8 @@ public class Shooter : MonoBehaviour
 
     private void ShootPlayer()
     {
-        GameObject currentBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        bullet.transform.forward = enemy.forward * bulletSpeed;
+        GameObject go = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        go.SetActive(true);
+        
     }
 }
