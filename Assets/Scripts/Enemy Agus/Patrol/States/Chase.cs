@@ -4,14 +4,15 @@ namespace States
 {
     public class Chase : State
     {
-        public Transform target;
-        public override void Execute()
+        
+        public override void Execute(Transform target)
         {
-            base.Execute();
+            base.Execute(target);
             Debug.Log("Chase");
             transform.LookAt(target);
             Agent.SetDestination(target.position);
             _anim.SetTrigger("Chase");
+            
         }
     }
 }

@@ -13,12 +13,13 @@ namespace States
         void Start()
         {
             SetInitialState(patrolState);
+
         }
 
         private void SetInitialState(State state)
         {
             _currentState = state;
-            _currentState.Execute();
+            _currentState.Execute(target);
         }
 
         void Update()
@@ -29,23 +30,28 @@ namespace States
                 if (IsTargetClose())
                 {
                     SetCurrentState(attackState);
-                    return;
+                    
                 }
-                SetCurrentState(chaseState);
+                else
+                {
+                    SetCurrentState(chaseState);
+                }
+                
             }
             else
             {
                 SetCurrentState(patrolState);
             }
+            _currentState.Execute(target);
 
-            HandleCheatClicked();
+            //HandleCheatClicked();
         }
 
         private void SetCurrentState(State state)
         {
             if(IsInTheSameState(state)) return;
             _currentState = state;
-            _currentState.Execute();
+            _currentState.Execute(target);
         }
 
         private bool IsInTheSameState(State state)
@@ -55,7 +61,7 @@ namespace States
 
         private bool IsTargetClose() 
         {
-            return Vector3.Distance(transform.position, target.position) < _currentState.GetLineOfSight().range / 2;
+            return Vector3.Distance(transform.position, target.position) < 3;
         } 
 
         private bool IsTargetVisible() 
@@ -64,11 +70,11 @@ namespace States
             return _currentState.GetLineOfSight().IsInSight(target);
         } 
 
-        private void HandleCheatClicked()
+        /*private void HandleCheatClicked()
         {
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                patrolState.Execute();
+                patrolState.Execute(tar);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -80,7 +86,7 @@ namespace States
             {
                 attackState.Execute();
             }
-        }
+        }*/
 
         public override void Die()
         {

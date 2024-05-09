@@ -8,9 +8,9 @@ namespace States
         public List<Transform> waypoints;
         public int stoppingDistance;
         private int _index;
-        public override void Execute()
+        public override void Execute(Transform target)
         {
-            base.Execute();
+            base.Execute(target);
             Debug.Log("Patrol");
             ResetIndex();
             PatrolWaypoints();

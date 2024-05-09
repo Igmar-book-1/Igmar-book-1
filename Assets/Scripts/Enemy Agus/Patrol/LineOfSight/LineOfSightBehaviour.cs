@@ -1,23 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using TMPro;
+using UnityEngine;
 
 namespace LineOfSight
 {
     public class LineOfSightBehaviour : MonoBehaviour
     {
         //Que tan lejos puede ver
-        public float range = 12;
+        public float range;
         //Que tan amplia es su vision
-        public float angle = 90;
+        public float angle;
+
+        
+        public TMP_Text countDownText;
+        public int countDownCount;
+        public Canvas countDownCanvas;
+        public string countDownEndMessage;
+        public Transform target;
+        public int countDown;
+        public int maxCountDown;
+        private bool isCalled = false;
+        private GameObject player;
 
         //Que cosas puede ver y/o obstruyen su vision
         public LayerMask visibles = ~0;//Hack para decir "TODOS"
 
+        private void Awake()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        private void Start()
+        {
+            countDown = 0;
+        }
+
+        private void Update()
+        {
+            if (!isCalled) 
+            {
+                StartCoroutine(CountDownCo());
+            }            
+        }
 
         public bool IsInSight(Transform target)
         {
             
             //Vector entre la posicion del target y mi posicion
-            var positionDiference = target.position - transform.position;
+            var positionDiference = player.transform.position - transform.position;
             //Distancia al target
             var distance = positionDiference.magnitude;
 
@@ -45,6 +74,41 @@ namespace LineOfSight
 
             //Si no paso nada de lo anterior, el objeto esta a la vista
             return true;
+        }
+
+
+
+        private IEnumerator CountDownCo()
+        {
+            isCalled = true;
+            if (IsInSight(player.transform))
+            {
+                countDown++;
+                countDownCanvas.gameObject.SetActive(true);
+                countDownText.text = countDown.ToString();
+            }
+            else
+            {
+                countDown = 0;
+            }
+
+            if (countDown <= maxCountDown)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
+            isCalled = false;
+            
+
+            if (countDown >= maxCountDown)
+            {
+                Debug.Log("Count Down Finished");
+                countDownCanvas.gameObject.SetActive(false);
+                countDown = 0;
+                player.GetComponent<PlayerOneScript>().ForceDie();
+            }
+               
+          
         }
 
         void OnDrawGizmos()
