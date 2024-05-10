@@ -43,12 +43,24 @@ public class Shooter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag != "Player") return;
+        else
         {
             detected = true;
             target = other.gameObject;
         }
+        
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            detected = false;
+            target = null;
+        }
+    }
+
+
 
     private void ShootPlayer()
     {
