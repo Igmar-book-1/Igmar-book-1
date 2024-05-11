@@ -23,7 +23,7 @@ public class BridgeTrigger : MonoBehaviour
                 BridgeTable bridgeTableScript = bridgeTable.GetComponent<BridgeTable>();
                 float delayTime = Random.Range(minDelayTime, maxDelayTime);
 
-                bridgeTableScript.ActivateFall(delayTime, minDelayTime);
+                bridgeTableScript.ActivateFall(delayTime, delayTime-3);
             }
         }
     }
