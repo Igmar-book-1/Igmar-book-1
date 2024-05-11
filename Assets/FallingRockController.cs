@@ -36,13 +36,13 @@ public class FallingRockController : MonoBehaviour
     void PushRockUp(float positivity)
     {
         isPushed = true;
-        _rb.AddForce(Vector3.up * positivity * 7, ForceMode.Force);
+        _rb.AddForce(Vector3.up * positivity * 8, ForceMode.Force);
         isPushed = false;
     }
     void PushRockForward()
     {
         isPushed = true;
-        _rb.AddForce(Vector3.left * 9, ForceMode.Force);
+        _rb.AddForce(Vector3.left * 4, ForceMode.Force);
         isPushed = false;
     }
 
