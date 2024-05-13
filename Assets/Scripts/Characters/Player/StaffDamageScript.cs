@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+
 public class StaffDamageScript : MonoBehaviour
 {
     private PlayerOneScript playerOne;
@@ -11,7 +12,7 @@ public class StaffDamageScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.playerOne = GameObject.FindWithTag("Player").GetComponent<PlayerOneScript>();
+        this.playerOne = GameManager.instance.Player.GetComponent<PlayerOneScript>();
         this.damageController = playerOne.GetDamageController();
     }
 

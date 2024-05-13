@@ -78,7 +78,11 @@ public abstract class AllCharacterController : MonoBehaviour
 
         Debug.Log(this.name + " Receives Damage");
         life -= damage;
-        _anim.SetTrigger(onHurt);
+        if(!(this.gameObject.tag == "Player" && this.gameObject.GetComponentInChildren<PlayerOneScript>().IsAttacking()))
+        {
+            _anim.SetTrigger(onHurt);
+
+        }
         isHurt = true; 
         if (!isHurt && this.tag == "Enemy")
         {

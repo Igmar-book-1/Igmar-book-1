@@ -12,6 +12,7 @@ public class PlayerOneScript : AllCharacterController
     protected bool _isAiming = false;
     protected bool _isRunning = false;
     protected bool _isGrounded = false;
+    protected bool _isDashing = false;
     protected int _speedMovementAnimation = 1;
     protected int mana = 100;
     [SerializeField] protected float jumpForce = 0;
@@ -24,6 +25,8 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string onCreateGround = "onCreateGround";
     [SerializeField] protected string onCreateWall = "onCreateWall";
     [SerializeField] protected string onBlock = "onBlock";
+    [SerializeField] protected string onDash = "onDash";
+    bool creationCooldown = false;
     private bool isCreatingPlatform = false;
     PlayerOneMovement playerOneMovement;
     private MouseSpawnWallController mouseSpawn;
@@ -42,8 +45,8 @@ public class PlayerOneScript : AllCharacterController
     {
         if(!PauseMenuScript._isPause)
         {
-            if(!IsDead)
-            {
+           if (!IsDead && !isCreatingPlatform )
+           {
 
             base._xAxis = Input.GetAxis("Horizontal");
             base._zAxis = Input.GetAxis("Vertical");
@@ -100,12 +103,27 @@ public class PlayerOneScript : AllCharacterController
             {
                 receiveMana();
             }
-
-            if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                mouseSpawn.CreateWall();
-                loseMana();
+                _anim.SetTrigger(onDash);
             }
+
+                if (Input.GetKeyDown(KeyCode.E) && mana >= 20 && !creationCooldown)
+                {
+                    StartCoroutine(CreationIsOnCooldown());
+                    if (_isAiming)
+                    {
+                        mouseSpawn.CreateWall();
+                        loseMana();
+                    }
+                    else
+                    {
+                        mouseSpawn.CreateBlockingWall();
+                        _anim.SetTrigger(onBlock);
+
+                    }
+
+                }
             base.Die();
             }
         }
@@ -115,7 +133,7 @@ public class PlayerOneScript : AllCharacterController
     {
 
 
-        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking)
+        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking && !isCreatingPlatform)
         {
             _isMoving = true;
             movementAnimationControl(_speedMovementAnimation);
@@ -221,6 +239,12 @@ public class PlayerOneScript : AllCharacterController
     public int getMana() { return this.mana; }
 
 
+    IEnumerator CreationIsOnCooldown()
+    {
+        creationCooldown = true;
+        yield return new WaitForSecondsRealtime(3f);
+        creationCooldown = false;
+    }
     public void receiveDamage(int dmg)
     {
         if (life >= 20)
@@ -306,4 +330,25 @@ public class PlayerOneScript : AllCharacterController
         return isCreatingPlatform;
     }
 
+    public bool GetCreationCooldown()
+    {
+        return creationCooldown;
+    }
+    public void SetisAiming(bool isAiming)
+    {
+        _isAiming = isAiming;
+    }
+    public bool getIsDashing()
+    {
+        return _isDashing;
+    }
+    public void setIsDashing(bool isDashing)
+    {
+        _isDashing = isDashing;
+    }
+
+    public MouseSpawnWallController getMouseSpawnWallController()
+    {
+        return mouseSpawn;
+    }
 }

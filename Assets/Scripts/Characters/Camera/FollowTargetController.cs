@@ -11,6 +11,7 @@ public class FollowTargetController : MonoBehaviour
     public Vector2 _move;
     public float rotationPower = 3f;
     public float rotationLerp = 0.5f;
+    private PlayerOneScript player;
 
     protected float _xAxis = 0;
     protected float _yAxis = 0;
@@ -23,6 +24,7 @@ public class FollowTargetController : MonoBehaviour
 
     private void Awake()
     {
+        
         //Este agente es para que no se choque contra las paredes pero creo que no es necesario por ahora.
       //  _agent = GetComponent<NaveMeshAgent>();
     }
@@ -30,7 +32,7 @@ public class FollowTargetController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameManager.instance.Player.GetComponent<PlayerOneScript>();
     }
 
 
@@ -39,7 +41,7 @@ public class FollowTargetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!PauseMenuScript._isPause)
+        if(!PauseMenuScript._isPause && !player.getIsCreatingPlatform())
         {
             _xAxis = Input.GetAxis("Mouse X");
             _yAxis = Input.GetAxis("Mouse Y")*-1;

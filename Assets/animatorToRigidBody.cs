@@ -59,8 +59,21 @@ public class animatorToRigidBody : MonoBehaviour
         playerOneScript.setIsAttacking(false);
     }
 
+    public void startCreatingBlocks()
+    {
+        playerOneScript.setIsCreatingPlatform(true);
+    }
     public void finishCreatingBlocks()
     {
         playerOneScript.setIsCreatingPlatform(false);
+    }
+    public void SetIsDashingTrue()
+    {
+        playerOneScript.setIsDashing(true);
+    }
+
+    public void SetIsDashingFalse()
+    {
+        playerOneScript.setIsDashing(false);
     }
 }
