@@ -44,7 +44,7 @@ public abstract class AllCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -74,12 +74,16 @@ public abstract class AllCharacterController : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-       
+
 
         Debug.Log(this.name + " Receives Damage");
         life -= damage;
-        _anim.SetTrigger(onHurt);
-        isHurt = true; 
+        if (!(this.gameObject.tag == "Player" && this.gameObject.GetComponentInChildren<PlayerOneScript>().IsAttacking()))
+        {
+            _anim.SetTrigger(onHurt);
+
+        }
+        isHurt = true;
         if (!isHurt && this.tag == "Enemy")
         {
             _rb.AddForce(Vector3.back * backOnHurt, ForceMode.Impulse);
@@ -111,7 +115,7 @@ public abstract class AllCharacterController : MonoBehaviour
             IsDead = true;
             _anim.SetTrigger(onDeath);
             Debug.Log("destruyo: " + this.name);
-            Destroy(this.gameObject,10f);
+            Destroy(this.gameObject, 10f);
             if (this.tag == "Player")
             {
                 StartCoroutine(reloadScene());
@@ -131,7 +135,7 @@ public abstract class AllCharacterController : MonoBehaviour
             StartCoroutine(reloadScene());
         }
     }
-   
+
 
     IEnumerator reloadScene()
     {

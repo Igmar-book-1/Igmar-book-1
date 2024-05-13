@@ -12,7 +12,10 @@ public class PlayerOneScript : AllCharacterController
     protected bool _isAiming = false;
     protected bool _isRunning = false;
     protected bool _isGrounded = false;
+    protected bool _isDashing = false;
+    private bool _isComboSystemActive=false;
     protected int _speedMovementAnimation = 1;
+    private int comboTimer = 0;
     protected int mana = 100;
     [SerializeField] protected float jumpForce = 0;
     [SerializeField] protected bool _isMoving = false;
@@ -24,6 +27,8 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string onCreateGround = "onCreateGround";
     [SerializeField] protected string onCreateWall = "onCreateWall";
     [SerializeField] protected string onBlock = "onBlock";
+    [SerializeField] protected string onDash = "onDash";
+    bool creationCooldown = false;
     private bool isCreatingPlatform = false;
     PlayerOneMovement playerOneMovement;
     private MouseSpawnWallController mouseSpawn;
@@ -40,73 +45,93 @@ public class PlayerOneScript : AllCharacterController
     // Update is called once per frame
     void Update()
     {
-        if(!PauseMenuScript._isPause)
+        if (!PauseMenuScript._isPause)
         {
-            if(!IsDead)
+            if (!IsDead && !isCreatingPlatform)
             {
 
-            base._xAxis = Input.GetAxis("Horizontal");
-            base._zAxis = Input.GetAxis("Vertical");
-            _isJumping = Input.GetButtonDown("Jump");
-            _onAttack = Input.GetButtonDown("Fire1");
-            _isAiming = Input.GetButton("Fire2");
-            _isRunning = Input.GetButton("Fire3");
-            base._anim.SetBool(isAiming, _isAiming);
+                base._xAxis = Input.GetAxis("Horizontal");
+                base._zAxis = Input.GetAxis("Vertical");
+                _isJumping = Input.GetButtonDown("Jump");
+                _onAttack = Input.GetButtonDown("Fire1");
+                _isAiming = Input.GetButton("Fire2");
+                _isRunning = Input.GetButton("Fire3");
+                base._anim.SetBool(isAiming, _isAiming);
 
-            _anim.SetFloat("verticalSpeed", _rb.velocity.y);
+                _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
-            if (_isJumping)
-            {
-                StartCoroutine(playerOneMovement.Jump(_isGrounded));
-
-            }
-
-            if (_onAttack && _isGrounded && !_isAttacking)
-            {
-                _isAttacking = true;
-                base._anim.SetTrigger(onAttack);
-                base._anim.SetInteger(comboAttack, _comboAttack);
-                if (_comboAttack < 2)
+                if (_isJumping)
                 {
-                    _comboAttack++;
-                    if (_comboAttack == 1)
+                    StartCoroutine(playerOneMovement.Jump(_isGrounded));
+
+                }
+
+                if (_onAttack && _isGrounded && !_isAttacking)
+                {
+                    comboTimer = 3;
+                    if(!_isComboSystemActive)
                     {
+                        StartCoroutine(ComboSystem());
+                    }
+                    _isAttacking = true;
+                    base._anim.SetTrigger(onAttack);
+                    base._anim.SetInteger(comboAttack, _comboAttack);
+                    if (_comboAttack < 2)
+                    {
+                        _comboAttack++;
+                        if (_comboAttack == 1)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        _comboAttack = 0;
 
                     }
+
                 }
-                else
+
+
+
+                if (Input.GetKeyDown(KeyCode.F))
                 {
-                    _comboAttack = 0;
-
+                    receiveDamage(20);
+                }
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    cure();
+                }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    loseMana();
+                }
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    receiveMana();
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    _anim.SetTrigger(onDash);
                 }
 
-            }
+                if (Input.GetKeyDown(KeyCode.E) && mana >= 20 && !creationCooldown)
+                {
+                    StartCoroutine(CreationIsOnCooldown());
+                    if (_isAiming)
+                    {
+                        mouseSpawn.CreateWall();
+                        loseMana();
+                    }
+                    else
+                    {
+                        mouseSpawn.CreateBlockingWall();
+                        _anim.SetTrigger(onBlock);
 
-            
+                    }
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                receiveDamage(20);
-            }
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                cure();
-            }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                loseMana();
-            }
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                receiveMana();
-            }
-
-            if(Input.GetKeyDown(KeyCode.E) && _isAiming && mana>=20)
-            {
-                mouseSpawn.CreateWall();
-                loseMana();
-            }
-            base.Die();
+                }
+                base.Die();
             }
         }
     }
@@ -115,7 +140,7 @@ public class PlayerOneScript : AllCharacterController
     {
 
 
-        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking)
+        if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking && !isCreatingPlatform)
         {
             _isMoving = true;
             movementAnimationControl(_speedMovementAnimation);
@@ -199,7 +224,7 @@ public class PlayerOneScript : AllCharacterController
             if (collision.contacts.Length > 0)
             {
                 ContactPoint contact = collision.contacts[0];
-                if(Vector3.Dot(contact.normal, Vector3.up)> 0.5)
+                if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
                 {
                     _isGrounded = true;
                     _anim.SetBool("isGrounded", true);
@@ -221,6 +246,12 @@ public class PlayerOneScript : AllCharacterController
     public int getMana() { return this.mana; }
 
 
+    IEnumerator CreationIsOnCooldown()
+    {
+        creationCooldown = true;
+        yield return new WaitForSecondsRealtime(3f);
+        creationCooldown = false;
+    }
     public void receiveDamage(int dmg)
     {
         if (life >= 20)
@@ -304,6 +335,41 @@ public class PlayerOneScript : AllCharacterController
     public bool getIsCreatingPlatform()
     {
         return isCreatingPlatform;
+    }
+
+    public bool GetCreationCooldown()
+    {
+        return creationCooldown;
+    }
+    public void SetisAiming(bool isAiming)
+    {
+        _isAiming = isAiming;
+    }
+    public bool getIsDashing()
+    {
+        return _isDashing;
+    }
+    public void setIsDashing(bool isDashing)
+    {
+        _isDashing = isDashing;
+    }
+
+    public MouseSpawnWallController getMouseSpawnWallController()
+    {
+        return mouseSpawn;
+    }
+
+    IEnumerator ComboSystem()
+    {
+        if (comboTimer <= 0)
+        {
+            _isComboSystemActive = false;
+            _comboAttack = 0;
+            yield break;
+        }
+        yield return new WaitForSecondsRealtime(1f);
+        comboTimer -= 1;
+        StartCoroutine(ComboSystem());
     }
 
 }

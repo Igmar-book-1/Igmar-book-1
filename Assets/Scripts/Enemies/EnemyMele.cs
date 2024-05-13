@@ -32,7 +32,7 @@ public class EnemyMele : EnemyController
     void Start()
     {
         _box = GetComponent<BoxCollider>();
-        _targetPlayer = GameObject.FindWithTag("Player").transform;
+        _targetPlayer = GameManager.instance.Player.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -146,5 +146,9 @@ public class EnemyMele : EnemyController
             Debug.Log("destruyo: " + this.name);
             Destroy(this.gameObject.transform.parent.gameObject, 10f);
         }
+    }
+    public void forceBack()
+    {
+        _rb.AddForce(transform.forward * -1 * 30);
     }
 }

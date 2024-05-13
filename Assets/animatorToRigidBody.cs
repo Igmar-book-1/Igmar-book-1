@@ -21,7 +21,7 @@ public class animatorToRigidBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TestFunction()
@@ -44,7 +44,7 @@ public class animatorToRigidBody : MonoBehaviour
 
     public void AttackCollidersCapsule()
     {
-            capsuleCollider.enabled = !capsuleCollider.enabled;
+        capsuleCollider.enabled = !capsuleCollider.enabled;
     }
 
     public void AttackCollidersSphere()
@@ -59,8 +59,21 @@ public class animatorToRigidBody : MonoBehaviour
         playerOneScript.setIsAttacking(false);
     }
 
+    public void startCreatingBlocks()
+    {
+        playerOneScript.setIsCreatingPlatform(true);
+    }
     public void finishCreatingBlocks()
     {
         playerOneScript.setIsCreatingPlatform(false);
+    }
+    public void SetIsDashingTrue()
+    {
+        playerOneScript.setIsDashing(true);
+    }
+
+    public void SetIsDashingFalse()
+    {
+        playerOneScript.setIsDashing(false);
     }
 }

@@ -16,7 +16,7 @@ public class LifeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<PlayerOneScript>();
+        _player = GameManager.instance.Player.GetComponent<PlayerOneScript>();
         manaSlider = GameObject.FindWithTag("Mana Bar").GetComponent<Slider>();
         healthSlider = GameObject.FindWithTag("Health Bar").GetComponent<Slider>();
 
@@ -36,6 +36,6 @@ public class LifeScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+
     }
 }

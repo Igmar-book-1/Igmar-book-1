@@ -10,6 +10,10 @@ TagManager:
   - Staff
   - Enemy
   - PlayerWithCameras
+  - Piedra
+  - Escudo
+  - Platform
+  - AimCamera
   layers:
   - Default
   - TransparentFX

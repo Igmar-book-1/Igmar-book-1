@@ -11,6 +11,7 @@ public class FollowTargetController : MonoBehaviour
     public Vector2 _move;
     public float rotationPower = 3f;
     public float rotationLerp = 0.5f;
+    private PlayerOneScript player;
 
     protected float _xAxis = 0;
     protected float _yAxis = 0;
@@ -23,14 +24,15 @@ public class FollowTargetController : MonoBehaviour
 
     private void Awake()
     {
+
         //Este agente es para que no se choque contra las paredes pero creo que no es necesario por ahora.
-      //  _agent = GetComponent<NaveMeshAgent>();
+        //  _agent = GetComponent<NaveMeshAgent>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameManager.instance.Player.GetComponent<PlayerOneScript>();
     }
 
 
@@ -39,10 +41,10 @@ public class FollowTargetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!PauseMenuScript._isPause)
+        if (!PauseMenuScript._isPause && !player.getIsCreatingPlatform())
         {
             _xAxis = Input.GetAxis("Mouse X");
-            _yAxis = Input.GetAxis("Mouse Y")*-1;
+            _yAxis = Input.GetAxis("Mouse Y") * -1;
 
             #region Follow transform rotation
             transform.rotation *= Quaternion.AngleAxis(_xAxis * rotationPower, Vector3.up);
@@ -68,7 +70,7 @@ public class FollowTargetController : MonoBehaviour
 
             nextRotation = Quaternion.Lerp(transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
 
-            if( followTransform.GetComponent<PlayerOneScript>().isMoving())
+            if (followTransform.GetComponent<PlayerOneScript>().isMoving())
             {
 
 
@@ -83,11 +85,11 @@ public class FollowTargetController : MonoBehaviour
 
 
             nextPosition = transform.position;
-            if(followTransform.GetComponent<PlayerOneScript>().getIsAiming())
+            if (followTransform.GetComponent<PlayerOneScript>().getIsAiming())
             {
-            followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-            transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+                transform.localEulerAngles = new Vector3(angles.x, 0, 0);
             }
 
         }

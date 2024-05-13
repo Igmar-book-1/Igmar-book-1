@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escudo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e7301285ac5e9f340a245b5247eb17db,
+        type: 3}
+      propertyPath: m_TagString
+      value: Escudo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97,7 +102,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7301285ac5e9f340a245b5247eb17db,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2503290773666322366}
+      addedObject: {fileID: 233611664679891592}
   m_SourcePrefab: {fileID: 100100000, guid: e7301285ac5e9f340a245b5247eb17db, type: 3}
 --- !u!1 &8124541797413969096 stripped
 GameObject:
@@ -169,30 +174,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.016276713, y: 0.02032413, z: 0.0069972775}
   m_Center: {x: 0.0075603533, y: 0.01030716, z: 0.0022770583}
---- !u!54 &2503290773666322366
-Rigidbody:
+--- !u!114 &233611664679891592
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8124541797413969096}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299e06ed9d91460488903369d9500dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal: {x: 0, y: 0, z: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  nextPosition: {x: 0, y: 0, z: 0}
