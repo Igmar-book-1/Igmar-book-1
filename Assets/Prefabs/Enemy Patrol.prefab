@@ -268,13 +268,13 @@ GameObject:
   - component: {fileID: 8338552592976036114}
   - component: {fileID: 5849211231245414723}
   - component: {fileID: 7419888959459477294}
-  - component: {fileID: 8097786001851399056}
-  - component: {fileID: 6362913788890146288}
-  - component: {fileID: 236823037046473102}
-  - component: {fileID: 1284361297989080292}
   - component: {fileID: 8650461236547024535}
   - component: {fileID: 2144037255042384110}
   - component: {fileID: 32789718520250308}
+  - component: {fileID: 2522495918939367330}
+  - component: {fileID: 3445886657414335496}
+  - component: {fileID: 5330837670969734132}
+  - component: {fileID: 1980079218679707685}
   m_Layer: 0
   m_Name: 'Enemy '
   m_TagString: Enemy
@@ -344,79 +344,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8097786001851399056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711762177324419440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12c570214cd460f4eacb348b10d34afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBodySpeed: 0
-  life: 100
-  backOnHurt: 50
-  _xAxisName: xAxis
-  _zAxisName: zAxis
-  attackState: {fileID: 1284361297989080292}
-  chaseState: {fileID: 236823037046473102}
-  patrolState: {fileID: 6362913788890146288}
-  target: {fileID: 0}
-  anim: {fileID: 5849211231245414723}
---- !u!114 &6362913788890146288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711762177324419440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9585f09d00af405f9b0e89e1623aaf04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineOfSightRange: 20
-  lineOfSightAngle: 90
-  speed: 2
-  waypoints:
-  - {fileID: 4643152503817765881}
-  - {fileID: 3857592073293924340}
-  - {fileID: 2640275101208989740}
-  - {fileID: 6445359110458644507}
-  stoppingDistance: 2
---- !u!114 &236823037046473102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711762177324419440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11d143884344a8193c6d8bb2d1d4b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineOfSightRange: 20
-  lineOfSightAngle: 90
-  speed: 3
---- !u!114 &1284361297989080292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711762177324419440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b312d2e51d194676843e3c308bd7f35d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineOfSightRange: 20
-  lineOfSightAngle: 120
-  speed: 3
 --- !u!114 &8650461236547024535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +418,75 @@ CapsuleCollider:
   m_Height: 1.7894652
   m_Direction: 1
   m_Center: {x: 0, y: 0.87034166, z: 0}
+--- !u!114 &2522495918939367330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711762177324419440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9585f09d00af405f9b0e89e1623aaf04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineOfSightRange: 20
+  lineOfSightAngle: 90
+  speed: 1
+  waypoints: []
+  stoppingDistance: 2
+--- !u!114 &3445886657414335496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711762177324419440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c570214cd460f4eacb348b10d34afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBodySpeed: 0
+  life: 100
+  backOnHurt: 50
+  _xAxisName: xAxis
+  _zAxisName: zAxis
+  attackState: {fileID: 1980079218679707685}
+  chaseState: {fileID: 5330837670969734132}
+  patrolState: {fileID: 2522495918939367330}
+  target: {fileID: 0}
+  anim: {fileID: 5849211231245414723}
+--- !u!114 &5330837670969734132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711762177324419440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11d143884344a8193c6d8bb2d1d4b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineOfSightRange: 20
+  lineOfSightAngle: 90
+  speed: 2
+--- !u!114 &1980079218679707685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711762177324419440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b312d2e51d194676843e3c308bd7f35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineOfSightRange: 20
+  lineOfSightAngle: 120
+  speed: 2
 --- !u!1 &776228489355294169
 GameObject:
   m_ObjectHideFlags: 0
