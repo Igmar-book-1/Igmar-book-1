@@ -13,7 +13,7 @@ namespace LineOfSight
 
         
         public TMP_Text countDownText;
-        public int countDownCount;
+
         public Canvas countDownCanvas;
         public string countDownEndMessage;
         public Transform target;
@@ -21,6 +21,8 @@ namespace LineOfSight
         public int maxCountDown;
         private bool isCalled = false;
         private GameObject player;
+        public GameObject enemyIndicator;
+        
 
         //Que cosas puede ver y/o obstruyen su vision
         public LayerMask visibles = ~0;//Hack para decir "TODOS"
@@ -28,6 +30,7 @@ namespace LineOfSight
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+           
         }
         private void Start()
         {
@@ -81,15 +84,19 @@ namespace LineOfSight
         private IEnumerator CountDownCo()
         {
             isCalled = true;
+            
             if (IsInSight(player.transform))
             {
                 countDown++;
                 countDownCanvas.gameObject.SetActive(true);
+                enemyIndicator.SetActive(true);
                 countDownText.text = countDown.ToString();
             }
             else
             {
                 countDown = 0;
+                countDownCanvas.gameObject.SetActive(false);
+                
             }
 
             if (countDown <= maxCountDown)
@@ -98,6 +105,8 @@ namespace LineOfSight
             }
 
             isCalled = false;
+            enemyIndicator.SetActive(false);
+           
             
 
             if (countDown >= maxCountDown)
