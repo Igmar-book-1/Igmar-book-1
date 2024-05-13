@@ -19,7 +19,7 @@ public class StaffDamageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +29,7 @@ public class StaffDamageScript : MonoBehaviour
             Debug.Log(other.name);
             damageController.OnHitEnemy(other);
         }
-        
+
     }
 
 }

@@ -17,7 +17,8 @@ public class FallingRockGeneratorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isGeneratingRock){
+        if (!isGeneratingRock)
+        {
             StartCoroutine(generateRock(rockGenerators[Random.Range(1, 4)]));
 
         }

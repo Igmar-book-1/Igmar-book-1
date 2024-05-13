@@ -21,7 +21,7 @@ public class animatorToRigidBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TestFunction()
@@ -44,7 +44,7 @@ public class animatorToRigidBody : MonoBehaviour
 
     public void AttackCollidersCapsule()
     {
-            capsuleCollider.enabled = !capsuleCollider.enabled;
+        capsuleCollider.enabled = !capsuleCollider.enabled;
     }
 
     public void AttackCollidersSphere()

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOneMovement 
+public class PlayerOneMovement
 {
     protected bool _isGrounded = true;
     protected Animator _anim;
     protected Rigidbody _rb;
     protected float jumpForce;
 
-    public PlayerOneMovement( Animator _anim, Rigidbody _rb, float jumpForce)
+    public PlayerOneMovement(Animator _anim, Rigidbody _rb, float jumpForce)
     {
         this._anim = _anim;
         this._rb = _rb;

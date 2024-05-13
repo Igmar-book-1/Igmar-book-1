@@ -36,6 +36,6 @@ public class LifeScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+
     }
 }

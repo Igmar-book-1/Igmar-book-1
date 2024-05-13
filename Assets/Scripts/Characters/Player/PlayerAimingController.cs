@@ -31,18 +31,18 @@ public class PlayerAimingController : MonoBehaviour
             if (!player.getIsDashing())
             {
                 aimReticle.SetActive(true);
-//                StartCoroutine(ShowReticle());
+                //StartCoroutine(ShowReticle());
             }
 
         }
         else if (!player.getIsAiming() && !mainCamera.activeInHierarchy)
         {
-             mainCamera.SetActive(true);
-             aimCamera.SetActive(false);
-             aimReticle.SetActive(false);
+            mainCamera.SetActive(true);
+            aimCamera.SetActive(false);
+            aimReticle.SetActive(false);
             player.SetisAiming(false);
         }
-        
+
     }
 
     /*

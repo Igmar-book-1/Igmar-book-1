@@ -62,16 +62,16 @@ public class MouseSpawnWallController
     }
 
 
-        public void CreateBlockingWall()
-        {
-            
-                if (!player.getIsCreatingPlatform())
-                {
-                    GameObject instance;
-                    instance = MonoBehaviour.Instantiate(obj3, player.transform.position+player.transform.forward-Vector3.up*3, Quaternion.LookRotation(player.transform.forward));
-            }
+    public void CreateBlockingWall()
+    {
 
+        if (!player.getIsCreatingPlatform())
+        {
+            GameObject instance;
+            instance = MonoBehaviour.Instantiate(obj3, player.transform.position + player.transform.forward - Vector3.up * 3, Quaternion.LookRotation(player.transform.forward));
         }
+
+    }
 
     public RaycastHit getRayHit()
     {

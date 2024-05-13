@@ -14,13 +14,13 @@ public class RockBuildScripts : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        Destroy(this.gameObject,14f);
+        Destroy(this.gameObject, 14f);
     }
     private void Update()
     {
 
 
-            StartCoroutine(CreateRock());
+        StartCoroutine(CreateRock());
 
     }
 
@@ -37,7 +37,7 @@ public class RockBuildScripts : MonoBehaviour
         }
 
 
-        if (tag == "Platform" &&Vector3.Distance(transform.position, initialPosition) > 2 
+        if (tag == "Platform" && Vector3.Distance(transform.position, initialPosition) > 2
             || (tag == "Piedra" && Vector3.Distance(transform.position, initialPosition) > 2.8) ||
              (tag == "Escudo" && Vector3.Distance(transform.position, initialPosition) > 2.9))
         {
@@ -45,7 +45,7 @@ public class RockBuildScripts : MonoBehaviour
         }
         isSet = true;
 
-        if(tag== "Escudo")
+        if (tag == "Escudo")
         {
             transform.Translate(Vector3.up * Time.deltaTime * 6, Space.World);
         }
