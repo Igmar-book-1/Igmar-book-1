@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LifeScript : MonoBehaviour
+public class UIControllerScript : MonoBehaviour
 {
 
     private PlayerOneScript _player;
@@ -13,6 +13,15 @@ public class LifeScript : MonoBehaviour
     private GameObject healthBar;
     private Slider manaSlider;
     private Slider healthSlider;
+
+    public Canvas canvas;
+
+    public List<TargetIndicator> targetIndicators = new List<TargetIndicator>();
+
+    public Camera MainCamera;
+
+    public GameObject TargetIndicatorPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +42,27 @@ public class LifeScript : MonoBehaviour
         {
             SceneManager.LoadScene("PreEntrega");
         }
+
+        if (targetIndicators.Count > 0)
+        {
+            for (int i = 0; i < targetIndicators.Count; i++)
+            {
+                targetIndicators[i].UpdateTargetIndicator();
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+    
+
+    
+
+    public void AddTargetIndicator(GameObject target)
+    {
+        TargetIndicator indicator = GameObject.Instantiate(TargetIndicatorPrefab, canvas.transform).GetComponent<TargetIndicator>();
+        indicator.InitialiseTargetIndicator(target, MainCamera, canvas);
+        targetIndicators.Add(indicator);
     }
 }
