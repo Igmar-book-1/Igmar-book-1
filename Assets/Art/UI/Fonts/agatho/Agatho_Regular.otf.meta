@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 9e1b71b12b80bf64c8cb4c0bf4172f51
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Agatho
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1e776aa5287a9d4429aca956f26771ea, type: 3}
+  - {fileID: 12800000, guid: 64d93ab6e8455c1499f5debd42309880, type: 3}
+  - {fileID: 12800000, guid: d04f7b975f18bac4981533a3c553f218, type: 3}
+  - {fileID: 12800000, guid: 70fe2ceaa2e7d454da430e48fd52a945, type: 3}
+  - {fileID: 12800000, guid: 004e926355d0fc740b099525ccb45a51, type: 3}
+  - {fileID: 12800000, guid: dd58aee67a081ae4cadc33e176c69add, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
