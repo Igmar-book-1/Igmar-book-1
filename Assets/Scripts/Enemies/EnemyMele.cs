@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -77,7 +78,7 @@ public class EnemyMele : EnemyController
 
                 float distancia = Vector3.Distance(transform.position, _targetPlayer.position);
 
-                if (distancia>4)
+                if (distancia>=5)
                 {
 
                 agent.speed = 4.5f;
@@ -98,13 +99,15 @@ public class EnemyMele : EnemyController
             }
             else
             {
+                _anim.SetFloat(minDistance, 100);
+                agent.speed = 4.5f;
                 _anim.SetBool(isRunning, false);
 
                 agent.SetDestination(_basePosition.transform.position);
 
                 transform.LookAt(_basePosition);
 
-                if (Vector3.Distance(transform.position, _basePosition.position) > _minDistBase)
+                 if ((Vector3.Distance(transform.position, _basePosition.position) > _minDistBase) || IsDead)
                 {
                     _anim.SetBool(isRunning, _isRunning);
                     //Debug.Log("Vuelvo a la base");

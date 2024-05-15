@@ -30,7 +30,6 @@ public class AimPointController : MonoBehaviour
         if (GameManager.instance.AimCamera != null && player.getIsAiming()) {
             this.GetComponentInParent<MeshRenderer>().enabled = true;
             this.transform.LookAt(camera.transform);
-            this.transform.Rotate(90, 0, 0);
             if (aimPoint == null)
             {
                 aimPoint = GameObject.FindWithTag("AimPoint");
