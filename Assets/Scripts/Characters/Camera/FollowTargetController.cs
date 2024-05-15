@@ -12,6 +12,8 @@ public class FollowTargetController : MonoBehaviour
     public float rotationPower = 3f;
     public float rotationLerp = 0.5f;
     private PlayerOneScript player;
+    [SerializeField] protected int maxAngle= 320;
+    [SerializeField] protected int minAngle = 35;
 
     protected float _xAxis = 0;
     protected float _yAxis = 0;
@@ -41,7 +43,7 @@ public class FollowTargetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenuScript._isPause && !player.getIsCreatingPlatform())
+        if (!PauseMenuScript._isPause && !player.getIsCreatingPlatform() && !player.IsDead)
         {
             _xAxis = Input.GetAxis("Mouse X");
             _yAxis = Input.GetAxis("Mouse Y") * -1;
@@ -57,13 +59,13 @@ public class FollowTargetController : MonoBehaviour
 
             var angle = transform.localEulerAngles.x;
 
-            if (angle > 180 && angle < 320)
+            if (angle > 180 && angle < maxAngle)
             {
-                angles.x = 320;
+                angles.x = maxAngle;
             }
-            else if (angle < 180 && angle > 35)
+            else if (angle < 180 && angle > minAngle)
             {
-                angles.x = 35;
+                angles.x = minAngle;
             }
 
             transform.localEulerAngles = angles;

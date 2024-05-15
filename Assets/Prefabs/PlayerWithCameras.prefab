@@ -154,6 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47092df2bda297408bf760e7da84454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  targetIndicators: []
+  MainCamera: {fileID: 0}
+  TargetIndicatorPrefab: {fileID: 0}
 --- !u!1 &1046007674285468612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1119,8 @@ MonoBehaviour:
   _move: {x: 0, y: 0}
   rotationPower: 1.5
   rotationLerp: 2
+  maxAngle: 320
+  minAngle: 25
   nextPosition: {x: 0, y: 0, z: 0}
   nextRotation: {x: 0, y: 0, z: 0, w: 0}
   speed: 3.5
@@ -2540,6 +2546,10 @@ MonoBehaviour:
   isAiming: isAiming
   isAttacking: isAttacking
   comboAttack: comboAttack
+  onCreateGround: onCreateGround
+  onCreateWall: onCreateWall
+  onBlock: onBlock
+  onDash: onDash
 --- !u!114 &924656200804711938
 MonoBehaviour:
   m_ObjectHideFlags: 0
