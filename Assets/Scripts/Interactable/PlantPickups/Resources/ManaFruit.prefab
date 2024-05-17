@@ -129,6 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  mana: 20
+  mana: 100
   armor: 0
   velocity: 0

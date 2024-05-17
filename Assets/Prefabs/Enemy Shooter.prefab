@@ -1761,6 +1761,7 @@ GameObject:
   - component: {fileID: 8631642947327661835}
   - component: {fileID: 726424497727199934}
   - component: {fileID: 739870876541905394}
+  - component: {fileID: 4313717836424833590}
   m_Layer: 7
   m_Name: Shoot Behaviour
   m_TagString: Untagged
@@ -1811,15 +1812,47 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5196486285077550256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3bfe6449aacb7647ad55ab4be1e3f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBodySpeed: 0
+  life: 100
+  backOnHurt: 50
+  _xAxisName: xAxis
+  _zAxisName: zAxis
   enemy: {fileID: 6780846440763027374}
   bullet: {fileID: 1418001878022238211, guid: 81bb2745fb4805644881d5df032cfc6a, type: 3}
   shootPoint: {fileID: 1087414311146479028}
-  timeToShoot: 1.3
+  fireRate: 0
+--- !u!54 &4313717836424833590
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196486285077550256}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5241627547184150041
 GameObject:
   m_ObjectHideFlags: 0

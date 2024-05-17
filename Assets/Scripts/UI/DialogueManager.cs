@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public bool isDialogueActive = false;
     private int lineIndex;
 
-    public float typingSpeed = 0.1f;
+    public float typingSpeed = 0.01f;
 
     public Animator anim;
 

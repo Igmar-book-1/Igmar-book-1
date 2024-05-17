@@ -106,31 +106,23 @@ public class PlayerOneScript : AllCharacterController
 
                 }
 
-
-
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    receiveDamage(20);
-                }
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    loseMana();
-                }
                 if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0)
                 {
                     currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
+
+                    loseMana(5);
                     updateCoolDownAllSkills();
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && mana >= 20 && currentBlockECooldown==0 && _isGrounded)
+                if (Input.GetKeyDown(KeyCode.E) && mana >= 10 && currentBlockECooldown==0 && _isGrounded)
                 {
                     
                     ;
                     if (_isAiming)
                     {
                         mouseSpawn.CreateWall();
-                        loseMana();
+
                     }
                     else
                     {
@@ -138,6 +130,7 @@ public class PlayerOneScript : AllCharacterController
                         _anim.SetTrigger(onBlock);
 
                     }
+                    loseMana(10);
                     currentBlockECooldown = BlockECooldown;
                     updateCoolDownAllSkills();
 
@@ -315,7 +308,9 @@ public class PlayerOneScript : AllCharacterController
 
     public void cure(int cureLife)
     {
-        if (base.life >= 80)
+
+        base.life = cureLife;
+        /*if (base.life + cureLife >= 80)
         {
             base.life = 100;
         }
@@ -323,13 +318,14 @@ public class PlayerOneScript : AllCharacterController
         {
             base.life += cureLife;
         }
+        */
     }
 
-    public void loseMana()
+    public void loseMana(int manaLoose)
     {
-        if (mana >= 20)
+        if (mana >= manaLoose)
         {
-            mana -= 20;
+            mana -= manaLoose;
         }
         else
         {
@@ -339,14 +335,7 @@ public class PlayerOneScript : AllCharacterController
 
     public void receiveMana(int receiveMana)
     {
-        if (mana >= 80)
-        {
-            mana = 100;
-        }
-        else
-        {
-            mana += receiveMana;
-        }
+            mana = receiveMana;
     }
 
     public Rigidbody GetRigidBody()

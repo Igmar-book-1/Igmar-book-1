@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5129644074ef1664bb871d0aeaa9bdee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 20
+  life: 100
   mana: 0
   armor: 0
   velocity: 0

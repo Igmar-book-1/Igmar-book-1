@@ -7,7 +7,6 @@ using static Cinemachine.CinemachineFreeLook;
 
 public class PlantPickup : Interactable
 {
-    private GameObject interactButton;
     [SerializeField] protected string plantType;
     [SerializeField] protected GameObject fruitprefab;
     [SerializeField] protected GameObject fruit;

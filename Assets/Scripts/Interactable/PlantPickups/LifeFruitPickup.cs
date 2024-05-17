@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeFruitPickup : MonoBehaviour, Fruit 
 {
-    [SerializeField] protected int life = 20;
+    [SerializeField] protected int life = 100;
     [SerializeField] protected int mana = 0;
     [SerializeField] protected int armor = 0;
     [SerializeField] protected int velocity = 0;

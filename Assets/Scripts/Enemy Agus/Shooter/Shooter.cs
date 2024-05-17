@@ -7,8 +7,6 @@ public class Shooter : AllCharacterController
     bool detected;
     GameObject target;
     public Transform enemy;
-
-    private Animator _anim;
     public GameObject bullet;
     public Transform shootPoint;
  
