@@ -13,7 +13,7 @@ namespace States
         public override void Execute(Transform target)
         {
             base.Execute(target);
-            Debug.Log("Attack");
+           // Debug.Log("Attack");
             transform.LookAt(target);
             Agent.SetDestination(target.position);
             MakeAttack();
@@ -24,7 +24,7 @@ namespace States
         {
             isAttackAllowed = false;
             _anim.SetTrigger(onAttack);
-            Debug.Log("Ataque");
+            //Debug.Log("Ataque");
             StartCoroutine(AttackFreeze());
 
         }

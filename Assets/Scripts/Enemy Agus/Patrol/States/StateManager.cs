@@ -13,7 +13,7 @@ namespace States
         void Start()
         {
             SetInitialState(patrolState);
-
+            
         }
 
         private void SetInitialState(State state)
@@ -92,7 +92,7 @@ namespace States
         {
             if (life <= 0)
             {
-                Debug.Log("destruyo: " + this.name);
+               // Debug.Log("destruyo: " + this.name);
                 Destroy(this.gameObject);
 
             }

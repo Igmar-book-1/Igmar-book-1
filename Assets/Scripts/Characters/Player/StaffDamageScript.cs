@@ -26,7 +26,7 @@ public class StaffDamageScript : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log(other.name);
+            //Debug.Log(other.name);
             damageController.OnHitEnemy(other);
         }
 

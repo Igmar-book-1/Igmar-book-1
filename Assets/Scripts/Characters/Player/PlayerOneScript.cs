@@ -438,7 +438,7 @@ public class PlayerOneScript : AllCharacterController
 
             IsDead = true;
             _anim.SetTrigger(onDeath);
-            Debug.Log("destruyo: " + this.name);
+            //Debug.Log("destruyo: " + this.name);
             if (this.tag == "Player")
             {
                 StartCoroutine(Revive());

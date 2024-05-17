@@ -125,7 +125,7 @@ public class EnemyMele : EnemyController
     {
         isAttackAllowed = false;
         _anim.SetTrigger(onAttack);
-        Debug.Log("Ataque");
+        //Debug.Log("Ataque");
         StartCoroutine(AttackFreeze());
 
     }
@@ -146,7 +146,7 @@ public class EnemyMele : EnemyController
             agent.speed = 0;
 
             Destroy(_box);
-            Debug.Log("destruyo: " + this.name);
+            //Debug.Log("destruyo: " + this.name);
             Destroy(this.gameObject.transform.parent.gameObject, 10f);
         }
     }

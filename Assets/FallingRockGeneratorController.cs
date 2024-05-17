@@ -8,6 +8,8 @@ public class FallingRockGeneratorController : MonoBehaviour
     List<Transform> rockGenerators;
     public GameObject myPrefab;
     private bool isGeneratingRock;
+    int generator=0 ;
+    bool isSumming;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,23 @@ public class FallingRockGeneratorController : MonoBehaviour
     {
         if (!isGeneratingRock)
         {
-            StartCoroutine(generateRock(rockGenerators[Random.Range(1, 4)]));
+            StartCoroutine(generateRock(rockGenerators[generator]));
+            
+            if(generator==3)
+            {
+                isSumming =false;
+            }
+            if (generator==0) {
+                isSumming = true;
+            }
+            if (isSumming)
+            {
+                generator++;
+            }
+            else
+            {
+                generator--;
+            }
         }
     }
 
