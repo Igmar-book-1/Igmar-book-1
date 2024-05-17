@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public class Shooter : AllCharacterController
 {
     bool detected;
     GameObject target;
     public Transform enemy;
 
+    private Animator _anim;
     public GameObject bullet;
     public Transform shootPoint;
  
@@ -16,20 +17,22 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         originalTime = fireRate;
+        _anim = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (detected)
+        if (detected && !IsDead)
         {
             enemy.LookAt(target.transform);
         }
+        base.Die();
     }
 
     private void FixedUpdate()
     {
-        if (detected)
+        if (detected && !IsDead)
         {
             fireRate -= Time.deltaTime;
 
@@ -37,6 +40,7 @@ public class Shooter : MonoBehaviour
             {
                 ShootPlayer();
                 fireRate = originalTime;
+                
             }
         }
     }
@@ -48,6 +52,8 @@ public class Shooter : MonoBehaviour
         {
             detected = true;
             target = other.gameObject;
+            _anim.SetBool("IsShooting", true);
+
         }
         
     }
@@ -57,6 +63,7 @@ public class Shooter : MonoBehaviour
         {
             detected = false;
             target = null;
+            _anim.SetBool("IsShooting", false);
         }
     }
 
