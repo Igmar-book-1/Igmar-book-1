@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +34,16 @@ public class PlayerOneScript : AllCharacterController
     PlayerOneMovement playerOneMovement;
     private MouseSpawnWallController mouseSpawn;
     private StaffDamageScript staff;
+    private Vector3 checkpoint;
+
+    [SerializeField] float BlockECooldown = 5f;
+    [SerializeField] float AttackRCooldown = 5f;
+    [SerializeField] float DashQCooldown = 5f;
+
+    private float currentBlockECooldown = 0f;
+    private float currentAttackRCooldown = 0f;
+    private float currentDashQCooldown = 0f;
+    private bool isRefreshingSkills = false;
 
 
     private void Start()
@@ -41,6 +52,9 @@ public class PlayerOneScript : AllCharacterController
         mouseSpawn = new MouseSpawnWallController();
         mouseSpawn.Start();
         staff = GameObject.FindWithTag("Staff").GetComponent<StaffDamageScript>();
+
+        checkpoint = this.transform.position;
+        updateCoolDownAllSkills();
     }
     // Update is called once per frame
     void Update()
@@ -94,30 +108,25 @@ public class PlayerOneScript : AllCharacterController
 
 
 
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.L))
                 {
                     receiveDamage(20);
-                }
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    cure();
                 }
                 if (Input.GetKeyDown(KeyCode.C))
                 {
                     loseMana();
                 }
-                if (Input.GetKeyDown(KeyCode.V))
+                if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0)
                 {
-                    receiveMana();
-                }
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
+                    currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
+                    updateCoolDownAllSkills();
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && mana >= 20 && !creationCooldown)
+                if (Input.GetKeyDown(KeyCode.E) && mana >= 20 && currentBlockECooldown==0 && _isGrounded)
                 {
-                    StartCoroutine(CreationIsOnCooldown());
+                    
+                    ;
                     if (_isAiming)
                     {
                         mouseSpawn.CreateWall();
@@ -129,16 +138,17 @@ public class PlayerOneScript : AllCharacterController
                         _anim.SetTrigger(onBlock);
 
                     }
+                    currentBlockECooldown = BlockECooldown;
+                    updateCoolDownAllSkills();
 
                 }
-                base.Die();
+                Die();
             }
         }
     }
 
     private void FixedUpdate()
     {
-
 
         if ((base._xAxis != 0 || base._zAxis != 0) && !_isAttacking && !isCreatingPlatform)
         {
@@ -151,6 +161,44 @@ public class PlayerOneScript : AllCharacterController
             base._anim.SetFloat(base._xAxisName, base._xAxis);
             _isMoving = false;
         }
+
+    }
+
+    private void updateCoolDownAllSkills()
+    {
+        if (!isRefreshingSkills)
+        {
+            if (currentBlockECooldown == BlockECooldown || currentAttackRCooldown == AttackRCooldown || currentDashQCooldown == DashQCooldown)
+            {
+                isRefreshingSkills = true;
+                StartCoroutine(UpdateCooldowns());
+            }
+        }
+        
+
+    }
+    IEnumerator UpdateCooldowns()
+    {
+        if (currentAttackRCooldown > 0)
+        {
+            currentAttackRCooldown = currentAttackRCooldown - 0.1 > 0 ? currentAttackRCooldown -= 0.1f : 0;
+        }
+        if (currentBlockECooldown > 0)
+        {
+            currentBlockECooldown = currentBlockECooldown - 0.1 > 0 ? currentBlockECooldown -= 0.1f : 0;
+        }
+         if(currentDashQCooldown > 0)
+        {
+            currentDashQCooldown = currentDashQCooldown - 0.1 > 0? currentDashQCooldown-=  0.1f : 0;
+        }
+
+        if(currentDashQCooldown == 0 && currentBlockECooldown ==0 && currentAttackRCooldown==0)
+        {
+            isRefreshingSkills = false;
+            yield break;
+        }
+        yield return new WaitForSecondsRealtime(0.1f);
+        StartCoroutine(UpdateCooldowns());
 
 
     }
@@ -249,7 +297,8 @@ public class PlayerOneScript : AllCharacterController
     IEnumerator CreationIsOnCooldown()
     {
         creationCooldown = true;
-        yield return new WaitForSecondsRealtime(3f);
+
+        yield return new WaitForSecondsRealtime(BlockECooldown);
         creationCooldown = false;
     }
     public void receiveDamage(int dmg)
@@ -264,15 +313,15 @@ public class PlayerOneScript : AllCharacterController
         }
     }
 
-    public void cure()
+    public void cure(int cureLife)
     {
-        if (life >= 80)
+        if (base.life >= 80)
         {
-            life = 100;
+            base.life = 100;
         }
         else
         {
-            life += 20;
+            base.life += cureLife;
         }
     }
 
@@ -288,7 +337,7 @@ public class PlayerOneScript : AllCharacterController
         }
     }
 
-    public void receiveMana()
+    public void receiveMana(int receiveMana)
     {
         if (mana >= 80)
         {
@@ -296,7 +345,7 @@ public class PlayerOneScript : AllCharacterController
         }
         else
         {
-            mana += 20;
+            mana += receiveMana;
         }
     }
 
@@ -372,4 +421,49 @@ public class PlayerOneScript : AllCharacterController
         StartCoroutine(ComboSystem());
     }
 
+    public void setCheckPoint(Vector3 checkpoint)
+    {
+        this.checkpoint = checkpoint;
+    }
+    public virtual void ForceDie()
+    {
+        life = 0;
+        Die();
+    }
+
+    public virtual void Die()
+    {
+        if (life <= 0)
+        {
+
+            IsDead = true;
+            _anim.SetTrigger(onDeath);
+            Debug.Log("destruyo: " + this.name);
+            if (this.tag == "Player")
+            {
+                StartCoroutine(Revive());
+            }
+
+        }
+    }
+    IEnumerator Revive()
+    {
+        yield return new WaitForSeconds(4f);
+        this.transform.position = checkpoint;
+        life = 100;
+        mana = 100;
+        IsDead = false;
+        _anim.Play("Walk 0");
+    }
+
+    public bool getIsDead()
+    {
+        return IsDead;
+    }
+    public float getBlockECooldown() => BlockECooldown;
+    public float getAttackRCooldown() => AttackRCooldown;
+    public float getDashQCooldown() => DashQCooldown;
+    public float getCurrentBlockECooldown() => currentBlockECooldown;
+    public float getCurrentAttackRCooldown() => currentAttackRCooldown;
+    public float getCurrentDashQCooldown() => currentDashQCooldown;
 }

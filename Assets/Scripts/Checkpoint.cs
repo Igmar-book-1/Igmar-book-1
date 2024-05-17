@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour
     private bool activated = false;
 
     public PlayerCheckpoint playerCheckpoint;
-    [SerializeField] GameObject player;
+    private GameObject player;
 
     private void Awake()
     {
@@ -19,7 +19,9 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
+        player = GameManager.instance.Player;
         playerCheckpoint = player.GetComponent<PlayerCheckpoint>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,7 +41,7 @@ public class Checkpoint : MonoBehaviour
             fireLight.enabled = true;
         }
 
-        playerCheckpoint.SaveCheckpoint(player.transform.position);
+        player.GetComponent<PlayerOneScript>().setCheckPoint(player.transform.position);
         Debug.Log("Checkpoint actualizado");
     }
 

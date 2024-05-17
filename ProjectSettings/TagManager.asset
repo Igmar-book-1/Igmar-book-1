@@ -14,6 +14,11 @@ TagManager:
   - Escudo
   - Platform
   - AimCamera
+  - InteractButton
+  - AttackR
+  - DashQ
+  - BlockE
+  - PlatformE
   layers:
   - Default
   - TransparentFX

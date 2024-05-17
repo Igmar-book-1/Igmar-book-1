@@ -76,4 +76,9 @@ public class animatorToRigidBody : MonoBehaviour
     {
         playerOneScript.setIsDashing(false);
     }
+
+    public void setRigidBodyVelocity(float drag)
+    {
+        playerOneScript.GetRigidBody().drag = drag;
+    }
 }

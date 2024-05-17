@@ -20,7 +20,6 @@ public class FallingRockGeneratorController : MonoBehaviour
         if (!isGeneratingRock)
         {
             StartCoroutine(generateRock(rockGenerators[Random.Range(1, 4)]));
-
         }
     }
 

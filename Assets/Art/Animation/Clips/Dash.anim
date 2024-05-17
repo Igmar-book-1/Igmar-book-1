@@ -59932,11 +59932,18 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
-    functionName: ImpulseZ
+  - time: 0.2
+    functionName: setRigidBodyVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: -6
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
+    functionName: setRigidBodyVelocity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 30
     intParameter: 0
     messageOptions: 0
   - time: 1.1166667

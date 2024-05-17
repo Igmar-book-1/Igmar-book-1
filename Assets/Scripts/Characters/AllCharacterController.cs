@@ -129,18 +129,6 @@ public abstract class AllCharacterController : MonoBehaviour
         }
     }
 
-    public virtual void ForceDie()
-    {
-        IsDead = true;
-        _anim.SetTrigger(onDeath);
-        Debug.Log("destruyo: " + this.name);
-        Destroy(this.gameObject, 10f);
-        if (this.tag == "Player")
-        {
-            StartCoroutine(reloadScene());
-        }
-    }
-
 
     IEnumerator reloadScene()
     {

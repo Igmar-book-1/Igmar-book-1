@@ -26,13 +26,13 @@ public class PlayerAimingController : MonoBehaviour
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
-            player.SetisAiming(true);
 
-            if (!player.getIsDashing())
+            if (player.getIsAiming())
             {
-                aimReticle.SetActive(true);
-                //StartCoroutine(ShowReticle());
+                aimReticle.SetActive(true); 
             }
+            //StartCoroutine(ShowReticle());
+
 
         }
         else if (!player.getIsAiming() && !mainCamera.activeInHierarchy)

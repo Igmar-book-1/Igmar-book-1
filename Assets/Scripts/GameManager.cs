@@ -10,10 +10,23 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private GameObject moveCamera;
     private GameObject aimCamera;
+    private GameObject interactButton;
+    private GameObject mainCamera;
+    private GameObject rEnabled;
+    private GameObject blockEnabled;
+    private GameObject dashEnabled;
+    private GameObject platformEnabled;
+
 
     public GameObject MoveCamera { get => moveCamera; set => moveCamera = value; }
     public GameObject AimCamera { get => aimCamera; set => aimCamera = value; }
     public GameObject Player { get => player; set => player = value; }
+    public GameObject InteractButton { get => interactButton; set => interactButton = value; }
+    public GameObject MainCamera { get => mainCamera; set => mainCamera = value; }
+    public GameObject BlockEnabled { get => blockEnabled; set => blockEnabled = value; }
+    public GameObject REnabled { get => rEnabled; set => rEnabled = value; }
+    public GameObject DashEnabled { get => dashEnabled; set => dashEnabled = value; }
+    public GameObject PlatformEnabled { get => platformEnabled; set => platformEnabled = value; }
 
     void Awake()
     {
@@ -24,6 +37,13 @@ public class GameManager : MonoBehaviour
 
         Player = GameObject.FindWithTag("Player");
         aimCamera = GameObject.FindWithTag("MainCamera");
+        interactButton = GameObject.FindWithTag("InteractButton");
+        MainCamera = GameObject.FindWithTag("MainCamera");
+        REnabled = GameObject.FindWithTag("AttackR");
+        BlockEnabled = GameObject.FindWithTag("BlockE");
+        DashEnabled = GameObject.FindWithTag("DashQ");
+        PlatformEnabled = GameObject.FindWithTag("PlatformE");
+
 
     }
     // Start is called before the first frame update
