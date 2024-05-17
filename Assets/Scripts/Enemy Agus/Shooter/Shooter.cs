@@ -8,6 +8,7 @@ public class Shooter : MonoBehaviour
     GameObject target;
     public Transform enemy;
 
+    private Animator _anim;
     public GameObject bullet;
     public Transform shootPoint;
  
@@ -16,6 +17,7 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         originalTime = fireRate;
+        _anim = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class Shooter : MonoBehaviour
             {
                 ShootPlayer();
                 fireRate = originalTime;
+                
             }
         }
     }
@@ -48,6 +51,8 @@ public class Shooter : MonoBehaviour
         {
             detected = true;
             target = other.gameObject;
+            _anim.SetBool("IsShooting", true);
+
         }
         
     }
@@ -57,6 +62,7 @@ public class Shooter : MonoBehaviour
         {
             detected = false;
             target = null;
+            _anim.SetBool("IsShooting", false);
         }
     }
 
