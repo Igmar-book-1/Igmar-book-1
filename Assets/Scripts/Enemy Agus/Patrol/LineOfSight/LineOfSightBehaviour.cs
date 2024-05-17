@@ -29,11 +29,11 @@ namespace LineOfSight
 
         private void Awake()
         {
-          
+            player = GameObject.FindGameObjectWithTag("Player");
+           
         }
         private void Start()
         {
-            player = GameManager.instance.Player;
             countDown = 0;
         }
 

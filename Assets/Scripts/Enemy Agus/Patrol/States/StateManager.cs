@@ -13,7 +13,7 @@ namespace States
         void Start()
         {
             SetInitialState(patrolState);
-
+            
         }
 
         private void SetInitialState(State state)
