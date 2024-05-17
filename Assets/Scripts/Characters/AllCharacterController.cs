@@ -81,7 +81,7 @@ public abstract class AllCharacterController : MonoBehaviour
     {
 
 
-        Debug.Log(this.name + " Receives Damage");
+        //Debug.Log(this.name + " Receives Damage");
         life -= damage;
         if (!(this.gameObject.tag == "Player" && this.gameObject.GetComponentInChildren<PlayerOneScript>().IsAttacking()))
         {
@@ -119,7 +119,7 @@ public abstract class AllCharacterController : MonoBehaviour
 
             IsDead = true;
             _anim.SetTrigger(onDeath);
-            Debug.Log("destruyo: " + this.name);
+            //Debug.Log("destruyo: " + this.name);
             Destroy(this.gameObject, 10f);
             if (this.tag == "Player")
             {

@@ -42,7 +42,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         player.GetComponent<PlayerOneScript>().setCheckPoint(player.transform.position);
-        Debug.Log("Checkpoint actualizado");
+        //Debug.Log("Checkpoint actualizado");
     }
 
     // Método para verificar si el checkpoint está activado

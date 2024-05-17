@@ -15,7 +15,7 @@ public class BridgeTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !triggered)
         {
             triggered = true;
-            Debug.Log("Trigger activado");
+           // Debug.Log("Trigger activado");
 
             foreach (GameObject bridgeTable in bridgeTables)
             {

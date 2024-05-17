@@ -11,8 +11,12 @@ namespace States
         public override void Execute(Transform target)
         {
             base.Execute(target);
-            Debug.Log("Patrol");
-            ResetIndex();
+            //Debug.Log("Patrol");
+            if (IndexIsOutOfBounds())
+            {
+                ResetIndex();
+
+            }
             PatrolWaypoints();
             _anim.SetTrigger("Patrol");
         }
