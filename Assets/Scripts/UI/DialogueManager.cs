@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public bool isDialogueActive = false;
     private int lineIndex;
 
-    public float typingSpeed = 0.2f;
+    public float typingSpeed = 0.1f;
 
     public Animator anim;
 
@@ -34,16 +34,17 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        isDialogueActive = false;
     }
 
     void Update()
     {
-        if(player != null && speaker != null)
-        {
-            TriggerDialogueExit(player, speaker);
-        }
+        //if(player != null && speaker != null)
+        //{
+          //  TriggerDialogueExit(player, speaker);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F) && isDialogueActive)
         {
             DisplayNextDialogueLine();
         }
@@ -97,17 +98,18 @@ public class DialogueManager : MonoBehaviour
         anim.Play("hide");
     }
 
-    public void TriggerDialogueExit(GameObject player, GameObject speaker)
+    IEnumerator TriggerDialogueExit()
     {
-        if (Vector3.Distance(player.transform.position, speaker.transform.position) > 5)
-        {
-            EndDialogue();
-        }
+        yield return new WaitForSeconds(3f);
+        EndDialogue();
+        
     }
 
     public void TriggerExitAssignation(GameObject player, GameObject speaker)
     {
         this.player = player;
         this.speaker = speaker;
+        StartCoroutine(TriggerDialogueExit());
+
     }
 }

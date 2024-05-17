@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8500181413185164164}
   - component: {fileID: 813201804062171537}
   - component: {fileID: 4907499310064379014}
-  - component: {fileID: 3593512843377421402}
   - component: {fileID: 645041734554773570}
+  - component: {fileID: 9181872910170675793}
   m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7081158806083185733}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ec1b8d0a005dfa943a30a75b925857d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -107,7 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3593512843377421402
+--- !u!114 &645041734554773570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081158806083185733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161740a82c7d82a43879ba2c731b329c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPosition: {x: 0, y: 0, z: 0}
+  maxSpeed: 10
+  acceleration: 10
+--- !u!54 &9181872910170675793
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +131,7 @@ Rigidbody:
   m_GameObject: {fileID: 7081158806083185733}
   serializedVersion: 4
   m_Mass: 50
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -132,18 +147,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &645041734554773570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081158806083185733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 161740a82c7d82a43879ba2c731b329c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialPosition: {x: 0, y: 0, z: 0}

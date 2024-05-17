@@ -1,3 +1,4 @@
+using LineOfSight;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime;
@@ -6,9 +7,11 @@ using UnityEngine.UI;
 
 public class TargetIndicator : MonoBehaviour
 {
-    public Image TargetIndicatorImage;
+    public Image TargetIndicatorImageWhite;
+    public Image TargetIndicatorImageRed;
 
-    public Image OffScreenTargetIndicator;
+    public Image OffScreenTargetIndicatorWhite;
+    public Image OffScreenTargetIndicatorRed;
 
     public float outOfSightOffset = 20f;
 
@@ -23,27 +26,68 @@ public class TargetIndicator : MonoBehaviour
 
     private RectTransform rectTransform;
 
+    private float currentTimeVision;
+    private float maxTimeVision;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
-   
+    private void Start()
+    {
+        
+    }
+    private void Update()
+    {
+        if(target!=null)
+        {
+            currentTimeVision = target.GetComponentInParent<LineOfSightBehaviour>().countDown;
+            updateImages();
+
+        }
+
+    }
+    public void updateImages()
+    {
+        float fillAmount = currentTimeVision / maxTimeVision;
+        TargetIndicatorImageRed.fillAmount = fillAmount;
+        TargetIndicatorImageWhite.fillAmount = fillAmount;
+        OffScreenTargetIndicatorWhite.fillAmount = fillAmount;
+        OffScreenTargetIndicatorRed.fillAmount = fillAmount;
+    }
+
     public void InitialiseTargetIndicator(GameObject target, Camera mainCamera, Canvas canvas)
     {
         this.target = target;
         this.mainCamera = mainCamera;
         canvasRect = canvas.GetComponent<RectTransform>();
+        maxTimeVision = target.GetComponentInParent<LineOfSightBehaviour>().maxCountDown;
     }
     // Update is called once per frame
     public void UpdateTargetIndicator()
     {
         SetIndicatorPosition();
     }
+
+    public void turnOfTargetIndicator(Transform playerTarget)
+    {
+
+        if (Vector3.Distance(playerTarget.position, target.transform.position) > 20 || !target.GetComponentInParent<LineOfSightBehaviour>().IsInSight(playerTarget))
+        {
+            OffScreenTargetIndicatorWhite.gameObject.SetActive(false);
+            OffScreenTargetIndicatorRed.gameObject.SetActive(false);
+            TargetIndicatorImageWhite.enabled = false;
+            TargetIndicatorImageRed.enabled = false;
+        }
+    }
            
     
 
     protected void SetIndicatorPosition()
     {
+        currentTimeVision = target.GetComponentInParent<LineOfSightBehaviour>().countDown;
+        updateImages();
+
         //Obtener la posición del objetivo en relación con el espacio de pantalla
         Vector3 indicatorPosition = mainCamera.WorldToScreenPoint(target.transform.position);
          
@@ -82,6 +126,8 @@ public class TargetIndicator : MonoBehaviour
 
     private Vector3 OutOfRangeindicatorPositionB(Vector3 indicatorPosition)
     {
+        currentTimeVision = target.GetComponentInParent<LineOfSightBehaviour>().countDown;
+        updateImages();
         //Seteo z en cero ya que no es necesario y solo causa problemas (demasiado lejos de la camara para mostrarse)
         indicatorPosition.z = 0f;
 
@@ -123,18 +169,35 @@ public class TargetIndicator : MonoBehaviour
         if (oos) //OutOufSight
         {
             //Activo y desactivo
-            if (OffScreenTargetIndicator.gameObject.activeSelf == false) OffScreenTargetIndicator.gameObject.SetActive(true);
-            if (TargetIndicatorImage.isActiveAndEnabled == true) TargetIndicatorImage.enabled = false;
+            if (OffScreenTargetIndicatorWhite.gameObject.activeSelf == false)
+            {
+                OffScreenTargetIndicatorWhite.gameObject.SetActive(true);
+                OffScreenTargetIndicatorRed.gameObject.SetActive(true);
+            }
+            if (TargetIndicatorImageWhite.isActiveAndEnabled == true)
+            {
+                TargetIndicatorImageWhite.enabled = false;
+                TargetIndicatorImageRed.enabled = false;
+            }
 
             //Seteo la rotacion del OutOfSight 
-            OffScreenTargetIndicator.rectTransform.rotation = Quaternion.Euler(rotationOutOfSightTargetindicator(indicatorPosition));
+            OffScreenTargetIndicatorWhite.rectTransform.rotation = Quaternion.Euler(rotationOutOfSightTargetindicator(indicatorPosition));
+            OffScreenTargetIndicatorRed.rectTransform.rotation = Quaternion.Euler(rotationOutOfSightTargetindicator(indicatorPosition));
         }
 
         //En caso de que el indicator esta en rango, prendo el inSight y apago el OOS
         else
         {
-            if (OffScreenTargetIndicator.gameObject.activeSelf == true) OffScreenTargetIndicator.gameObject.SetActive(false);
-            if (TargetIndicatorImage.isActiveAndEnabled == false) TargetIndicatorImage.enabled = true;
+            if (OffScreenTargetIndicatorWhite.gameObject.activeSelf == true)
+            {
+                OffScreenTargetIndicatorRed.gameObject.SetActive(false);
+                OffScreenTargetIndicatorWhite.gameObject.SetActive(false);
+            }
+            if (TargetIndicatorImageWhite.isActiveAndEnabled == false)
+            {
+                TargetIndicatorImageWhite.enabled = true;
+                TargetIndicatorImageRed.enabled = true;
+            }
         }
 
         
@@ -151,5 +214,11 @@ public class TargetIndicator : MonoBehaviour
 
         //Retorno el angulo como un vector de rotacion
         return new Vector3(0f, 0f, angle);
+    }
+
+    public void turnOffCamera()
+    {
+        OffScreenTargetIndicatorWhite.gameObject.SetActive(false);
+        TargetIndicatorImageWhite.enabled = false;
     }
 }

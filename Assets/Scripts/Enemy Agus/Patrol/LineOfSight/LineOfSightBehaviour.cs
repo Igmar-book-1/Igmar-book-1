@@ -17,8 +17,8 @@ namespace LineOfSight
         public Canvas countDownCanvas;
         public string countDownEndMessage;
         public Transform target;
-        public int countDown;
-        public int maxCountDown;
+        public float countDown;
+        public float maxCountDown;
         private bool isCalled = false;
         private GameObject player;
         public GameObject enemyIndicator;
@@ -29,11 +29,11 @@ namespace LineOfSight
 
         private void Awake()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-           
+          
         }
         private void Start()
         {
+            player = GameManager.instance.Player;
             countDown = 0;
         }
 
@@ -87,10 +87,10 @@ namespace LineOfSight
             
             if (IsInSight(player.transform))
             {
-                countDown++;
+                countDown += 0.1f;
                 countDownCanvas.gameObject.SetActive(true);
                 enemyIndicator.SetActive(true);
-                countDownText.text = countDown.ToString();
+                countDownText.text = ((int)countDown).ToString();
             }
             else
             {
@@ -101,15 +101,15 @@ namespace LineOfSight
 
             if (countDown <= maxCountDown)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             isCalled = false;
-            enemyIndicator.SetActive(false);
+            //enemyIndicator.SetActive(false);
            
             
 
-            if (countDown >= maxCountDown)
+            if (countDown >= maxCountDown && !player.GetComponent<PlayerOneScript>().getIsDead())
             {
                 Debug.Log("Count Down Finished");
                 countDownCanvas.gameObject.SetActive(false);
