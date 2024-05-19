@@ -427,6 +427,9 @@ public class PlayerOneScript : AllCharacterController
 
             IsDead = true;
             _anim.SetTrigger(onDeath);
+             _isAttacking =false;
+            _isDashing = false;
+            _isJumping = false;
             //Debug.Log("destruyo: " + this.name);
             if (this.tag == "Player")
             {
