@@ -71428,17 +71428,17 @@ AnimationClip:
     functionName: ImpulseZ
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 3.5
+    floatParameter: 7
     intParameter: 0
     messageOptions: 0
-  - time: 0.35
+  - time: 0.68333334
     functionName: AttackCollidersCapsule
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.3
+  - time: 1.1333333
     functionName: AttackCollidersCapsule
     data: 
     objectReferenceParameter: {fileID: 0}

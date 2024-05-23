@@ -417,7 +417,6 @@ public class PlayerOneScript : AllCharacterController
     public virtual void ForceDie()
     {
         life = 0;
-        Die();
     }
 
     public virtual void Die()

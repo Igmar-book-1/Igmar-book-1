@@ -62,13 +62,12 @@ public class EnemyMele : EnemyController
     void FixedUpdate()
     {
 
-        if (!isHurt)
+        if (!isHurt && !IsDead)
         {
 
             //Perseguir al jugador
             if (_targetPlayer != null 
                 && !_targetPlayer.GetComponent<PlayerOneScript>().IsDead
-                && !IsDead
                 && Vector3.Distance(transform.position, _targetPlayer.position) < _distChase)
             {
                 _isRunning = true;

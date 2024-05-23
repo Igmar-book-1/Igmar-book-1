@@ -20,7 +20,7 @@ public abstract class AllCharacterController : MonoBehaviour
     [SerializeField] protected int life = 100;
     DamageController damageController;
     protected bool isHurt = false;
-    [SerializeField] float backOnHurt = 50;
+    [SerializeField] float backOnHurt = 1;
 
     protected Animator _anim;
 
@@ -29,6 +29,9 @@ public abstract class AllCharacterController : MonoBehaviour
     [SerializeField] protected string _zAxisName = "zAxis";
     protected string onDeath = "onDeath";
     protected string onHurt = "onHurt";
+
+    [SerializeField] float invulnerabilityDuration = 2.0f; // Duración de la invulnerabilidad en segundos
+
 
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
@@ -50,7 +53,7 @@ public abstract class AllCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        isHurt = _anim.GetCurrentAnimatorStateInfo(0).IsName(onHurt);
 
     }
     protected virtual void Movement(int speedAnimationController)
@@ -79,20 +82,50 @@ public abstract class AllCharacterController : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-
-
-        //Debug.Log(this.name + " Receives Damage");
-        life -= damage;
-        if (!(this.gameObject.tag == "Player" && this.gameObject.GetComponentInChildren<PlayerOneScript>().IsAttacking()))
+        if (!isHurt)
         {
+            if (this.gameObject.tag == "Player")
+            {
+                PlayerOneScript playerScript = this.gameObject.GetComponentInChildren<PlayerOneScript>();
+                if (playerScript != null && playerScript.IsAttacking())
+                {
+                    // Recibir daño pero no activar la animación "On Hurt"
+                    life -= damage;
+                    StartCoroutine(InvulnerabilityCoroutine());
+                    return;
+                }
+            }
+
+            isHurt = true;
+            life -= damage;
             _anim.SetTrigger(onHurt);
 
+            // Asegurarse de que el estado isHurt se restablezca al final de la animación "On Hurt"
+            //StartCoroutine(ResetIsHurt());
+            StartCoroutine(InvulnerabilityCoroutine());
         }
-        isHurt = true;
-        if (!isHurt && this.tag == "Enemy")
+
+    }
+    private IEnumerator ResetIsHurt()
+    {
+        // Esperar a que termine la animación "On Hurt"
+        while (_anim.GetCurrentAnimatorStateInfo(0).IsName(onHurt))
         {
-            _rb.AddForce(Vector3.back * backOnHurt, ForceMode.Impulse);
+            yield return null;
         }
+
+        // Esperar un cuadro más para asegurarse de que la animación ha terminado
+        yield return new WaitForEndOfFrame();
+
+        isHurt = false;
+    }
+
+    private IEnumerator InvulnerabilityCoroutine()
+    {
+        // Hacer al personaje invulnerable
+        isHurt = true;
+        yield return new WaitForSeconds(invulnerabilityDuration);
+        isHurt = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -141,4 +174,9 @@ public abstract class AllCharacterController : MonoBehaviour
         isHurt = false;
     }
 
+
+    public void BackOnHurt()
+    {
+        _rb.AddForce(_rb.transform.forward.normalized * (-1) * backOnHurt, ForceMode.Force);
+    }
 }
