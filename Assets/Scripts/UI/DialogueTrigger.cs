@@ -24,6 +24,7 @@ public class Dialogue
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public bool wasTriggered;
     public Dialogue dialogue;
 
      public void TriggerDialogue()
@@ -33,8 +34,9 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !wasTriggered)
         {
+            wasTriggered = true;
             TriggerDialogue();
         }
     }
