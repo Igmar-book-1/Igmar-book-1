@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,6 +29,12 @@ public class EnemyMele : EnemyController
     protected string isRunning = "isRunning";
     protected string onBase = "onBase";
     protected string minDistance = "minDistance";
+    private CharacterSoundController soundController;
+    AudioSource audioSource;
+    AudioSource[] audioSources;
+
+    AudioSource[] audioSources2;
+
 
 
     void Start()
@@ -35,6 +42,10 @@ public class EnemyMele : EnemyController
         _box = GetComponent<BoxCollider>();
         _targetPlayer = GameManager.instance.Player.transform;
         agent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponentInChildren<AudioSource>();
+        //audioSources = GetComponentInChildren<AudioSource[]>();
+        audioSources2 = GetComponentsInChildren<AudioSource>();
+        soundController = new CharacterSoundController(GetComponentsInChildren<AudioSource>().Where(x=> x.name=="hurt").ToList(), GetComponentsInChildren<AudioSource>().Where(x => x.name == "attack").ToList(), null);
     }
 
     // Update is called once per frame
@@ -153,4 +164,6 @@ public class EnemyMele : EnemyController
     {
         _rb.AddForce(transform.forward * -1 * 30);
     }
+
+
 }

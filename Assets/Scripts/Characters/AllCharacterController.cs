@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -21,6 +22,7 @@ public abstract class AllCharacterController : MonoBehaviour
     DamageController damageController;
     protected bool isHurt = false;
     [SerializeField] float backOnHurt = 1;
+    CharacterSoundController soundController;
 
     protected Animator _anim;
 
@@ -41,13 +43,14 @@ public abstract class AllCharacterController : MonoBehaviour
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
         _anim = GetComponentInChildren<Animator>();
         damageController = new DamageController(this);
+       
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        soundController = new CharacterSoundController(GetComponentsInChildren<AudioSource>().ToList(), null, null);
     }
 
     // Update is called once per frame
@@ -178,5 +181,15 @@ public abstract class AllCharacterController : MonoBehaviour
     public void BackOnHurt()
     {
         _rb.AddForce(_rb.transform.forward.normalized * (-1) * backOnHurt, ForceMode.Force);
+    }
+
+    public void HurtSound()
+    {
+        soundController.onHurtPlay();
+    }
+
+    public void DeadSound()
+    {
+        soundController.onDeadPlay();
     }
 }

@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
 
     public PlayerCheckpoint playerCheckpoint;
     private GameObject player;
+    private AudioSource[] sounds;
 
     private void Awake()
     {
@@ -21,8 +22,9 @@ public class Checkpoint : MonoBehaviour
     {
         player = GameManager.instance.Player;
         playerCheckpoint = player.GetComponent<PlayerCheckpoint>();
-        
-    }
+        sounds = GetComponentsInChildren<AudioSource>();
+
+}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,9 +36,9 @@ public class Checkpoint : MonoBehaviour
     public void ActivateCheckpoint()
     {
         activated = true;
-
         if (fireParticles != null)
         {
+            StartCoroutine(soundCorroutine());
             fireParticles.Play();
             fireLight.enabled = true;
         }
@@ -49,5 +51,12 @@ public class Checkpoint : MonoBehaviour
     public bool IsActivated()
     {
         return activated;
+    }
+    
+    IEnumerator soundCorroutine()
+    {
+        sounds[0].Play();
+        yield return new WaitForSeconds(sounds[0].clip.length);
+        sounds[1].Play();
     }
 }
