@@ -15,7 +15,7 @@ public class Shooter : AllCharacterController
     void Start()
     {
         originalTime = fireRate;
-        _anim = GetComponentInParent<Animator>();
+        _anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
