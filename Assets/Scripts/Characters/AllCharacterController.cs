@@ -192,4 +192,12 @@ public abstract class AllCharacterController : MonoBehaviour
     {
         soundController.onDeadPlay();
     }
+    public void setSoundController(CharacterSoundController soundController) {
+        this.soundController = soundController;
+    }
+
+    public CharacterSoundController getSoundController()
+    {
+        return this.soundController;
+    }
 }

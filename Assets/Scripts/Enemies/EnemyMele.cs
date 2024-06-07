@@ -29,7 +29,6 @@ public class EnemyMele : EnemyController
     protected string isRunning = "isRunning";
     protected string onBase = "onBase";
     protected string minDistance = "minDistance";
-    private CharacterSoundController soundController;
     AudioSource audioSource;
     AudioSource[] audioSources;
 
@@ -45,7 +44,7 @@ public class EnemyMele : EnemyController
         audioSource = GetComponentInChildren<AudioSource>();
         //audioSources = GetComponentInChildren<AudioSource[]>();
         audioSources2 = GetComponentsInChildren<AudioSource>();
-        soundController = new CharacterSoundController(GetComponentsInChildren<AudioSource>().Where(x=> x.name=="hurt").ToList(), GetComponentsInChildren<AudioSource>().Where(x => x.name == "attack").ToList(), null);
+        setSoundController( new CharacterSoundController(GetComponentsInChildren<AudioSource>().Where(x=> x.name=="Hurt").ToList(), GetComponentsInChildren<AudioSource>().Where(x => x.name == "Attack").ToList(), null));
     }
 
     // Update is called once per frame
