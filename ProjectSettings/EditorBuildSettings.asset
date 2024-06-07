@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PreEntrega.unity
     guid: 8225f2e2f9b58f04582be86708088656
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Parcial 1.unity
     guid: c76b9fbd6f53999429a01897f39afe2b
+  - enabled: 1
+    path: Assets/Scenes/Igmar-World 1.unity
+    guid: f67a166d33cdbc84fa6af34538bfadbf
   m_configObjects: {}

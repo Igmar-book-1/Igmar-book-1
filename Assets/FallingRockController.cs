@@ -7,14 +7,14 @@ public class FallingRockController : MonoBehaviour
     [SerializeField] Vector3 initialPosition;
     bool falling = false;
     Rigidbody _rb;
-    public float maxSpeed = 10;
-    public float acceleration = 8;
+    public float maxSpeed = 5;
+    public float acceleration = 2;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         initialPosition = transform.position;
-        _rb.AddForce(Vector3.left * 180, ForceMode.Impulse);
+        _rb.AddForce(Vector3.forward * 180, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -80,7 +80,7 @@ public class FallingRockController : MonoBehaviour
     void PushRockForward()
     {
         //isPushed = true;
-        _rb.AddForce(Vector3.left * acceleration, ForceMode.Force);
+        _rb.AddForce(Vector3.forward * acceleration, ForceMode.Force);
         //isPushed = false;
     }
 
