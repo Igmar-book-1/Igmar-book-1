@@ -2614,7 +2614,7 @@ MonoBehaviour:
   enemy: {fileID: 7674627033012807666}
   bullet: {fileID: 1418001878022238211, guid: 81bb2745fb4805644881d5df032cfc6a, type: 3}
   shootPoint: {fileID: 74976602968247330}
-  fireRate: 1.5
+  fireRate: 2
 --- !u!54 &1419310178597516137
 Rigidbody:
   m_ObjectHideFlags: 0
