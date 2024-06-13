@@ -61,7 +61,7 @@ namespace States
 
         private bool IsTargetClose() 
         {
-            return Vector3.Distance(transform.position, target.position) < 3;
+            return Vector3.Distance(transform.position, target.position) < 2;
         } 
 
         private bool IsTargetVisible() 
