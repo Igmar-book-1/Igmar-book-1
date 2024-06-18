@@ -74,10 +74,9 @@ public class FollowTargetController : MonoBehaviour
 
             if (followTransform.GetComponent<PlayerOneScript>().isMoving())
             {
-
-
                 float moveSpeed = speed / 100f;
                 Vector3 position = (transform.forward * _move.y * moveSpeed) + (transform.right * _move.x * moveSpeed);
+              
                 nextPosition = followTransform.transform.position + position;
 
                 followTransform.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

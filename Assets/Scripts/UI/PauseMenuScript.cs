@@ -69,6 +69,7 @@ public class PauseMenuScript : MonoBehaviour
     public void ControlsBack()
     {
         pauseMenuPanel.SetActive(true);
+        soundPanel.SetActive(false);
         controlPanel.SetActive(false);
     }
 
