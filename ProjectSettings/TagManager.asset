@@ -19,6 +19,10 @@ TagManager:
   - DashQ
   - BlockE
   - PlatformE
+  - GeneralSoundSlider
+  - MusicSlider
+  - FXSlider
+  - AmbientalSlider
   layers:
   - Default
   - TransparentFX

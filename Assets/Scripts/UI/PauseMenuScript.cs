@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject controlPanel;
+    [SerializeField] GameObject soundPanel;
     public static bool _isPause;
-    
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PauseMenuScript : MonoBehaviour
         {
             if(_isPause == false)
             {
+                Cursor.lockState = CursorLockMode.None;   // keep confined to center of screen
                 pauseMenuPanel.SetActive(true);
                 _isPause = true;
 
@@ -38,9 +40,12 @@ public class PauseMenuScript : MonoBehaviour
     {
         pauseMenuPanel.SetActive(false);
         controlPanel.SetActive(false);
+        soundPanel.SetActive(false);
         _isPause = false;
 
         Time.timeScale = 1;
+
+        Cursor.lockState = CursorLockMode.Locked;   // keep confined to center of screen
     }
 
     public void BackToMenu(string nameMenu)
@@ -55,12 +60,45 @@ public class PauseMenuScript : MonoBehaviour
         controlPanel.SetActive(true);
     }
 
+    public void GoToSounds()
+    {
+        pauseMenuPanel.SetActive(false);
+        soundPanel.SetActive(true);
+    }
+
     public void ControlsBack()
     {
         pauseMenuPanel.SetActive(true);
         controlPanel.SetActive(false);
     }
 
+    public void ToggleAllSounds()
+    {
+        SoundManagerController.instance.ToggleAllSounds();
+    }
+
+    public void ToggleMusic()
+    {
+        SoundManagerController.instance.ToggleMusic();
+    }
+
+    public void ToggleFX()
+    {
+        SoundManagerController.instance.ToggleFx();
+    }
+
+    public void ToggleAmbient()
+    {
+        SoundManagerController.instance.ToggleAmbient();
+    }
+    public void EnableButton(GameObject button)
+    {
+        button.SetActive(true);
+    }
+    public void DisableButton(GameObject button)
+    {
+        button.SetActive(false);
+    }
 
     public void Exit()
     {
