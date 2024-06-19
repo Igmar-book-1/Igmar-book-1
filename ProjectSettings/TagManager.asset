@@ -23,6 +23,7 @@ TagManager:
   - MusicSlider
   - FXSlider
   - AmbientalSlider
+  - EventManager
   layers:
   - Default
   - TransparentFX

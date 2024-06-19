@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -29,6 +30,7 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string onCreateWall = "onCreateWall";
     [SerializeField] protected string onBlock = "onBlock";
     [SerializeField] protected string onDash = "onDash";
+    private EventManager eventManager;
     bool creationCooldown = false;
     private bool isCreatingPlatform = false;
     PlayerOneMovement playerOneMovement;
@@ -39,6 +41,7 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] float BlockECooldown = 5f;
     [SerializeField] float AttackRCooldown = 5f;
     [SerializeField] float DashQCooldown = 5f;
+    private float startOfFall;
 
     private float currentBlockECooldown = 0f;
     private float currentAttackRCooldown = 0f;
@@ -52,6 +55,7 @@ public class PlayerOneScript : AllCharacterController
         mouseSpawn = new MouseSpawnWallController();
         mouseSpawn.Start();
         staff = GameObject.FindWithTag("Staff").GetComponent<StaffDamageScript>();
+        eventManager = GameManager.instance.EventManager.GetComponent<EventManager>();
 
         checkpoint = this.transform.position;
         updateCoolDownAllSkills();
@@ -256,6 +260,11 @@ public class PlayerOneScript : AllCharacterController
                 {
                     _isGrounded = true;
                     _anim.SetBool("isGrounded", true);
+                    if(startOfFall - transform.position.y > 8)
+                    {
+                        base.ReceiveDamage(20);
+                    }
+                    Debug.Log("El jugador cayó " + (startOfFall - transform.position.y) + " Unidades"); //if( startOfFall)
                 }
             }
         }
@@ -282,6 +291,7 @@ public class PlayerOneScript : AllCharacterController
         if (CollisionFlags.Below != 0)
         {
             _isGrounded = false;
+            startOfFall = transform.position.y;
             _anim.SetBool("isGrounded", false);
         }
     }
@@ -334,6 +344,7 @@ public class PlayerOneScript : AllCharacterController
             mana = 0;
         }
     }
+
 
     public void receiveMana(int receiveMana)
     {
@@ -432,16 +443,12 @@ public class PlayerOneScript : AllCharacterController
             _isDashing = false;
             _isJumping = false;
             //Debug.Log("destruyo: " + this.name);
-            if (this.tag == "Player")
-            {
-                StartCoroutine(Revive());
-            }
-
+            Cursor.lockState = CursorLockMode.Confined;
+            eventManager.PlayerDie();
         }
     }
-    IEnumerator Revive()
+    public void Revive()
     {
-        yield return new WaitForSeconds(4f);
         this.transform.position = checkpoint;
         life = 100;
         mana = 100;
