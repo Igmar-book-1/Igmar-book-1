@@ -9,11 +9,14 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject controlPanel;
     [SerializeField] GameObject soundPanel;
+    [SerializeField] GameObject diePanel;
     public static bool _isPause;
+    PlayerOneScript playerOne;
 
     void Start()
     {
-        
+        playerOne = GameManager.instance.Player.GetComponent<PlayerOneScript>();
+        EventManager.OnDie += ToggleDead;
     }
 
     
@@ -21,19 +24,46 @@ public class PauseMenuScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(_isPause == false)
-            {
-                Cursor.lockState = CursorLockMode.None;   // keep confined to center of screen
-                pauseMenuPanel.SetActive(true);
-                _isPause = true;
-
-                Time.timeScale = 0;
-            }
-            else if(_isPause == true)
-            {
-                Resume();
-            }
+            TogglePause();
         }
+    }
+
+    public void TogglePause()
+    {
+        if (_isPause == false)
+        {
+            Cursor.lockState = CursorLockMode.None;   // keep confined to center of screen
+            if (!playerOne.IsDead)
+            {
+                pauseMenuPanel.SetActive(true);
+            }
+            else
+            {
+                diePanel.SetActive(true);
+            }
+            _isPause = true;
+
+            Time.timeScale = 0;
+        }
+        else if (_isPause == true)
+        {
+            Resume();
+        }
+    }
+
+    public void ToggleDead()
+    {
+            Cursor.lockState = CursorLockMode.None;   
+            diePanel.SetActive(true);
+            _isPause = true;
+            StartCoroutine(timeScaleChange());
+    }
+
+    IEnumerator timeScaleChange()
+    {
+        yield return new WaitForSeconds(4);
+        if(playerOne.IsDead)
+        Time.timeScale = 0;
     }
 
     public void Resume()
@@ -41,6 +71,7 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         controlPanel.SetActive(false);
         soundPanel.SetActive(false);
+        diePanel.SetActive(false);
         _isPause = false;
 
         Time.timeScale = 1;
@@ -71,6 +102,7 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenuPanel.SetActive(true);
         soundPanel.SetActive(false);
         controlPanel.SetActive(false);
+        diePanel.SetActive(false);
     }
 
     public void ToggleAllSounds()
@@ -99,6 +131,12 @@ public class PauseMenuScript : MonoBehaviour
     public void DisableButton(GameObject button)
     {
         button.SetActive(false);
+    }
+
+    public void LastCheckPoint()
+    {
+        Resume();
+        playerOne.Revive();
     }
 
     public void Exit()

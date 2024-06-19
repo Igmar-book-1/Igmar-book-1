@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private GameObject blockEnabled;
     private GameObject dashEnabled;
     private GameObject platformEnabled;
+    private GameObject eventManager;
     private Slider generalSoundSlider;
     private Slider musicSlider;
     private Slider fXSlider;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Slider FxSlider { get => fXSlider; set => fXSlider = value; }
     public Slider AmbientSlider { get => ambientSlider; set => ambientSlider = value; }
     public GameObject MoveCamera { get => moveCamera; set => moveCamera = value; }
+    public GameObject EventManager { get => eventManager; set => eventManager = value; }
     public GameObject AimCamera { get => aimCamera; set => aimCamera = value; }
     public GameObject Player { get => player; set => player = value; }
     public GameObject InteractButton { get => interactButton; set => interactButton = value; }
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         BlockEnabled = GameObject.FindWithTag("BlockE");
         DashEnabled = GameObject.FindWithTag("DashQ");
         PlatformEnabled = GameObject.FindWithTag("PlatformE");
+        EventManager = GameObject.FindWithTag("EventManager");
     }
     // Start is called before the first frame update
 }
