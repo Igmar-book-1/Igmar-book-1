@@ -59,8 +59,16 @@ public class PlayerOneScript : AllCharacterController
 
         checkpoint = this.transform.position;
         updateCoolDownAllSkills();
-
+        StartCoroutine(onStartDontHurt());
+        isHurt = true;
         Cursor.lockState = CursorLockMode.Locked;   // keep confined to center of screen
+    }
+
+    IEnumerator onStartDontHurt()
+    {
+        yield return new WaitForSeconds(5);
+        isHurt = false;
+
     }
     // Update is called once per frame
     void Update()
