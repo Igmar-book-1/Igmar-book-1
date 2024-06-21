@@ -149,6 +149,20 @@ public class PlayerOneScript : AllCharacterController
                     updateCoolDownAllSkills();
 
                 }
+                if (Input.GetKeyDown(KeyCode.R) && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
+                {
+
+                    ;
+                    if (_isAiming)
+                    {
+                        mouseSpawn.CallBird();
+
+                    }
+                    loseMana(10);
+                    currentAttackRCooldown = AttackRCooldown;
+                    updateCoolDownAllSkills();
+
+                }
                 Die();
             }
         }

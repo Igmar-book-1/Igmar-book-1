@@ -34580,6 +34580,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03842454
       objectReference: {fileID: 0}
+    - target: {fileID: 377330732467502100, guid: 702826cbb03c70a40bc480d609de9e2f,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 403776338829757046, guid: 702826cbb03c70a40bc480d609de9e2f,
         type: 3}
       propertyPath: m_LocalPosition.x
