@@ -111019,6 +111019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scarlet_macaw
       objectReference: {fileID: 0}
+    - target: {fileID: 1542848527166870, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4834728506976958, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.081
@@ -111058,6 +111062,21 @@ PrefabInstance:
     - target: {fileID: 4834728506976958, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044496761645407881, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044496761645407881, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7998926729250925988, guid: 5b96556c4c2c83e48a6ea9ad5ce0fe70,
+        type: 3}
+      propertyPath: speed
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

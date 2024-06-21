@@ -149,10 +149,9 @@ public class PlayerOneScript : AllCharacterController
                     updateCoolDownAllSkills();
 
                 }
-                if (Input.GetKeyDown(KeyCode.R) && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
+                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
                 {
 
-                    ;
                     if (_isAiming)
                     {
                         mouseSpawn.CallBird();
@@ -286,7 +285,7 @@ public class PlayerOneScript : AllCharacterController
                     {
                         base.ReceiveDamage(20);
                     }
-                    Debug.Log("El jugador cayó " + (startOfFall - transform.position.y) + " Unidades"); //if( startOfFall)
+                    Debug.Log("El jugador cay? " + (startOfFall - transform.position.y) + " Unidades"); //if( startOfFall)
                 }
             }
         }

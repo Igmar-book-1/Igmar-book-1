@@ -97,8 +97,12 @@ public class MouseSpawnWallController
             if (!player.getIsCreatingPlatform())
             {
                 GameObject instance;
-                hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 100;
-                instance = MonoBehaviour.Instantiate(bird, cam.transform.position, Quaternion.identity);
+                Transform birdposition = cam.transform;
+                birdposition.Rotate(new Vector3(0, 0, 0));
+                instance = MonoBehaviour.Instantiate(bird, birdposition.position, birdposition.rotation);
+                instance.GetComponent<BirdAttackController>().posA = birdposition.position;
+                instance.GetComponent<BirdAttackController>().posB = hitPosition;
+
             }
         }
     }
