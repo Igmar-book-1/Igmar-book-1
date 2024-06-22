@@ -124,8 +124,6 @@ public class PlayerOneScript : AllCharacterController
                 {
                     currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
-
-                    loseMana(5);
                     updateCoolDownAllSkills();
                 }
 
@@ -146,6 +144,19 @@ public class PlayerOneScript : AllCharacterController
                     }
                     loseMana(10);
                     currentBlockECooldown = BlockECooldown;
+                    updateCoolDownAllSkills();
+
+                }
+                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
+                {
+
+                    if (_isAiming)
+                    {
+                        mouseSpawn.CallBird();
+
+                    }
+                    loseMana(10);
+                    currentAttackRCooldown = AttackRCooldown;
                     updateCoolDownAllSkills();
 
                 }
@@ -272,7 +283,7 @@ public class PlayerOneScript : AllCharacterController
                     {
                         base.ReceiveDamage(20);
                     }
-                    Debug.Log("El jugador cayó " + (startOfFall - transform.position.y) + " Unidades"); //if( startOfFall)
+                    Debug.Log("El jugador cay? " + (startOfFall - transform.position.y) + " Unidades"); //if( startOfFall)
                 }
             }
         }
@@ -457,6 +468,7 @@ public class PlayerOneScript : AllCharacterController
     }
     public void Revive()
     {
+        EventManager.instance.PlayerRevive();
         this.transform.position = checkpoint;
         life = 100;
         mana = 100;

@@ -17,6 +17,17 @@ public class PlayerAimingController : MonoBehaviour
     {
         player = GetComponent<PlayerOneScript>();
         aimReticle.SetActive(false);
+        EventManager.OnDie += ToggleUIDisplay;
+    }
+    public void ToggleUIDisplay()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        StartCoroutine(timeScaleChange());
+    }
+
+    IEnumerator timeScaleChange()
+    {
+        yield return new WaitForSeconds(4);
     }
 
     // Update is called once per frame

@@ -9,6 +9,7 @@ public class MouseSpawnWallController
     private GameObject obj;
     private GameObject obj2;
     private GameObject obj3;
+    private GameObject bird;
     private GameObject aimPoint;
     private PlayerOneScript player;
     private RaycastHit rayhitPosition;
@@ -19,6 +20,7 @@ public class MouseSpawnWallController
         obj = Resources.Load<GameObject>("Platform");
         obj2 = Resources.Load<GameObject>("Piedra");
         obj3 = Resources.Load<GameObject>("Escudo");
+        bird = Resources.Load<GameObject>("Scarlet_macaw");
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         aimPoint = GameObject.FindWithTag("AimPoint");
         player = GameManager.instance.Player.GetComponent<PlayerOneScript>();
@@ -76,5 +78,32 @@ public class MouseSpawnWallController
     public RaycastHit getRayHit()
     {
         return rayhitPosition;
+    }
+
+    public void CallBird()
+    {
+        if (aimPoint == null)
+        {
+            aimPoint = GameObject.FindWithTag("AimPoint");
+        }
+
+        Ray ray = cam.ScreenPointToRay(aimPoint.transform.position);
+        RaycastHit rayHit;
+        if (Physics.Raycast(ray, out rayHit))
+        {
+            GameObject targetHit = rayHit.transform.gameObject;
+            Vector3 hitPosition = rayHit.point;
+            rayhitPosition = rayHit;
+            if (!player.getIsCreatingPlatform())
+            {
+                GameObject instance;
+                Transform birdposition = cam.transform;
+                birdposition.Rotate(new Vector3(0, 0, 0));
+                instance = MonoBehaviour.Instantiate(bird, birdposition.position, birdposition.rotation);
+                instance.GetComponent<BirdAttackController>().posA = birdposition.position;
+                instance.GetComponent<BirdAttackController>().posB = hitPosition;
+
+            }
+        }
     }
 }

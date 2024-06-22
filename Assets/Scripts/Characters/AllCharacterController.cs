@@ -89,6 +89,7 @@ public abstract class AllCharacterController : MonoBehaviour
         {
             if (this.gameObject.tag == "Player")
             {
+                EventManager.instance.PlayerHurt();
                 PlayerOneScript playerScript = this.gameObject.GetComponentInChildren<PlayerOneScript>();
                 if (playerScript != null && playerScript.IsAttacking())
                 {

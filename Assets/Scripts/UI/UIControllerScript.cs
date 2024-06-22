@@ -85,9 +85,6 @@ public class UIControllerScript : MonoBehaviour
 
     }
     
-
-    
-
     public void AddTargetIndicator(GameObject target)
     {
         TargetIndicator indicator = GameObject.Instantiate(TargetIndicatorPrefab, canvas.transform).GetComponent<TargetIndicator>();
@@ -98,4 +95,5 @@ public class UIControllerScript : MonoBehaviour
     {
         return TargetIndicator;
     }*/
+
 }
