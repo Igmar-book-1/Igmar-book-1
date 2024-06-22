@@ -81,4 +81,6 @@ public class animatorToRigidBody : MonoBehaviour
     {
         playerOneScript.GetRigidBody().drag = drag;
     }
+
+    
 }

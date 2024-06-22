@@ -124,8 +124,6 @@ public class PlayerOneScript : AllCharacterController
                 {
                     currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
-
-                    loseMana(5);
                     updateCoolDownAllSkills();
                 }
 
@@ -470,6 +468,7 @@ public class PlayerOneScript : AllCharacterController
     }
     public void Revive()
     {
+        EventManager.instance.PlayerRevive();
         this.transform.position = checkpoint;
         life = 100;
         mana = 100;
