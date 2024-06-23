@@ -19,13 +19,10 @@ public class HitDisplayController : MonoBehaviour
         image.color = color;
         EventManager.OnHurt += OnHit;
         EventManager.OnDie += OnDie;
-        EventManager.OnRevive += OnRevive;
+        image.enabled = false;
+
     }
 
-    void OnRevive()
-    {
-        image.enabled = true;
-    }
     void OnDie()
     {
         image.enabled = false;
@@ -34,6 +31,7 @@ public class HitDisplayController : MonoBehaviour
     // Update is called once per frame
     void OnHit()
     {
+        image.enabled = true;
         StopAllCoroutines();
         Cursor.lockState = CursorLockMode.None;
         var color = image.color;
@@ -74,6 +72,7 @@ public class HitDisplayController : MonoBehaviour
         }
         if (opacity <= 0)
         {
+            image.enabled = false;
             yield return null;
 
         }

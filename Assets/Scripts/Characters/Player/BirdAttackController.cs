@@ -21,6 +21,7 @@ public class BirdAttackController : MonoBehaviour
     private string currentAnimation;
     private bool stopped;
     BirdSoundController soundController;
+    GameObject collisionParticles;
 
     Animator animator;
 
@@ -30,6 +31,7 @@ public class BirdAttackController : MonoBehaviour
         soundController = GetComponent<BirdSoundController>();
         collider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
+        collisionParticles = Resources.Load<GameObject>("FeatherParticles");
         rb = GetComponent<Rigidbody>();
         animator.Play("Macaw_|Flight");
         currentAnimation = "Macaw_|Flight";
@@ -59,13 +61,14 @@ public class BirdAttackController : MonoBehaviour
         if (Vector3.Distance(transform.position, target)<3&& !stopped)
         {
             animator.Play("Macaw_|Flying_attack");
-            
+
+
         }
         if (Vector3.Distance(transform.position, target) < 0.2 && !stopped)
         {
             rb.velocity = (target - current).normalized * 1 * Time.deltaTime;
             stopped = true;
-            flyAway();
+            StartCoroutine(flyAway(1f));
         }
 
 
@@ -81,19 +84,25 @@ public class BirdAttackController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        StartCoroutine(flyAway());
+
         if (collision.tag == "Enemy")
         {
-            
+            this.collider.enabled = false;
+            animator.Play("Macaw_|Flying_attack");
+            rb.velocity = (target - current).normalized * 1 * Time.deltaTime;
+            stopped = true;
+            GameObject Instance = MonoBehaviour.Instantiate(collisionParticles, collision.ClosestPoint(transform.position), Quaternion.identity);
+            Destroy(Instance, 3f);
+            StartCoroutine(flyAway(1f));
             collision.GetComponent<AllCharacterController>().ReceiveDamage(20);
 
         }
 
     }
 
-    private IEnumerator flyAway()
+    private IEnumerator flyAway(float time)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(time);
         animator.Play("Macaw_|Flight");
         currentAnimation = "Macaw_|Flight";
         rb.AddForce((transform.forward) * speed * 100 * Time.deltaTime+ Vector3.up * speed *100 * Time.deltaTime);

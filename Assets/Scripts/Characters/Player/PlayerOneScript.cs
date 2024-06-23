@@ -28,6 +28,7 @@ public class PlayerOneScript : AllCharacterController
     [SerializeField] protected string comboAttack = "comboAttack";
     [SerializeField] protected string onCreateGround = "onCreateGround";
     [SerializeField] protected string onCreateWall = "onCreateWall";
+    [SerializeField] protected string onCallBird = "onCallBird";
     [SerializeField] protected string onBlock = "onBlock";
     [SerializeField] protected string onDash = "onDash";
     private EventManager eventManager;
@@ -84,6 +85,7 @@ public class PlayerOneScript : AllCharacterController
                 _onAttack = Input.GetButtonDown("Fire1");
                 _isAiming = Input.GetButton("Fire2");
                 _isRunning = Input.GetButton("Fire3");
+                
                 base._anim.SetBool(isAiming, _isAiming);
 
                 _anim.SetFloat("verticalSpeed", _rb.velocity.y);
@@ -127,12 +129,21 @@ public class PlayerOneScript : AllCharacterController
                     updateCoolDownAllSkills();
                 }
 
+                if (_isAiming)
+                {
+                    _anim.SetLayerWeight(2, 1); 
+                }
+                else
+                {
+                    _anim.SetLayerWeight(2, 0);
+                }
                 if (Input.GetKeyDown(KeyCode.E) && mana >= 10 && currentBlockECooldown==0 && _isGrounded)
                 {
                     
                     ;
                     if (_isAiming)
                     {
+
                         mouseSpawn.CreateWall();
 
                     }
@@ -149,9 +160,11 @@ public class PlayerOneScript : AllCharacterController
                 }
                 if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
                 {
+                    _anim.SetTrigger(onCallBird);
 
                     if (_isAiming)
                     {
+                        _anim.SetTrigger(onCallBird);
                         mouseSpawn.CallBird();
 
                     }

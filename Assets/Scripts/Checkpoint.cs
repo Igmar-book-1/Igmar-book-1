@@ -10,7 +10,8 @@ public class Checkpoint : MonoBehaviour
 
     public PlayerCheckpoint playerCheckpoint;
     private GameObject player;
-    private AudioSource[] sounds;
+    private AudioSource sound;
+    [SerializeField] protected AudioClip[] clips;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class Checkpoint : MonoBehaviour
     {
         player = GameManager.instance.Player;
         playerCheckpoint = player.GetComponent<PlayerCheckpoint>();
-        sounds = GetComponentsInChildren<AudioSource>();
+        sound = GetComponentInChildren<AudioSource>();
 
 }
 
@@ -55,8 +56,10 @@ public class Checkpoint : MonoBehaviour
     
     IEnumerator soundCorroutine()
     {
-        sounds[0].Play();
-        yield return new WaitForSeconds(sounds[0].clip.length);
-        sounds[1].Play();
+        sound.Play();
+        yield return new WaitForSeconds(sound.clip.length);
+        sound.clip = clips[0];
+        sound.loop = true;
+        sound.Play();
     }
 }

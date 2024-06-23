@@ -9,6 +9,8 @@ public class animatorToRigidBody : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private SphereCollider sphereCollider;
     private PlayerOneScript playerOneScript;
+    private Animator animator;
+    [SerializeField] protected ParticleSystem particleSystem; 
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,9 @@ public class animatorToRigidBody : MonoBehaviour
         rb = this.GetComponentInParent<Rigidbody>();
         capsuleCollider = this.GetComponentInChildren<CapsuleCollider>();
         sphereCollider = this.GetComponentInChildren<SphereCollider>();
+        animator = this.GetComponent<Animator>();
+       
+        stopParticleSystem();
     }
 
     // Update is called once per frame
@@ -82,5 +87,36 @@ public class animatorToRigidBody : MonoBehaviour
         playerOneScript.GetRigidBody().drag = drag;
     }
 
-    
+    public void turnOnMagicLayerWeight()
+    {
+        animator.SetLayerWeight(2, 0);
+    }
+    public void turnOffMagicLayerWeight()
+    {
+        animator.SetLayerWeight(2, 0);
+    }
+
+    public void enableParticleSystem()
+    {
+        particleSystem.Play();
+    }
+    public void disableParticleSystem()
+    {
+
+       StartCoroutine(disableparticlesSlow());
+    }
+
+    public void stopParticleSystem()
+    {
+
+        particleSystem.Stop();
+    }
+
+    IEnumerator disableparticlesSlow()
+    {
+        yield return new WaitForSeconds(0.5f);
+        particleSystem.Stop();
+    }
+
+
 }

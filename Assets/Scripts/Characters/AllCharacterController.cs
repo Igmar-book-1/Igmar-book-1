@@ -34,6 +34,16 @@ public abstract class AllCharacterController : MonoBehaviour
 
     [SerializeField] float invulnerabilityDuration = 2.0f; // Duración de la invulnerabilidad en segundos
 
+    [SerializeField] protected AudioClip[] hurt;
+
+    [SerializeField] protected AudioClip[] talk;
+
+    [SerializeField] protected AudioClip[] attacks;
+
+    [SerializeField] protected AudioClip[] dead;
+    [SerializeField] protected AudioSource mouth;
+    [SerializeField] protected AudioSource feet;
+    [SerializeField] protected AudioSource weapon;
 
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
@@ -50,7 +60,7 @@ public abstract class AllCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundController = new CharacterSoundController(GetComponentsInChildren<AudioSource>().ToList(), null, null);
+        soundController = new CharacterSoundController(hurt, attacks, talk, dead, mouth, feet, weapon);
     }
 
     // Update is called once per frame
@@ -192,6 +202,20 @@ public abstract class AllCharacterController : MonoBehaviour
     public void DeadSound()
     {
         soundController.onDeadPlay();
+    }
+
+    public void AttackSound()
+    {
+        soundController.onAttackPlay();
+    }
+
+    public void TalkSound()
+    {
+        soundController.onTalkPlay();
+    }
+    public void TalkSoundChosen(int number)
+    {
+        soundController.onTalkPlay(number);
     }
     public void setSoundController(CharacterSoundController soundController) {
         this.soundController = soundController;

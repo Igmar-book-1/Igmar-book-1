@@ -59946,17 +59946,24 @@ AnimationClip:
     floatParameter: 30
     intParameter: 0
     messageOptions: 0
+  - time: 0.33333334
+    functionName: disableParticleSystem
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1166667
+    functionName: enableParticleSystem
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.1166667
     functionName: ImpulseZ
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 16
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.25
-    functionName: SetIsDashingTrue
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
     intParameter: 0
     messageOptions: 0

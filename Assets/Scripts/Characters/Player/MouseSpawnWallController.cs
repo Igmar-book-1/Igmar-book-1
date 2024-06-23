@@ -48,7 +48,7 @@ public class MouseSpawnWallController
                 {
                     player.setOnCreateWall();
                     hitPosition = hitPosition - rayHit.normal * obj.transform.localScale.y / 100;
-                    instance = MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.identity);
+                    instance = MonoBehaviour.Instantiate(obj, hitPosition, Quaternion.Euler(0f, 180f, 0f));
                 }
                 else
                 {

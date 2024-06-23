@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 2991326242397109724}
   - component: {fileID: 2481792772000152549}
   - component: {fileID: 457585457219589284}
+  - component: {fileID: 3064415374104160515}
   m_Layer: 0
   m_Name: pSphere6
   m_TagString: Untagged
@@ -308,6 +309,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3064415374104160515
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650965744412331533}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 210
+  m_Center: {x: 0, y: -100, z: -0.001953125}
 --- !u!1 &6582704012364075602
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6892632840671935036}
+  - component: {fileID: 7533768749898569935}
   m_Layer: 0
   m_Name: pCone1
   m_TagString: Untagged
@@ -435,3 +458,24 @@ Transform:
   - {fileID: 1369774119244287770}
   m_Father: {fileID: 2372709652722067323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7533768749898569935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428294031216846192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 29.452452, y: 42.164738, z: 29.710747}
+  m_Center: {x: -0.89594436, y: -3.9176266, z: -0.31137896}

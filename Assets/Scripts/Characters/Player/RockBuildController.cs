@@ -37,8 +37,8 @@ public class RockBuildScripts : MonoBehaviour
         }
 
 
-        if (tag == "Platform" && Vector3.Distance(transform.position, initialPosition) > 2
-            || (tag == "Piedra" && Vector3.Distance(transform.position, initialPosition) > 2.8) ||
+        if (tag == "Platform" && Vector3.Distance(transform.position, initialPosition) > 2.1
+            || (tag == "Piedra" && Vector3.Distance(transform.position, initialPosition) > 3.4) ||
              (tag == "Escudo" && Vector3.Distance(transform.position, initialPosition) > 2.9))
         {
             yield break;
