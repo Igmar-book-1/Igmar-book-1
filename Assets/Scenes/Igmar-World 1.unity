@@ -14106,6 +14106,13 @@ MonoBehaviour:
   _xAxisName: xAxis
   _zAxisName: zAxis
   invulnerabilityDuration: 2
+  hurt: []
+  talk: []
+  attacks: []
+  dead: []
+  mouth: {fileID: 0}
+  feet: {fileID: 0}
+  weapon: {fileID: 0}
   attackState: {fileID: 369224669}
   chaseState: {fileID: 369224670}
   patrolState: {fileID: 369224671}
@@ -110660,6 +110667,13 @@ MonoBehaviour:
   _xAxisName: xAxis
   _zAxisName: zAxis
   invulnerabilityDuration: 2
+  hurt: []
+  talk: []
+  attacks: []
+  dead: []
+  mouth: {fileID: 0}
+  feet: {fileID: 0}
+  weapon: {fileID: 0}
   attackState: {fileID: 2011026745548872761}
   chaseState: {fileID: 2364518200928403286}
   patrolState: {fileID: 4234930396736054087}
@@ -113177,6 +113191,13 @@ MonoBehaviour:
   _xAxisName: xAxis
   _zAxisName: zAxis
   invulnerabilityDuration: 2
+  hurt: []
+  talk: []
+  attacks: []
+  dead: []
+  mouth: {fileID: 0}
+  feet: {fileID: 0}
+  weapon: {fileID: 0}
   attackState: {fileID: 1980079217165113246}
   chaseState: {fileID: 5330837671476468815}
   patrolState: {fileID: 2522495917350389785}
