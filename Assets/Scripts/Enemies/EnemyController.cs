@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : AllCharacterController
 {
+
+
     void Start()
     {
         

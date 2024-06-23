@@ -29,10 +29,7 @@ public class EnemyMele : EnemyController
     protected string isRunning = "isRunning";
     protected string onBase = "onBase";
     protected string minDistance = "minDistance";
-    AudioSource audioSource;
-    AudioSource[] audioSources;
 
-    AudioSource[] audioSources2;
 
 
 
@@ -41,10 +38,8 @@ public class EnemyMele : EnemyController
         _box = GetComponent<BoxCollider>();
         _targetPlayer = GameManager.instance.Player.transform;
         agent = GetComponent<NavMeshAgent>();
-        audioSource = GetComponentInChildren<AudioSource>();
-        //audioSources = GetComponentInChildren<AudioSource[]>();
-        audioSources2 = GetComponentsInChildren<AudioSource>();
-        setSoundController( new CharacterSoundController(GetComponentsInChildren<AudioSource>().Where(x=> x.name=="Hurt").ToList(), GetComponentsInChildren<AudioSource>().Where(x => x.name == "Attack").ToList(), null));
+
+        setSoundController( new CharacterSoundController(hurt, attacks, talk, dead, mouth, feet, weapon));
     }
 
     // Update is called once per frame
