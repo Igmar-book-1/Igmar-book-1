@@ -9,6 +9,7 @@ public class animatorToRigidBody : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private SphereCollider sphereCollider;
     private PlayerOneScript playerOneScript;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class animatorToRigidBody : MonoBehaviour
         rb = this.GetComponentInParent<Rigidbody>();
         capsuleCollider = this.GetComponentInChildren<CapsuleCollider>();
         sphereCollider = this.GetComponentInChildren<SphereCollider>();
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -80,6 +82,15 @@ public class animatorToRigidBody : MonoBehaviour
     public void setRigidBodyVelocity(float drag)
     {
         playerOneScript.GetRigidBody().drag = drag;
+    }
+
+    public void turnOnMagicLayerWeight()
+    {
+        animator.SetLayerWeight(2, 0);
+    }
+    public void turnOffMagicLayerWeight()
+    {
+        animator.SetLayerWeight(2, 0);
     }
 
     
