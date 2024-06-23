@@ -3,20 +3,42 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - AimPoint
+  - Mana Bar
+  - Health Bar
+  - Staff
+  - Enemy
+  - PlayerWithCameras
+  - Piedra
+  - Escudo
+  - Platform
+  - AimCamera
+  - InteractButton
+  - AttackR
+  - DashQ
+  - BlockE
+  - PlatformE
+  - GeneralSoundSlider
+  - MusicSlider
+  - FXSlider
+  - AmbientalSlider
+  - EventManager
+  - Ground
+  - AttackParticles
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyFloor
+  - EnemyShooter
+  - Post Processing
+  - Laboratorio
+  - Aldea
+  - Player
   - 
   - 
   - 
