@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     private Slider musicSlider;
     private Slider fXSlider;
     private Slider ambientSlider;
+
+    DontDestroyOnLoad dontDestroyOnLoad;
 
 
     public Slider GeneralSoundSlider { get => generalSoundSlider; set => generalSoundSlider = value; }
@@ -56,6 +59,16 @@ public class GameManager : MonoBehaviour
         DashEnabled = GameObject.FindWithTag("DashQ");
         PlatformEnabled = GameObject.FindWithTag("PlatformE");
         EventManager = GameObject.FindWithTag("EventManager");
+
+
+    }
+    private void Start()
+    {
+
+        dontDestroyOnLoad = GameObject.FindGameObjectWithTag("DontDestroyOnLoad").GetComponent<DontDestroyOnLoad>();
+
+        dontDestroyOnLoad.deactivateSceneToLoad(1);
+        dontDestroyOnLoad.addToListScenesToUnload(SceneManager.UnloadSceneAsync("Intro"));
     }
     // Start is called before the first frame update
 }

@@ -12,6 +12,8 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] GameObject diePanel;
     public static bool _isPause;
     PlayerOneScript playerOne;
+    public AudioSource audioSource;
+    [SerializeField] protected AudioClip audioClip;
 
     void Start()
     {
@@ -143,6 +145,12 @@ public class PauseMenuScript : MonoBehaviour
     {
         Application.Quit();
         //UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void ClickSound()
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 
 }
