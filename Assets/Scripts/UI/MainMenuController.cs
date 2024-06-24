@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using System.Linq;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -10,16 +11,20 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject instructionsPanel;
     [SerializeField] GameObject creditsPanel;
 
+    DontDestroyOnLoad dontDestroyOnLoad;
     private AudioSource _audioSource;
 
     private void Awake()
     {
+        dontDestroyOnLoad = GameObject.FindGameObjectWithTag("DontDestroyOnLoad").GetComponent<DontDestroyOnLoad>();
         _audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        dontDestroyOnLoad.addToListScenesToLoad(SceneManager.LoadSceneAsync("Intro"));
+        dontDestroyOnLoad.deactivateSceneToLoad(0);
     }
 
     // Update is called once per frame
@@ -30,9 +35,13 @@ public class MainMenuController : MonoBehaviour
 
     public void Play(string sceneName)
     {
-        
+        dontDestroyOnLoad.addToListScenesToLoad(SceneManager.LoadSceneAsync("Igmar-World 1", LoadSceneMode.Additive));
+        dontDestroyOnLoad.deactivateSceneToLoad(1);
+        dontDestroyOnLoad.activateSceneToLoad(0);
+
+
         // TODO: Unload all data from previous sessions, then start clean
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+
     }
 
     public void Instructions()

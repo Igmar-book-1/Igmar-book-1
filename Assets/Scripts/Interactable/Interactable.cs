@@ -5,10 +5,10 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    private GameObject interactButton;
-    private GameObject camera;
-    private TMP_Text textMeshPro;
-    [SerializeField] protected string texto = "RECOGER";
+    protected GameObject interactButton;
+    protected GameObject camera;
+    public TMP_Text textMeshPro;
+    [SerializeField] protected string texto;
 
     public virtual void Start()
     {
@@ -24,6 +24,7 @@ public abstract class Interactable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            setCamera(GameManager.instance.MainCamera);
             interactButton.SetActive(true);
             interactButton.transform.position = transform.position + Vector3.up;
             interactButton.transform.LookAt(camera.transform);
@@ -33,8 +34,11 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        interactButton.transform.LookAt(camera.transform);
-        interactButton.transform.Rotate(90, 0, 0);
+        if (camera != null)
+        {
+            interactButton.transform.LookAt(camera.transform);
+            interactButton.transform.Rotate(90, 0, 0);
+        }
 
 
         if (other.tag=="Player" && Input.GetKeyDown(KeyCode.F))

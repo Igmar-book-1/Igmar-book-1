@@ -18,6 +18,7 @@ public class PlantPickup : Interactable
     {
 
         base.Start();
+        textMeshPro.SetText(texto);
         spawnPoint = this.gameObject.transform.GetChild(0);
         fruitprefab = Resources.Load<GameObject>(plantType + "Fruit");
         fruit = MonoBehaviour.Instantiate(fruitprefab, spawnPoint.transform.position, Quaternion.identity);

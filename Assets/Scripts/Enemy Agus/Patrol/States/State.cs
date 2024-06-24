@@ -10,7 +10,7 @@ namespace States
         protected LineOfSightBehaviour _lineOfSight;
         public float lineOfSightRange;
         public float lineOfSightAngle;
-        public float speed;
+        public float speed; 
         protected Animator _anim;
         
 

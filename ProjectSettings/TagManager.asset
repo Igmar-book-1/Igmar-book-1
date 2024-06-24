@@ -26,6 +26,7 @@ TagManager:
   - EventManager
   - Ground
   - AttackParticles
+  - DontDestroyOnLoad
   layers:
   - Default
   - TransparentFX
@@ -39,7 +40,7 @@ TagManager:
   - Laboratorio
   - Aldea
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 

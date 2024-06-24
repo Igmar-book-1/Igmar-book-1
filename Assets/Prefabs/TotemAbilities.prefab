@@ -92,6 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3863050633938867671}
+  - component: {fileID: 1571709203216329872}
+  - component: {fileID: 3362456294841665116}
   m_Layer: 0
   m_Name: TotemAbilities
   m_TagString: Untagged
@@ -115,3 +117,36 @@ Transform:
   - {fileID: 5906921494232047881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1571709203216329872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631923783905908972}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.627024, y: 7.050519, z: 6.636735}
+  m_Center: {x: 0.014927592, y: 3.02526, z: -0.15776286}
+--- !u!114 &3362456294841665116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631923783905908972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75aee40eebb2fa459e5854d29332aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
