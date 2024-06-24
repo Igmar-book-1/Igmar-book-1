@@ -5,10 +5,10 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    private GameObject interactButton;
-    private GameObject camera;
-    private TMP_Text textMeshPro;
-    [SerializeField] protected string texto = "RECOGER";
+    protected GameObject interactButton;
+    protected GameObject camera;
+    public TMP_Text textMeshPro;
+    [SerializeField] protected string texto;
 
     public virtual void Start()
     {
