@@ -70,6 +70,11 @@ public class MainMenuController : MonoBehaviour
         creditsPanel.SetActive(false);
     }
 
+    public void LevelPrototype(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
+
     public void Exit()
     {
         Application.Quit();

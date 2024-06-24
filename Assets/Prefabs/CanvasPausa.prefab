@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 355474355081306693}
   - component: {fileID: 870218228307738906}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: BackToCheckpointButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,16 +641,16 @@ RectTransform:
   m_GameObject: {fileID: 656200005706356525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8575, y: 1.8575, z: 1.8575}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4574210390183708793}
   m_Father: {fileID: 6682121619423368201}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -62}
-  m_SizeDelta: {x: 250, y: 60}
+  m_AnchoredPosition: {x: 0, y: -70}
+  m_SizeDelta: {x: 727, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8007619422295437382
 CanvasRenderer:
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656200005706356525}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d6f1b004d42cb974ea7a50c87186773c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -709,7 +709,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 0.82576895, b: 0.3150943, a: 1}
     m_HighlightedColor: {r: 1, g: 0.9556103, b: 0.39999998, a: 1}
@@ -719,9 +719,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 828d5e814b0b75b479246c0009010ae9,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 326d758d9a19e384fb0897fe7d966987, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 1c618f1dc143a9042aa119789b5e9775, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1671,6 +1672,8 @@ MonoBehaviour:
   controlPanel: {fileID: 2183368297550317129}
   soundPanel: {fileID: 1217779738419366483}
   diePanel: {fileID: 2744073691422559736}
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
 --- !u!223 &5427547473446271713
 Canvas:
   m_ObjectHideFlags: 0
@@ -3852,7 +3855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4574210390183708793
 RectTransform:
   m_ObjectHideFlags: 0

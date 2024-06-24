@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Continuara.unity
     guid: 9925d625d285aa142ade4bc096523c1e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Parcial 1.unity
     guid: c76b9fbd6f53999429a01897f39afe2b
   - enabled: 0

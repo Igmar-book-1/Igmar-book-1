@@ -21,7 +21,7 @@ public class DoorScript : MonoBehaviour
     {
         if(other.tag=="Player")
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Continuara");
         }
     }
 }
