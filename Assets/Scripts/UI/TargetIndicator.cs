@@ -5,6 +5,7 @@ using System.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TP2 - Agustin Picchio
 public class TargetIndicator : MonoBehaviour
 {
     public Image TargetIndicatorImageWhite;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TP2 - Matias Sueldo
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance { get; private set; }

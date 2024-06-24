@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using System.Linq;
 
+//TP2 - Florencia Pak
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] GameObject mainPanel;

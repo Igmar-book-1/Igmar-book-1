@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 
+//TP2 - Agustin Picchio
 namespace LineOfSight
 {
     public class LineOfSightBehaviour : MonoBehaviour

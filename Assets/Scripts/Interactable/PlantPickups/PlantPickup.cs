@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using static Cinemachine.CinemachineFreeLook;
 
+//TP2 - Matias Sueldo
 public class PlantPickup : Interactable
 {
     [SerializeField] protected string plantType;

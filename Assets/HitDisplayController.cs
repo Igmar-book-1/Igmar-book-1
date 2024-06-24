@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.Port;
 
+//TP2 - Matias Sueldo
 public class HitDisplayController : MonoBehaviour
 {
     private Image image;

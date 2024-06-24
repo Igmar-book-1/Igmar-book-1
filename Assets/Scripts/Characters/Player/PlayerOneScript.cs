@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TP2 - Matias Sueldo
 public class PlayerOneScript : AllCharacterController
 {
     protected bool _isJumping = false;

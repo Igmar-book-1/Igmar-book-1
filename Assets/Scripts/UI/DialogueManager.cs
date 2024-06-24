@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//TP2 - Florencia Pak
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;

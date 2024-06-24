@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TP2 - Agustin Picchio
 public class Bullet : MonoBehaviour
 {
     public Rigidbody rb;

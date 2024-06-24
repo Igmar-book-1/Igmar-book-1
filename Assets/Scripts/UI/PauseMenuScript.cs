@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//TP2 - Florencia Pak
 public class PauseMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuPanel;

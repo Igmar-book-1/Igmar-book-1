@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TP2 - Geronimo Gorriarena
 public class BridgeTable : MonoBehaviour
 {
     [SerializeField] float minDelayTime = 5f; //Debe coincidir con el min delay del trigger para optimo.

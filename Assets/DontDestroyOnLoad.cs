@@ -4,6 +4,7 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TP2 - Matias Sueldo
 public class DontDestroyOnLoad : MonoBehaviour
 {
     private List<AsyncOperation> _scenesToLoad = new List<AsyncOperation>();

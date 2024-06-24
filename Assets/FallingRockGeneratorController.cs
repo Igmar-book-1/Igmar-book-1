@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//TP2 - Geronimo Gorriarena
 public class FallingRockGeneratorController : MonoBehaviour
 {
     List<Transform> rockGenerators;
