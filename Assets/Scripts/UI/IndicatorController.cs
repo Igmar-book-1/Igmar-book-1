@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TP2 - Agustin Picchio
 public class IndicatorController : MonoBehaviour
 {
     public Canvas canvas;

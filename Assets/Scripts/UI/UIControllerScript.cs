@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//TP2 - Matias Sueldo
 public class UIControllerScript : MonoBehaviour
 {
 

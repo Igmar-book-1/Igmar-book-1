@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+//TP2 - Matias Sueldo
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }

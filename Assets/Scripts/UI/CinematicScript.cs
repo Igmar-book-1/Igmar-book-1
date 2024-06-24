@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
+//TP2 - Florencia Pak
 public class CinematicScript : MonoBehaviour
 {
     private VideoPlayer _videoPlayer;

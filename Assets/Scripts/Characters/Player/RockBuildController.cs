@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//TP2 - Matias Sueldo
 public class RockBuildScripts : MonoBehaviour
 {
     public Vector3 normal;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TP2 - Matias Sueldo
 public class DeadZoneScript : MonoBehaviour
 {
     // Start is called before the first frame update

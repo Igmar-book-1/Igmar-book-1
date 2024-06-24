@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TP2 - Florencia Pak
 public class UIDeathMenu : MonoBehaviour
 {
     [SerializeField] GameObject DeathPanel;

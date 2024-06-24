@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TP2 - Matias Sueldo
 public class DieImageScript : MonoBehaviour
 {
     private Image image;

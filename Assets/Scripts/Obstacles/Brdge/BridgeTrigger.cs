@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TP2 - Geronimo Gorriarena
 public class BridgeTrigger : MonoBehaviour
 {
     [SerializeField] GameObject[] bridgeTables;

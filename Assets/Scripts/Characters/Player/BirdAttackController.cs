@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//TP2 - Matias Sueldo
 public class BirdAttackController : MonoBehaviour
 {
     public float delayTime;
