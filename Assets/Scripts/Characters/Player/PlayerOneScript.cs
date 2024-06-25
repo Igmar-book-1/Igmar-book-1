@@ -40,6 +40,9 @@ public class PlayerOneScript : AllCharacterController
     private StaffDamageScript staff;
     private Vector3 checkpoint;
 
+    bool abilityRIsEnabled = false;
+    bool abilityQIsEnabled = false;
+
     [SerializeField] float BlockECooldown = 5f;
     [SerializeField] float AttackRCooldown = 5f;
     [SerializeField] float DashQCooldown = 5f;
@@ -123,7 +126,7 @@ public class PlayerOneScript : AllCharacterController
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0)
+                if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0 && abilityQIsEnabled)
                 {
                     currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
@@ -159,7 +162,7 @@ public class PlayerOneScript : AllCharacterController
                     updateCoolDownAllSkills();
 
                 }
-                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
+                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded && abilityRIsEnabled)
                 {
                     _anim.SetTrigger(onCallBird);
 
@@ -493,6 +496,18 @@ public class PlayerOneScript : AllCharacterController
     public bool getIsDead()
     {
         return IsDead;
+    }
+
+    public void enableAbility(string ability)
+    {
+        if(ability == "R")
+        {
+            abilityRIsEnabled = true;
+        }
+        if(ability == "Q")
+        {
+            abilityQIsEnabled = true;
+        }
     }
     public float getBlockECooldown() => BlockECooldown;
     public float getAttackRCooldown() => AttackRCooldown;
