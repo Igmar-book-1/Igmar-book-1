@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 //TP2 - Matias Sueldo
 public class DoorScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    DontDestroyOnLoad dontDestroyOnLoad;
+    
     void Start()
     {
-        
+        dontDestroyOnLoad = GameObject.FindGameObjectWithTag("DontDestroyOnLoad").GetComponent<DontDestroyOnLoad>();
     }
 
     // Update is called once per frame

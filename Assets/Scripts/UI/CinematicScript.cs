@@ -44,8 +44,8 @@ public class CinematicScript : MonoBehaviour
             this._asynOperation.allowSceneActivation = true;
         }*/
         dontDestroyOnLoad.deactivateSceneToLoad(0);
-        dontDestroyOnLoad.activateSceneToLoad(1);
-        SceneManager.UnloadScene("Intro");
+        EventManager.instance.EndScene(1);
+        //SceneManager.UnloadScene("Intro");
     }
 
     /*private IEnumerator LoadSceneAsync(string nameScene)
