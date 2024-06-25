@@ -10,9 +10,22 @@ public class DontDestroyOnLoad : MonoBehaviour
     private List<AsyncOperation> _scenesToLoad = new List<AsyncOperation>();
 
     private List<AsyncOperation> _scenesToUnload = new List<AsyncOperation>();
+
+    [SerializeField] GameObject canvasFade;
+
+    private Animator anim;
+    
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        anim = canvasFade.GetComponent<Animator>();
+
+        EventManager.OnEndScene += EndScene;
     }
 
     public void addToListScenesToLoad(AsyncOperation sceneToLoad)
@@ -23,6 +36,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     {
         return _scenesToLoad[sceneToLoad];
     }
+
     public void removeSceneToLoad(int sceneToLoad)
     {
         _scenesToLoad.RemoveAt(sceneToLoad);
@@ -49,5 +63,30 @@ public class DontDestroyOnLoad : MonoBehaviour
     public void activateSceneToLoad(int scene)
     {
         _scenesToLoad[scene].allowSceneActivation = true;
+        canvasFade.SetActive(true);
+        anim.Play("Start");
+        StartCoroutine(StopTransition());
+    }
+
+    public void EndScene(int scene)
+    {
+        canvasFade.SetActive(true);
+        anim.enabled = true;
+        anim.Play("End");
+        StartCoroutine(Esperar(scene));
+
+    }
+
+    IEnumerator Esperar(int scene)
+    {
+        yield return new WaitForSeconds(2f);
+        activateSceneToLoad(scene);
+    }
+
+    IEnumerator StopTransition()
+    {
+        yield return new WaitForSeconds(2f);
+        anim.enabled = false;
+        canvasFade.SetActive(false);
     }
 }

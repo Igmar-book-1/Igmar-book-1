@@ -36,9 +36,12 @@ public class MainMenuController : MonoBehaviour
 
     public void Play(string sceneName)
     {
+        EventManager.instance.EndScene(0);
+
         dontDestroyOnLoad.addToListScenesToLoad(SceneManager.LoadSceneAsync("Igmar-World 1", LoadSceneMode.Additive));
         dontDestroyOnLoad.deactivateSceneToLoad(1);
-        dontDestroyOnLoad.activateSceneToLoad(0);
+        dontDestroyOnLoad.EndScene(0);
+
 
 
         // TODO: Unload all data from previous sessions, then start clean
@@ -68,6 +71,11 @@ public class MainMenuController : MonoBehaviour
         mainPanel.SetActive(true);
         instructionsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+    }
+
+    public void LevelPrototype(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void Exit()

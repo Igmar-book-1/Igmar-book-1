@@ -15,6 +15,9 @@ public class EventManager : MonoBehaviour
     public delegate void ReviveAction();
     public static event ReviveAction OnRevive;
 
+    public delegate void EndSceneAction(int scene);
+    public static event EndSceneAction OnEndScene;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +31,12 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlayerDie()
     {
-        if ( OnDie != null)
+        if (OnDie != null)
         {
             OnDie();
         }
@@ -52,5 +55,10 @@ public class EventManager : MonoBehaviour
         {
             OnRevive();
         }
+    }
+
+    public void EndScene(int scene)
+    {
+        OnEndScene(scene);
     }
 }
