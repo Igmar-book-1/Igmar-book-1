@@ -100,6 +100,7 @@ public class AbilityToken : Interactable
     {
         if (other.tag == "Player")
         {
+            cooldown = false;
             textMeshPro.SetText(texto);
 
             setCamera(GameManager.instance.MainCamera);

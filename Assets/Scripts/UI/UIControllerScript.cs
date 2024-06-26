@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 //TP2 - Matias Sueldo
 public class UIControllerScript : MonoBehaviour
@@ -38,7 +39,21 @@ public class UIControllerScript : MonoBehaviour
         blockEnabled = GameManager.instance.BlockEnabled;
         dashEnabled = GameManager.instance.DashEnabled;
         platformEnabled = GameManager.instance.PlatformEnabled;
+        dashEnabled.SetActive(false);
+        rEnabled.SetActive(false);
+        EventManager.OnAbilityEnabled += AbilityEnable;
 }
+    private void AbilityEnable(string ability)
+    {
+        if (ability == "R")
+        {
+            rEnabled.SetActive(true);
+        }
+        else if (ability == "Q")
+        {
+            dashEnabled.SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -66,6 +81,7 @@ public class UIControllerScript : MonoBehaviour
         
         updateAllCooldowns();
     }
+
 
     private void updateAllCooldowns()
     {

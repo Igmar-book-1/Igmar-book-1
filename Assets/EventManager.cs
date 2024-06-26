@@ -15,6 +15,10 @@ public class EventManager : MonoBehaviour
     public delegate void ReviveAction();
     public static event ReviveAction OnRevive;
 
+
+    public delegate void AbilityEnabledAction(string ability);
+    public static event AbilityEnabledAction OnAbilityEnabled;
+
     public delegate void EndSceneAction(int scene);
     public static event EndSceneAction OnEndScene;
 
@@ -60,5 +64,13 @@ public class EventManager : MonoBehaviour
     public void EndScene(int scene)
     {
         OnEndScene(scene);
+    }
+
+    public void AbilityEnabled(string ability)
+    {
+        if (OnAbilityEnabled != null)
+        {
+            OnAbilityEnabled(ability);
+        }
     }
 }

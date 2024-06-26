@@ -40,8 +40,8 @@ public class PlayerOneScript : AllCharacterController
     private StaffDamageScript staff;
     private Vector3 checkpoint;
 
-    bool abilityRIsEnabled = false;
-    bool abilityQIsEnabled = false;
+    private bool abilityRIsEnabled = false;
+    private bool abilityQIsEnabled = false;
 
     [SerializeField] float BlockECooldown = 5f;
     [SerializeField] float AttackRCooldown = 5f;
@@ -503,10 +503,12 @@ public class PlayerOneScript : AllCharacterController
         if(ability == "R")
         {
             abilityRIsEnabled = true;
+            EventManager.instance.AbilityEnabled("R");
         }
         if(ability == "Q")
         {
             abilityQIsEnabled = true;
+            EventManager.instance.AbilityEnabled("Q");
         }
     }
     public float getBlockECooldown() => BlockECooldown;
@@ -515,4 +517,6 @@ public class PlayerOneScript : AllCharacterController
     public float getCurrentBlockECooldown() => currentBlockECooldown;
     public float getCurrentAttackRCooldown() => currentAttackRCooldown;
     public float getCurrentDashQCooldown() => currentDashQCooldown;
+    
+
 }
