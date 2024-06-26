@@ -3761,7 +3761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBodySpeed: 1
-  life: 100
+  life: 60
   backOnHurt: 50
   _xAxisName: xAxis
   _zAxisName: zAxis

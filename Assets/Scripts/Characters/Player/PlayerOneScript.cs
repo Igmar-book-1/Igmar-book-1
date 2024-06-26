@@ -40,6 +40,9 @@ public class PlayerOneScript : AllCharacterController
     private StaffDamageScript staff;
     private Vector3 checkpoint;
 
+    private bool abilityRIsEnabled = false;
+    private bool abilityQIsEnabled = false;
+
     [SerializeField] float BlockECooldown = 5f;
     [SerializeField] float AttackRCooldown = 5f;
     [SerializeField] float DashQCooldown = 5f;
@@ -123,7 +126,7 @@ public class PlayerOneScript : AllCharacterController
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0)
+                if (Input.GetKeyDown(KeyCode.Q) && currentDashQCooldown ==0 && abilityQIsEnabled)
                 {
                     currentDashQCooldown = DashQCooldown;
                     _anim.SetTrigger(onDash);
@@ -159,7 +162,7 @@ public class PlayerOneScript : AllCharacterController
                     updateCoolDownAllSkills();
 
                 }
-                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded)
+                if (Input.GetKeyDown(KeyCode.R) && _isAiming && mana >= 10 && currentAttackRCooldown == 0 && _isGrounded && abilityRIsEnabled)
                 {
                     _anim.SetTrigger(onCallBird);
 
@@ -284,7 +287,7 @@ public class PlayerOneScript : AllCharacterController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CollisionFlags.Below != 0)
+        if (CollisionFlags.Below != 0 && !_isGrounded)
         {
             if (collision.contacts.Length > 0)
             {
@@ -323,12 +326,17 @@ public class PlayerOneScript : AllCharacterController
     {
         if (CollisionFlags.Below != 0)
         {
-            _isGrounded = false;
-            startOfFall = transform.position.y;
-            _anim.SetBool("isGrounded", false);
+            StartCoroutine(delayfall());
         }
     }
 
+    IEnumerator delayfall()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isGrounded = false;
+        startOfFall = transform.position.y;
+        _anim.SetBool("isGrounded", false);
+    }
     public int getMana() { return this.mana; }
 
 
@@ -494,10 +502,26 @@ public class PlayerOneScript : AllCharacterController
     {
         return IsDead;
     }
+
+    public void enableAbility(string ability)
+    {
+        if(ability == "R")
+        {
+            abilityRIsEnabled = true;
+            EventManager.instance.AbilityEnabled("R");
+        }
+        if(ability == "Q")
+        {
+            abilityQIsEnabled = true;
+            EventManager.instance.AbilityEnabled("Q");
+        }
+    }
     public float getBlockECooldown() => BlockECooldown;
     public float getAttackRCooldown() => AttackRCooldown;
     public float getDashQCooldown() => DashQCooldown;
     public float getCurrentBlockECooldown() => currentBlockECooldown;
     public float getCurrentAttackRCooldown() => currentAttackRCooldown;
     public float getCurrentDashQCooldown() => currentDashQCooldown;
+    
+
 }
