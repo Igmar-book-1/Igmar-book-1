@@ -119,5 +119,9 @@ public class animatorToRigidBody : MonoBehaviour
         particleSystem.Stop();
     }
 
+    public void EnableJump()
+    {
+        playerOneScript._canJump = true;
+    }
 
 }

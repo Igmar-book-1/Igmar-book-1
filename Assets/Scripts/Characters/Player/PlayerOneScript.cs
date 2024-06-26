@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerOneScript : AllCharacterController
 {
     protected bool _isJumping = false;
-    protected bool _canJump = true;
+    public bool _canJump = true;
     protected bool _onAttack = false;
     protected int _comboAttack = 0;
     protected bool _isAttacking = false;
@@ -291,13 +291,14 @@ public class PlayerOneScript : AllCharacterController
     {
         if (CollisionFlags.Below != 0 && !_isGrounded)
         {
+            _canJump = true;
             if (collision.contacts.Length > 0)
             {
                 ContactPoint contact = collision.contacts[0];
                 if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
                 {
                     _isGrounded = true;
-                    _canJump = true;
+
                     _anim.SetBool("isGrounded", true);
                     if(startOfFall - transform.position.y > 8)
                     {
