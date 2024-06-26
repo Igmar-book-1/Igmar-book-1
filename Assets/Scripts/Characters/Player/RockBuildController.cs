@@ -15,7 +15,7 @@ public class RockBuildScripts : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        Destroy(this.gameObject, 14f);
+        Destroy(this.gameObject, 20f);
     }
     private void Update()
     {
