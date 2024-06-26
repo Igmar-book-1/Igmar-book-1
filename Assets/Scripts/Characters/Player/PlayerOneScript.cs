@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerOneScript : AllCharacterController
 {
     protected bool _isJumping = false;
+    protected bool _canJump = true;
     protected bool _onAttack = false;
     protected int _comboAttack = 0;
     protected bool _isAttacking = false;
@@ -94,8 +95,9 @@ public class PlayerOneScript : AllCharacterController
 
                 _anim.SetFloat("verticalSpeed", _rb.velocity.y);
 
-                if (_isJumping)
+                if (_isJumping && _canJump)
                 {
+                    _canJump = false;
                     StartCoroutine(playerOneMovement.Jump(_isGrounded));
 
                 }
@@ -295,6 +297,7 @@ public class PlayerOneScript : AllCharacterController
                 if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
                 {
                     _isGrounded = true;
+                    _canJump = true;
                     _anim.SetBool("isGrounded", true);
                     if(startOfFall - transform.position.y > 8)
                     {
