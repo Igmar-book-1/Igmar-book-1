@@ -287,7 +287,7 @@ public class PlayerOneScript : AllCharacterController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CollisionFlags.Below != 0)
+        if (CollisionFlags.Below != 0 && !_isGrounded)
         {
             if (collision.contacts.Length > 0)
             {
@@ -326,12 +326,17 @@ public class PlayerOneScript : AllCharacterController
     {
         if (CollisionFlags.Below != 0)
         {
-            _isGrounded = false;
-            startOfFall = transform.position.y;
-            _anim.SetBool("isGrounded", false);
+            StartCoroutine(delayfall());
         }
     }
 
+    IEnumerator delayfall()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isGrounded = false;
+        startOfFall = transform.position.y;
+        _anim.SetBool("isGrounded", false);
+    }
     public int getMana() { return this.mana; }
 
 
