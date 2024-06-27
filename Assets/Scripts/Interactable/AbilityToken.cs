@@ -8,6 +8,7 @@ public class AbilityToken : Interactable
     [SerializeField] protected GameObject abilityCanva;
     [SerializeField] protected GameObject abilityQ;
     [SerializeField] protected GameObject abilityR;
+    [SerializeField] protected GameObject abilityAiming;
     [SerializeField] protected string ability;
     ParticleSystem particleSystem;
     bool cooldown;
@@ -28,10 +29,15 @@ public class AbilityToken : Interactable
                     abilityQ.SetActive(true);
                     animator.Play("showQ");
                 }
-                else
+                else if(ability == "R")
                 {
                     abilityR.SetActive(true);
                     animator.Play("showR");
+                }
+                else if (ability == "Aiming")
+                {
+                    abilityAiming.SetActive(true);
+                    animator.Play("showAiming");
                 }
                 other.gameObject.GetComponent<PlayerOneScript>().enableAbility(ability);
                 
@@ -82,9 +88,13 @@ public class AbilityToken : Interactable
                 {
                     animator.Play("hideQ");
                 }
-                else
+                else if (ability == "R")
                 {
                     animator.Play("hideR");
+                }
+                else if (ability =="Aiming")
+                {
+                    animator.Play("hideAiming");
                 }
                 particleSystem.Stop();
                 isActive = true;
@@ -121,6 +131,7 @@ public class AbilityToken : Interactable
         abilityCanva.SetActive(false);
         abilityQ.SetActive(false);
         abilityR.SetActive(false);
+        abilityAiming.SetActive(false);
     }
 
 }

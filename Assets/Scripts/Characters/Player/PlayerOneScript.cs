@@ -22,6 +22,7 @@ public class PlayerOneScript : AllCharacterController
     private int comboTimer = 0;
     protected int mana = 100;
     [SerializeField] protected float jumpForce = 0;
+    [SerializeField] protected string jumpCooldownAction = "jumpCooldown";
     [SerializeField] protected bool _isMoving = false;
     [SerializeField] protected string onJump = "onJump";
     [SerializeField] protected string onAttack = "onAttack";
@@ -43,6 +44,7 @@ public class PlayerOneScript : AllCharacterController
 
     private bool abilityRIsEnabled = false;
     private bool abilityQIsEnabled = false;
+    private bool isAimingEnabled = false;
 
     [SerializeField] float BlockECooldown = 5f;
     [SerializeField] float AttackRCooldown = 5f;
@@ -53,6 +55,9 @@ public class PlayerOneScript : AllCharacterController
     private float currentAttackRCooldown = 0f;
     private float currentDashQCooldown = 0f;
     private bool isRefreshingSkills = false;
+
+    private float jumpCooldown;
+
 
 
     private void Start()
@@ -88,21 +93,34 @@ public class PlayerOneScript : AllCharacterController
                 base._zAxis = Input.GetAxis("Vertical");
                 _isJumping = Input.GetButtonDown("Jump");
                 _onAttack = Input.GetButtonDown("Fire1");
-                _isAiming = Input.GetButton("Fire2");
+                
                 _isRunning = Input.GetButton("Fire3");
                 
-                base._anim.SetBool(isAiming, _isAiming);
-
-                _anim.SetFloat("verticalSpeed", _rb.velocity.y);
-
-                if (_isJumping && _canJump)
+                if(_isGrounded && !_isAttacking && !_isJumping && isAimingEnabled)
                 {
-                    _canJump = false;
-                    StartCoroutine(playerOneMovement.Jump(_isGrounded));
+                    _isAiming = Input.GetButton("Fire2");
+                    base._anim.SetBool(isAiming, _isAiming);
 
                 }
 
-                if (_onAttack && _isGrounded && !_isAttacking)
+                _anim.SetFloat("verticalSpeed", _rb.velocity.y);
+
+                if (_isJumping && _canJump && _isGrounded && jumpCooldown == 0)
+                {
+                    jumpCooldown = 0.6f;
+                    _canJump = false;
+                    _anim.SetFloat(jumpCooldownAction, jumpCooldown);
+                    StartCoroutine(playerOneMovement.Jump(_isGrounded));
+                    StartCoroutine(updateJumpCooldown());
+                }
+                IEnumerator updateJumpCooldown()
+                {
+                    yield return new WaitForSeconds(0.6f);
+                    jumpCooldown = 0;
+                    _anim.SetFloat(jumpCooldownAction, jumpCooldown);
+                }
+
+                if (_onAttack && _isGrounded && !_isAttacking && !_isJumping)
                 {
                     comboTimer = 3;
                     if(!_isComboSystemActive)
@@ -143,7 +161,7 @@ public class PlayerOneScript : AllCharacterController
                 {
                     _anim.SetLayerWeight(2, 0);
                 }
-                if (Input.GetKeyDown(KeyCode.E) && mana >= 10 && currentBlockECooldown==0 && _isGrounded)
+                if (Input.GetKeyDown(KeyCode.E) && mana >= 10 && currentBlockECooldown == 0 && _isGrounded && !_isJumping && jumpCooldown == 0)
                 {
                     
                     ;
@@ -276,7 +294,7 @@ public class PlayerOneScript : AllCharacterController
         return _isAiming;
     }
 
-    public IEnumerator jump()
+    /*public IEnumerator jump()
     {
         if (!_isGrounded)
         {
@@ -285,7 +303,7 @@ public class PlayerOneScript : AllCharacterController
         _anim.SetTrigger("onJump");
         yield return new WaitForSeconds(0.6f);
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -298,7 +316,7 @@ public class PlayerOneScript : AllCharacterController
                 if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
                 {
                     _isGrounded = true;
-
+                    _isJumping =false;
                     _anim.SetBool("isGrounded", true);
                     if(startOfFall - transform.position.y > 8)
                     {
@@ -311,7 +329,7 @@ public class PlayerOneScript : AllCharacterController
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (CollisionFlags.Below != 0)
+        if (CollisionFlags.Below != 0 & jumpCooldown==0)
         {
             if (collision.contacts.Length > 0)
             {
@@ -518,6 +536,10 @@ public class PlayerOneScript : AllCharacterController
         {
             abilityQIsEnabled = true;
             EventManager.instance.AbilityEnabled("Q");
+        }
+        if(ability =="Aiming")
+        {
+            isAimingEnabled = true;
         }
     }
     public float getBlockECooldown() => BlockECooldown;

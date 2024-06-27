@@ -12,6 +12,7 @@ public class Checkpoint : MonoBehaviour
     public PlayerCheckpoint playerCheckpoint;
     private GameObject player;
     private AudioSource sound;
+    ParticleSystem particleSystem;
     [SerializeField] protected AudioClip[] clips;
 
     private void Awake()
@@ -24,9 +25,10 @@ public class Checkpoint : MonoBehaviour
     {
         player = GameManager.instance.Player;
         playerCheckpoint = player.GetComponent<PlayerCheckpoint>();
-        sound = GetComponentInChildren<AudioSource>();
+        sound = GetComponentInChildren<AudioSource>();        
+        particleSystem = GetComponent<ParticleSystem>();
 
-}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +39,7 @@ public class Checkpoint : MonoBehaviour
     }
     public void ActivateCheckpoint()
     {
+        particleSystem.Stop();
         activated = true;
         if (fireParticles != null)
         {

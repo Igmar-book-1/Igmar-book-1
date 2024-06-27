@@ -26,7 +26,6 @@ public class PlayerOneMovement
         }
         _anim.SetTrigger("onJump");
         _isGrounded = false;
-        yield return new WaitForSeconds(0.1f);
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 

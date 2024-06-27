@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1123360372406585962}
   - component: {fileID: 2629501635560761694}
   - component: {fileID: 338032965975632308}
+  - component: {fileID: 5998972244598804541}
   m_Layer: 0
   m_Name: ModeloTotem
   m_TagString: Untagged
@@ -240,7 +241,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1104,7 +1105,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4880,6 +4881,27 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!65 &5998972244598804541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3414119842271908987}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0821702, y: 6.6258984, z: 2.0847003}
+  m_Center: {x: 0.002964974, y: 3.311171, z: 0.008889974}
 --- !u!1 &5631923783905908972
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,8 +4955,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.627024, y: 7.050519, z: 6.636735}
-  m_Center: {x: 0.014927592, y: 3.02526, z: -0.15776286}
+  m_Size: {x: 5.8107142, y: 6.6485257, z: 7.0730047}
+  m_Center: {x: -0.07691737, y: 6.61993, z: 0.060371935}
 --- !u!114 &3362456294841665116
 MonoBehaviour:
   m_ObjectHideFlags: 0

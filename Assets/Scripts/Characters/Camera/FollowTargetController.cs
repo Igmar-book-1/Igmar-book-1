@@ -85,7 +85,6 @@ public class FollowTargetController : MonoBehaviour
                 return;
             }
 
-
             nextPosition = transform.position;
             if (followTransform.GetComponent<PlayerOneScript>().getIsAiming())
             {
@@ -93,8 +92,6 @@ public class FollowTargetController : MonoBehaviour
 
                 transform.localEulerAngles = new Vector3(angles.x, 0, 0);
             }
-
         }
-
     }
 }
