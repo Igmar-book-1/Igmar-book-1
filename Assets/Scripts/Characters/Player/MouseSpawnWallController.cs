@@ -42,8 +42,10 @@ public class MouseSpawnWallController
             GameObject targetHit = rayHit.transform.gameObject;
             Vector3 hitPosition = rayHit.point;
             rayhitPosition = rayHit;
-            if (!player.getIsCreatingPlatform())
+            if (!player.getIsCreatingPlatform() && targetHit.tag=="Ground")
             {
+                player.setCurrentBlockECooldown();
+                player.loseMana(10);
                 GameObject instance;
                 if (Vector3.Dot(rayHit.normal, Vector3.up) < 0.6)
                 {

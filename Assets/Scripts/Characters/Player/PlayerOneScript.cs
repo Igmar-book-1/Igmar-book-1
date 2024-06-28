@@ -219,10 +219,12 @@ public class PlayerOneScript : AllCharacterController
                     {
                         mouseSpawn.CreateBlockingWall();
                         _anim.SetTrigger(onBlock);
+                        currentBlockECooldown = BlockECooldown;
+                        loseMana(10);
 
                     }
-                    loseMana(10);
-                    currentBlockECooldown = BlockECooldown;
+                    
+                    
                     updateCoolDownAllSkills();
 
                 }
@@ -588,6 +590,10 @@ public class PlayerOneScript : AllCharacterController
     public void setComboAttack(int comboAttackNumber)
     {
         _comboAttack = comboAttackNumber;
+    }
+    public void setCurrentBlockECooldown()
+    {
+        currentBlockECooldown = BlockECooldown;
     }
     
     public void enableAbility(string ability)
