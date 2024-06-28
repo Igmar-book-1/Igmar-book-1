@@ -73,7 +73,7 @@ public class MouseSpawnWallController
         if (!player.getIsCreatingPlatform())
         {
             GameObject instance;
-            instance = MonoBehaviour.Instantiate(obj3, player.transform.position + player.transform.forward - Vector3.up * 3, Quaternion.LookRotation(player.transform.forward));
+            instance = MonoBehaviour.Instantiate(obj3, player.transform.position + player.transform.forward - Vector3.up * 2.2f, Quaternion.LookRotation(player.transform.forward));
         }
 
     }
