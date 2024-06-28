@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     private GameObject player;
+    private GameObject playerParent;
     private GameObject moveCamera;
     private GameObject aimCamera;
     private GameObject interactButton;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject EventManager { get => eventManager; set => eventManager = value; }
     public GameObject AimCamera { get => aimCamera; set => aimCamera = value; }
     public GameObject Player { get => player; set => player = value; }
+    public GameObject PlayerParent { get => playerParent; set => playerParent = value; }
     public GameObject InteractButton { get => interactButton; set => interactButton = value; }
     public GameObject MainCamera { get => mainCamera; set => mainCamera = value; }
     public GameObject BlockEnabled { get => blockEnabled; set => blockEnabled = value; }
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         DashEnabled = GameObject.FindWithTag("DashQ");
         PlatformEnabled = GameObject.FindWithTag("PlatformE");
         EventManager = GameObject.FindWithTag("EventManager");
+        PlayerParent = GameObject.FindWithTag("PlayerParent");
 
 
     }

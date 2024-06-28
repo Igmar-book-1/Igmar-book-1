@@ -45,19 +45,35 @@ public class FallingRockController : MonoBehaviour
             PushRockUp(-1);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    public void CollisionDetected(Collision collision)
     {
         if (collision.collider.tag == "Player")
         {
+            collision.gameObject.transform.parent = transform;
+            //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             StartCoroutine(Fall());
 
         }
     }
-    private void OnCollisionExit(Collision collision)
+
+    public void CollisionDetectedStay(Collision collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            collision.gameObject.transform.parent = transform;
+            //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 16.5f, ForceMode.Force); ;
+            StartCoroutine(Fall());
+
+        }
+    }
+    public void CollisionDetectedExit(Collision collision)
     {
         if (collision.collider.tag == "Player")
         {
             StartCoroutine(Ascend());
+            collision.gameObject.transform.parent = GameManager.instance.PlayerParent.transform;
+            //collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
 
     }
