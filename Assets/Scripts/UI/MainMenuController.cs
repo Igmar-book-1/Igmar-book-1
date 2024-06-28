@@ -12,6 +12,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject instructionsPanel;
     [SerializeField] GameObject creditsPanel;
 
+    [SerializeField] AudioClip onClick;
+
     DontDestroyOnLoad dontDestroyOnLoad;
     private AudioSource _audioSource;
 
@@ -84,9 +86,9 @@ public class MainMenuController : MonoBehaviour
         //UnityEditor.EditorApplication.isPlaying = false;
     }
 
-    private void PlaySound(AudioClip audioClip)
+    public void PlaySound()
     {
-        _audioSource.clip = audioClip;
+        _audioSource.clip = onClick;
         _audioSource.Play();
     }
 }

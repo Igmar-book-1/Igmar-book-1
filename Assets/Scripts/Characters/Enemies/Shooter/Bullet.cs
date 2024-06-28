@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
 
             if (col.tag == ("Player"))
             {
-                col.GetComponent<PlayerOneScript>().receiveDamage(damage);
+                col.GetComponent<PlayerOneScript>().ReceiveDamage(damage);
             }
 
             Destroy(go, 1);

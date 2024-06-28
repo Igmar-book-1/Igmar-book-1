@@ -2606,15 +2606,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBodySpeed: 0
-  life: 1
+  life: 30
   backOnHurt: 50
   _xAxisName: xAxis
   _zAxisName: zAxis
   invulnerabilityDuration: 2
+  hurt: []
+  talk: []
+  attacks: []
+  dead: []
+  mouth: {fileID: 0}
+  feet: {fileID: 0}
+  weapon: {fileID: 0}
   enemy: {fileID: 7674627033012807666}
   bullet: {fileID: 1418001878022238211, guid: 81bb2745fb4805644881d5df032cfc6a, type: 3}
   shootPoint: {fileID: 74976602968247330}
-  fireRate: 2
+  fireRate: 3
 --- !u!54 &1419310178597516137
 Rigidbody:
   m_ObjectHideFlags: 0

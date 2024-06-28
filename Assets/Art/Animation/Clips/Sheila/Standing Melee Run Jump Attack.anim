@@ -143235,6 +143235,13 @@ AnimationClip:
     floatParameter: 7
     intParameter: 0
     messageOptions: 0
+  - time: 0.48333332
+    functionName: StartAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.65
     functionName: ImpulseZ
     data: 
@@ -143249,14 +143256,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.85
+  - time: 0.8666667
     functionName: ImpulseY
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 7
     intParameter: 0
     messageOptions: 0
-  - time: 1.5
+  - time: 1.5166667
     functionName: ImpulseY
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -143279,6 +143286,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2
     functionName: AttackCollidersSphere
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.85
+    functionName: finishAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

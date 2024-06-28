@@ -65,6 +65,13 @@ public class animatorToRigidBody : MonoBehaviour
         playerOneScript.setIsAttacking(false);
     }
 
+    public void StartAttack()
+    {
+        playerOneScript.setComboAttack(0);
+        playerOneScript.setIsAttacking(true);
+    }
+
+
     public void startCreatingBlocks()
     {
         playerOneScript.setIsCreatingPlatform(true);

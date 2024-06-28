@@ -12,6 +12,10 @@ public class PlayerOneScript : AllCharacterController
     public bool _canJump = true;
     protected bool _onAttack = false;
     protected int _comboAttack = 0;
+    [SerializeField]protected float _attackCooldownTime = 2f;
+    private float lastAttackTime = 0f;
+    private float maxComboDelay = 1f;
+    private float nextFireTime = 0f;
     protected bool _isAttacking = false;
     protected bool _isAiming = false;
     protected bool _isRunning = false;
@@ -19,7 +23,7 @@ public class PlayerOneScript : AllCharacterController
     protected bool _isDashing = false;
     private bool _isComboSystemActive=false;
     protected int _speedMovementAnimation = 1;
-    private int comboTimer = 0;
+    private float comboTimer = 0.6f;
     protected int mana = 100;
     [SerializeField] protected float jumpForce = 0;
     [SerializeField] protected string jumpCooldownAction = "jumpCooldown";
@@ -86,6 +90,21 @@ public class PlayerOneScript : AllCharacterController
     {
         if (!PauseMenuScript._isPause)
         {
+
+            if(_anim.GetCurrentAnimatorStateInfo(0).normalizedTime>0.8 && _anim.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Attack Horizontal"))
+            {
+
+                _isAttacking = false;
+            }
+            if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && _anim.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Attack Horizontal 2"))
+            {
+
+                _isAttacking = false;
+            }
+            if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && _anim.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Run Jump Attack"))
+            {
+                _isAttacking = false;
+            }
             if (!IsDead && !isCreatingPlatform)
             {
 
@@ -120,10 +139,35 @@ public class PlayerOneScript : AllCharacterController
                     _anim.SetFloat(jumpCooldownAction, jumpCooldown);
                 }
 
-                if (_onAttack && _isGrounded && !_isAttacking && !_isJumping)
+                if (_onAttack && _isGrounded && !_isJumping && Time.time - lastAttackTime>comboTimer && !_anim.GetCurrentAnimatorStateInfo(0).IsName("Standing Melee Run Jump Attack"))
                 {
-                    comboTimer = 3;
-                    if(!_isComboSystemActive)
+                    _isAttacking = true;
+                    lastAttackTime = Time.time;
+                    _comboAttack++;
+                    StartCoroutine(comboTimerCooldown());
+                    if (_comboAttack == 1)
+                    {
+                        base._anim.SetInteger(comboAttack, _comboAttack);
+                        base._anim.SetTrigger(onAttack);
+                    }
+                    else if (_comboAttack == 2)
+                    {
+                        base._anim.SetInteger(comboAttack, _comboAttack);
+                        base._anim.SetTrigger(onAttack);
+
+                    }
+                    else if (_comboAttack == 3)
+                    {
+                        base._anim.SetInteger(comboAttack, _comboAttack);
+                        _comboAttack = 0;
+                        base._anim.SetTrigger(onAttack);
+                    }
+                    if (_comboAttack > 3)
+                    {
+                        Debug.Log("Mayor a 3");
+                    }
+
+                    /*if(!_isComboSystemActive)
                     {
                         StartCoroutine(ComboSystem());
                     }
@@ -142,7 +186,7 @@ public class PlayerOneScript : AllCharacterController
                     {
                         _comboAttack = 0;
 
-                    }
+                    }*/
 
                 }
 
@@ -202,6 +246,19 @@ public class PlayerOneScript : AllCharacterController
         }
     }
 
+    private IEnumerator comboTimerCooldown()
+    {
+        yield return new WaitForSeconds(0.4f);
+        if(Time.time-lastAttackTime > maxComboDelay)
+        {
+            _comboAttack = 0;
+            //_isAttacking = false;
+            yield break;
+        }
+
+        StartCoroutine(comboTimerCooldown());
+
+    }
     private void FixedUpdate()
     {
 
@@ -524,7 +581,15 @@ public class PlayerOneScript : AllCharacterController
     {
         return IsDead;
     }
-
+    public int getComboAttack()
+    {
+        return _comboAttack;
+    }
+    public void setComboAttack(int comboAttackNumber)
+    {
+        _comboAttack = comboAttackNumber;
+    }
+    
     public void enableAbility(string ability)
     {
         if(ability == "R")

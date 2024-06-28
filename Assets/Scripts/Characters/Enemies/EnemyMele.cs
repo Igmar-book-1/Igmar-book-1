@@ -68,6 +68,11 @@ public class EnemyMele : EnemyController
     void FixedUpdate()
     {
 
+        if(isHurt && isAttackAllowed.Equals(true))
+        {
+
+            StartCoroutine(AttackFreeze(3f));
+        }
         if (!isHurt && !IsDead)
         {
 
@@ -128,17 +133,17 @@ public class EnemyMele : EnemyController
 
     void Attack()
     {
-        isAttackAllowed = false;
         _anim.SetTrigger(onAttack);
         //Debug.Log("Ataque");
-        StartCoroutine(AttackFreeze());
+        StartCoroutine(AttackFreeze(3f));
 
     }
 
-    IEnumerator AttackFreeze()
+    IEnumerator AttackFreeze(float valor)
     {
-        
-        yield return new WaitForSeconds(3f);
+
+        isAttackAllowed = false;
+        yield return new WaitForSeconds(valor);
         isAttackAllowed = true;
     }
     public override void Die()
