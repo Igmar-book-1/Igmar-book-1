@@ -1258,6 +1258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 496674289821957113}
+  - component: {fileID: 2969876470924107989}
   m_Layer: 0
   m_Name: Caja
   m_TagString: Untagged
@@ -1282,6 +1283,27 @@ Transform:
   - {fileID: 6670193020857121885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2969876470924107989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722121439316083221}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8930054, y: 1.1962942, z: 0.8014034}
+  m_Center: {x: 1.5378011, y: 0.62312573, z: 2.2499957}
 --- !u!1 &7745510659043857630
 GameObject:
   m_ObjectHideFlags: 0

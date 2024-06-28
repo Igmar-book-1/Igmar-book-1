@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 //TP2 - Agustin Picchio
@@ -10,6 +11,8 @@ public class Shooter : AllCharacterController
     public Transform enemy;
     public GameObject bullet;
     public Transform shootPoint;
+    public Transform lookAtTarget;
+ 
  
     public float fireRate;
     float originalTime;
@@ -24,7 +27,15 @@ public class Shooter : AllCharacterController
     {
         if (detected && !IsDead)
         {
-            enemy.LookAt(target.transform);
+            //lookAtTarget = target.transform;
+            // Vector3 lookAtPoint = target.transform.position; 
+             // lookAtPoint.y = 180f;
+             enemy.LookAt(target.transform); 
+            //Quaternion newRotation = Quaternion.LookRotation(transform.position - target.transform.position, Vector3.forward);
+           /* newRotation.z = 0f;
+            newRotation.x = 0f;
+            newRotation.y =
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 8);*/
         }
         base.Die();
     }

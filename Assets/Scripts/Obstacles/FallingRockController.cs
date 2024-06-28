@@ -49,7 +49,11 @@ public class FallingRockController : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            collision.gameObject.transform.parent = transform;
+            
+
+
+                collision.gameObject.transform.parent = transform;
+            
             //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             StartCoroutine(Fall());
 
@@ -59,10 +63,14 @@ public class FallingRockController : MonoBehaviour
     public void CollisionDetectedStay(Collision collision)
     {
         if (collision.collider.tag == "Player")
-        {
+
             collision.gameObject.transform.parent = transform;
-            //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 16.5f, ForceMode.Force); ;
+        //collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        {
+            if (!collision.gameObject.GetComponent<PlayerOneScript>().isMoving())
+            {
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 17f, ForceMode.Force);
+            }
             StartCoroutine(Fall());
 
         }
