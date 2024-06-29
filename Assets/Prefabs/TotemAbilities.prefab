@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5906921494232047881
 Transform:
@@ -4918,7 +4918,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3863050633938867671
 Transform:
@@ -4974,4 +4974,5 @@ MonoBehaviour:
   abilityCanva: {fileID: 0}
   abilityQ: {fileID: 0}
   abilityR: {fileID: 0}
+  abilityAiming: {fileID: 0}
   ability: 
