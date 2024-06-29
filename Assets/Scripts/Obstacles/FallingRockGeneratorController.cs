@@ -6,7 +6,7 @@ using UnityEngine;
 //TP2 - Geronimo Gorriarena
 public class FallingRockGeneratorController : MonoBehaviour
 {
-    List<Transform> rockGenerators;
+    [SerializeField] protected List<Transform> rockGenerators;
     public GameObject myPrefab;
     private bool isGeneratingRock;
     int generator=0 ;
@@ -14,7 +14,7 @@ public class FallingRockGeneratorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rockGenerators = GetComponentsInChildren<Transform>().ToList();
+        //rockGenerators = GetComponentsInChildren<Transform>().ToList();
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class FallingRockGeneratorController : MonoBehaviour
         {
             StartCoroutine(generateRock(rockGenerators[generator]));
             
-            if(generator==3)
+            if(generator==1)
             {
                 isSumming =false;
             }

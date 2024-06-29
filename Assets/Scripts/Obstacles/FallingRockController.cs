@@ -15,7 +15,7 @@ public class FallingRockController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         initialPosition = transform.position;
-        _rb.AddForce(Vector3.forward * 180, ForceMode.Impulse);
+        _rb.AddForce(Vector3.back * 180, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -69,7 +69,7 @@ public class FallingRockController : MonoBehaviour
         {
             if (!collision.gameObject.GetComponent<PlayerOneScript>().isMoving())
             {
-                collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 17f, ForceMode.Force);
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * -17f, ForceMode.Force);
             }
             StartCoroutine(Fall());
 
@@ -105,7 +105,7 @@ public class FallingRockController : MonoBehaviour
     void PushRockForward()
     {
         //isPushed = true;
-        _rb.AddForce(Vector3.forward * acceleration, ForceMode.Force);
+        _rb.AddForce(Vector3.back * acceleration, ForceMode.Force);
         //isPushed = false;
     }
 
