@@ -25,6 +25,8 @@ public class DontDestroyOnLoad : MonoBehaviour
         anim = canvasFade.GetComponent<Animator>();
 
         EventManager.OnEndScene += EndScene;
+        EventManager.OnFadeIn += FadeIn;
+        EventManager.OnFadeOut += FadeOut;
     }
 
     public void addToListScenesToLoad(AsyncOperation sceneToLoad)
@@ -85,6 +87,27 @@ public class DontDestroyOnLoad : MonoBehaviour
     IEnumerator StopTransition()
     {
         yield return new WaitForSeconds(2f);
+        anim.enabled = false;
+        canvasFade.SetActive(false);
+    }
+
+    public void FadeIn()
+    {
+        canvasFade.SetActive(true);
+        anim.enabled = true;
+        anim.Play("End");
+    }
+    public void FadeOut()
+    {
+        canvasFade.SetActive(true);
+        anim.enabled = true;
+        anim.Play("Start");
+        StartCoroutine(WaitFadeOut());
+    }
+
+    IEnumerator WaitFadeOut()
+    {
+        yield return new WaitForSeconds(1.2f);
         anim.enabled = false;
         canvasFade.SetActive(false);
     }

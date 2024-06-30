@@ -31,7 +31,7 @@ public class CinematicScript : MonoBehaviour
             this.StartCoroutine(LoadSceneAsync(NextSceneName));
         }*/
 
-        if (Input.anyKeyDown)
+        if (Input.GetButtonDown("Fire1"))
         {
             CheckOver(_videoPlayer);
         }
@@ -43,9 +43,17 @@ public class CinematicScript : MonoBehaviour
         {
             this._asynOperation.allowSceneActivation = true;
         }*/
-        dontDestroyOnLoad.deactivateSceneToLoad(0);
-        EventManager.instance.EndScene(1);
+
         //SceneManager.UnloadScene("Intro");
+        if (SceneManager.GetActiveScene().name == "Continuara")
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            dontDestroyOnLoad.deactivateSceneToLoad(0);
+            EventManager.instance.EndScene(1);
+        }
     }
 
     /*private IEnumerator LoadSceneAsync(string nameScene)

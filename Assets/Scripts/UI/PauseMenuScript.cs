@@ -60,6 +60,7 @@ public class PauseMenuScript : MonoBehaviour
             diePanel.SetActive(true);
             _isPause = true;
             StartCoroutine(timeScaleChange());
+            EventManager.instance.FadeInEnabled();
     }
 
     IEnumerator timeScaleChange()
@@ -140,6 +141,7 @@ public class PauseMenuScript : MonoBehaviour
     {
         Resume();
         playerOne.Revive();
+        EventManager.instance.FadeOutEnabled();
     }
 
     public void Exit()
