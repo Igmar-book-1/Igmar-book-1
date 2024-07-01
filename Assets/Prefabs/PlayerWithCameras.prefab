@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 8891976604496723355}
   - component: {fileID: 377330732467502100}
   - component: {fileID: 1224427171883055450}
+  - component: {fileID: 5944967750817102109}
   m_Layer: 0
   m_Name: Aim Camera
   m_TagString: Untagged
@@ -509,6 +510,36 @@ MonoBehaviour:
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
   m_Profile: {fileID: 11400000, guid: ef2be4157f54aca48b7f79fe6396e2b8, type: 2}
+--- !u!114 &5944967750817102109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179697724082962149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 1
+  m_Strategy: 0
+  m_MaximumEffort: 3
+  m_SmoothingTime: 0.042
+  m_Damping: 0.42
+  m_DampingWhenOccluded: 0.54
+  m_OptimalTargetDistance: 0
 --- !u!1 &1190928248334816774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +2029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8372e4d8b2496ec4cbd664d60714f652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
 --- !u!1 &3012173942526932198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df72f9598644964f94efa67af2aa6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystemObject: {fileID: 0}
 --- !u!135 &6630827339842209667
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3052,6 +3085,7 @@ GameObject:
   - component: {fileID: 2840182233708329258}
   - component: {fileID: 5897684269407415673}
   - component: {fileID: 4842412115215377282}
+  - component: {fileID: 7801906981317458792}
   m_Layer: 0
   m_Name: Move Camera
   m_TagString: Untagged
@@ -3131,6 +3165,36 @@ MonoBehaviour:
   m_FocusTarget: {fileID: 0}
   m_FocusOffset: 0
   m_Profile: {fileID: 11400000, guid: ef2be4157f54aca48b7f79fe6396e2b8, type: 2}
+--- !u!114 &7801906981317458792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077187218630502318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.01
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 1
+  m_MinimumOcclusionTime: 0.1
+  m_CameraRadius: 1
+  m_Strategy: 0
+  m_MaximumEffort: 6
+  m_SmoothingTime: 0.131
+  m_Damping: 0
+  m_DampingWhenOccluded: 0.79
+  m_OptimalTargetDistance: 0.1
 --- !u!1 &4150832659589507062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,7 +3896,17 @@ MonoBehaviour:
   _xAxisName: xAxis
   _zAxisName: zAxis
   invulnerabilityDuration: 2
+  hurt: []
+  talk: []
+  attacks: []
+  dead: []
+  mouth: {fileID: 0}
+  feet: {fileID: 0}
+  weapon: {fileID: 0}
+  _canJump: 1
+  _attackCooldownTime: 2
   jumpForce: 7
+  jumpCooldownAction: jumpCooldown
   _isMoving: 0
   onJump: onJump
   onAttack: onAttack
@@ -3841,6 +3915,7 @@ MonoBehaviour:
   comboAttack: comboAttack
   onCreateGround: onCreateGround
   onCreateWall: onCreateWall
+  onCallBird: onCallBird
   onBlock: onBlock
   onDash: onDash
   BlockECooldown: 5
@@ -4145,6 +4220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df72f9598644964f94efa67af2aa6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystemObject: {fileID: 0}
 --- !u!135 &1858472387773234400
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5766,6 +5842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8372e4d8b2496ec4cbd664d60714f652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
 --- !u!1 &7507279551994778151
 GameObject:
   m_ObjectHideFlags: 0

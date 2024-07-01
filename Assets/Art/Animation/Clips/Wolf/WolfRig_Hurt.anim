@@ -107516,7 +107516,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.16
     functionName: setIsHurtFalse
     data: 
     objectReferenceParameter: {fileID: 0}
