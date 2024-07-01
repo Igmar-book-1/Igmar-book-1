@@ -22,6 +22,12 @@ public class EventManager : MonoBehaviour
     public delegate void EndSceneAction(int scene);
     public static event EndSceneAction OnEndScene;
 
+    public delegate void FadeInAction();
+    public static event FadeInAction OnFadeIn;
+
+    public delegate void FadeOutAction();
+    public static event FadeOutAction OnFadeOut;
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,4 +79,20 @@ public class EventManager : MonoBehaviour
             OnAbilityEnabled(ability);
         }
     }
+
+    public void FadeInEnabled()
+    {
+        if (OnFadeIn != null)
+        {
+            OnFadeIn();
+        }
+    }
+    public void FadeOutEnabled()
+    {
+        if (OnFadeOut != null)
+        {
+            OnFadeOut();
+        }
+    }
+
 }

@@ -13,6 +13,9 @@ EditorBuildSettings:
     guid: d934f70fc167c8f4eb2a86370b549a20
   - enabled: 1
     path: Assets/Scenes/Igmar-World 1.unity
+    guid: 881eca4630f6226419b2fa41685b2722
+  - enabled: 0
+    path: Assets/Scenes/Igmar-World 3.unity
     guid: f67a166d33cdbc84fa6af34538bfadbf
   - enabled: 1
     path: Assets/Scenes/Continuara.unity

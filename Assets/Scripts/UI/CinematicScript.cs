@@ -16,9 +16,11 @@ public class CinematicScript : MonoBehaviour
         _videoPlayer = GetComponent<VideoPlayer>();
         _videoPlayer.Play();
         _videoPlayer.loopPointReached += CheckOver;
+
     }
     void Start()
     {
+
 
         dontDestroyOnLoad = GameObject.FindGameObjectWithTag("DontDestroyOnLoad").GetComponent<DontDestroyOnLoad>();
 
@@ -43,9 +45,17 @@ public class CinematicScript : MonoBehaviour
         {
             this._asynOperation.allowSceneActivation = true;
         }*/
-        dontDestroyOnLoad.deactivateSceneToLoad(0);
-        EventManager.instance.EndScene(1);
+
         //SceneManager.UnloadScene("Intro");
+        if (SceneManager.GetActiveScene().name == "Continuara")
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            dontDestroyOnLoad.deactivateSceneToLoad(0);
+            EventManager.instance.EndScene(1);
+        }
     }
 
     /*private IEnumerator LoadSceneAsync(string nameScene)
