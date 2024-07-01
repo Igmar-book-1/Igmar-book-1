@@ -141,7 +141,13 @@ public class PauseMenuScript : MonoBehaviour
     {
         Resume();
         playerOne.Revive();
+        StartCoroutine(waitToFadeOut());
+    }
+    IEnumerator waitToFadeOut()
+    {
+        yield return new WaitForSeconds(1);
         EventManager.instance.FadeOutEnabled();
+
     }
 
     public void Exit()

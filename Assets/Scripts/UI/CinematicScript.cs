@@ -16,9 +16,11 @@ public class CinematicScript : MonoBehaviour
         _videoPlayer = GetComponent<VideoPlayer>();
         _videoPlayer.Play();
         _videoPlayer.loopPointReached += CheckOver;
+
     }
     void Start()
     {
+
 
         dontDestroyOnLoad = GameObject.FindGameObjectWithTag("DontDestroyOnLoad").GetComponent<DontDestroyOnLoad>();
 
@@ -31,7 +33,7 @@ public class CinematicScript : MonoBehaviour
             this.StartCoroutine(LoadSceneAsync(NextSceneName));
         }*/
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.anyKeyDown)
         {
             CheckOver(_videoPlayer);
         }

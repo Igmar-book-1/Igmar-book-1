@@ -80,7 +80,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 
     IEnumerator Esperar(int scene)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         activateSceneToLoad(scene);
     }
 
