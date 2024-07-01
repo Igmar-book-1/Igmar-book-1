@@ -4243,6 +4243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819280238241800712}
+  - component: {fileID: 270114663300794790}
   m_Layer: 12
   m_Name: Wolf
   m_TagString: Enemy
@@ -4267,6 +4268,25 @@ Transform:
   - {fileID: 604166812990289764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &270114663300794790
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5525220556163959364}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.000039041042, y: 0.63694715, z: 0.0930953}
+  m_Size: 2.310498
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.022439847
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3149067944740575303}
+  m_Enabled: 1
 --- !u!1 &5529144488093650479
 GameObject:
   m_ObjectHideFlags: 0
