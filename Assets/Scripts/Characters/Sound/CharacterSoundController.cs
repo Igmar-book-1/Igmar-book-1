@@ -11,6 +11,8 @@ public class CharacterSoundController
     [SerializeField] AudioClip[] attacks;
     [SerializeField] AudioClip[] talk;
 
+    [SerializeField] AudioClip[] weaponSounds;
+
     [SerializeField] AudioClip[] dead;
     [SerializeField] AudioSource mouth;
     [SerializeField] AudioSource feet;
@@ -20,11 +22,12 @@ public class CharacterSoundController
     private object value3;
     private System.Func<bool, AudioSource[]> value;
 
-    public CharacterSoundController(AudioClip[] hurt,AudioClip[] attacks, AudioClip[] talk, AudioClip[] dead, AudioSource mouth, AudioSource feet, AudioSource weapon)
+    public CharacterSoundController(AudioClip[] hurt,AudioClip[] attacks, AudioClip[] talk, AudioClip[] dead, AudioClip[] weaponSounds, AudioSource mouth, AudioSource feet, AudioSource weapon)
     {
         this.dead = dead;
         this.attacks = attacks;
         this.hurt = hurt;
+        this.weaponSounds = weaponSounds;
         this.mouth = mouth;
         this.feet = feet;
         this.weapon = weapon;
@@ -48,13 +51,21 @@ public class CharacterSoundController
 
     public void onAttackPlay()
     {
-        if (mouth.isPlaying && !attacks.ToList().Contains(mouth.clip))
+        if (weaponSounds.Length > 0 )
+        {
+            int random = weaponSounds.Length - 1;
+            weapon.Stop();
+            weapon.clip = weaponSounds[Random.Range(random, 1)];
+            weapon.Play();
+        }
+        else if(mouth.isPlaying && !attacks.ToList().Contains(mouth.clip))
         {
             int random = attacks.Length - 1;
             mouth.Stop();
             mouth.clip = attacks[Random.Range(random, 1)];
             mouth.Play();
         }
+         
     }
 
     public void onTalkPlay()

@@ -1978,7 +1978,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2849646653241874c907bb01de3634e4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3775,6 +3775,7 @@ MonoBehaviour:
   talk:
   - {fileID: 8300000, guid: 09153c53671bd3b4aaa11c66f04d13c5, type: 3}
   - {fileID: 8300000, guid: 6c53064c7c3933f4cba0056e51c582fc, type: 3}
+  weaponSounds: []
   attacks:
   - {fileID: 8300000, guid: dbb0a5e524e83524c810097e6e9bccd6, type: 3}
   dead:

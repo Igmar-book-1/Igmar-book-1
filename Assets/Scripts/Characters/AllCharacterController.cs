@@ -39,6 +39,8 @@ public abstract class AllCharacterController : MonoBehaviour
 
     [SerializeField] protected AudioClip[] talk;
 
+    [SerializeField] protected AudioClip[] weaponSounds;
+
     [SerializeField] protected AudioClip[] attacks;
 
     [SerializeField] protected AudioClip[] dead;
@@ -61,7 +63,7 @@ public abstract class AllCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundController = new CharacterSoundController(hurt, attacks, talk, dead, mouth, feet, weapon);
+        soundController = new CharacterSoundController(hurt, attacks, talk, dead, weaponSounds, mouth, feet, weapon);
     }
 
     // Update is called once per frame

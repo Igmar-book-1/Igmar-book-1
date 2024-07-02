@@ -81,6 +81,7 @@ public class Shooter : AllCharacterController
 
     private void ShootPlayer()
     {
+        AttackSound();
         GameObject go = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         go.SetActive(true);
         
