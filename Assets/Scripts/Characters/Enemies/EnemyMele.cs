@@ -40,7 +40,7 @@ public class EnemyMele : EnemyController
         _targetPlayer = GameManager.instance.Player.transform;
         agent = GetComponent<NavMeshAgent>();
 
-        setSoundController( new CharacterSoundController(hurt, attacks, talk, dead, mouth, feet, weapon));
+        setSoundController( new CharacterSoundController(hurt, attacks, talk, dead, weaponSounds, mouth, feet, weapon));
     }
 
     // Update is called once per frame

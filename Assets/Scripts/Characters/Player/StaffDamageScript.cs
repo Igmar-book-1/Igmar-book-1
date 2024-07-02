@@ -30,12 +30,14 @@ public class StaffDamageScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
      {
-         if (other.tag == "Enemy")
+
+        if (other.tag == "Enemy")
          {
+            damageController.OnHitEnemy(other);
             //Debug.Log(other.name);
             if (!Generated)
             {
-                damageController.OnHitEnemy(other);
+
                 MonoBehaviour.Instantiate(particleSystemObject, other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position), Quaternion.identity);
                 Generated = true;
                 StartCoroutine(disable());
@@ -47,7 +49,7 @@ public class StaffDamageScript : MonoBehaviour
 
     private IEnumerator disable()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Generated=false;
     }
 }

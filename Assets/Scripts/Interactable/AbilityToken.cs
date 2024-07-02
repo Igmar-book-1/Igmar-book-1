@@ -14,11 +14,18 @@ public class AbilityToken : Interactable
     bool cooldown;
     Animator animator;
     bool isActive;
+    AudioSource audioSource;
+    bool wasAudioActivated = false;
 
     public override void Execute(Collider other)
     {
         if (cooldown != true && !abilityCanva.activeInHierarchy)
         {
+            if (!wasAudioActivated)
+            {
+                audioSource.Play();
+                wasAudioActivated = true;
+            }
             cooldown = true;
             if (isActive == true)
             {
@@ -68,6 +75,7 @@ public class AbilityToken : Interactable
         animator = abilityCanva.GetComponent<Animator>();
         isActive = true;
         particleSystem = GetComponentInChildren<ParticleSystem>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
 

@@ -33,11 +33,13 @@ public abstract class AllCharacterController : MonoBehaviour
     protected string onDeath = "onDeath";
     protected string onHurt = "onHurt";
 
-    [SerializeField] float invulnerabilityDuration = 2.0f; // Duración de la invulnerabilidad en segundos
+    [SerializeField] float invulnerabilityDuration = 0.5f; // Duración de la invulnerabilidad en segundos
 
     [SerializeField] protected AudioClip[] hurt;
 
     [SerializeField] protected AudioClip[] talk;
+
+    [SerializeField] protected AudioClip[] weaponSounds;
 
     [SerializeField] protected AudioClip[] attacks;
 
@@ -61,13 +63,12 @@ public abstract class AllCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundController = new CharacterSoundController(hurt, attacks, talk, dead, mouth, feet, weapon);
+        soundController = new CharacterSoundController(hurt, attacks, talk, dead, weaponSounds, mouth, feet, weapon);
     }
 
     // Update is called once per frame
     void Update()
     {
-        isHurt = _anim.GetCurrentAnimatorStateInfo(0).IsName(onHurt);
 
     }
     protected virtual void Movement(int speedAnimationController)
@@ -110,10 +111,9 @@ public abstract class AllCharacterController : MonoBehaviour
                     return;
                 }
             }
-
-            isHurt = true;
             life -= damage;
             _anim.SetTrigger(onHurt);
+            //_anim.Play("Hurt");
 
             // Asegurarse de que el estado isHurt se restablezca al final de la animación "On Hurt"
             //StartCoroutine(ResetIsHurt());
